@@ -89,8 +89,8 @@ if ($_POST["enregistrer"]) {
 			if ($pseudoVendeur != "" && $mailVendeur !="" && $passwordVendeur!="" && $nomVendeur!="" && $failed != 1){
 				$sql = "INSERT INTO vendeur(ID, Pseudo, Password, Nom, Email, Etat, Photos, Background)            VALUES('$Identifiant', '$pseudoVendeur', '$passwordVendeur', '$nomVendeur', '$mailVendeur', '1', '$avatar', '$fond')";
 				$result = mysqli_query($db_handle,$sql); 
-				$reussi = "inscription faite" . $avatar . $fond;
-				//header('Location:indexConnecteVendeur.html');
+				$reussi = "inscription faite";
+				header('Location:indexConnecteVendeur.html');
 			}
 			
 		}
