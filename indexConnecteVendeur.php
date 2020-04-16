@@ -25,7 +25,6 @@ if ($db_found) {
     }else{//on trouve des objets à vendre
       $sql =  "SELECT ID, Nom, Photos, Description, Video, Prix, Categorie FROM item WHERE IDVendeur = '$IDVendeur'";
       $result = mysqli_query($db_handle,$sql);
-      $objets = mysqli_fetch_assoc($result);
     }
   }
 }else{
@@ -88,14 +87,17 @@ mysqli_close($db_handle);
   </nav>
 
   <div class="container"> 
-
-      <div class="col-sm-4">
-        <div class="panel panel-default">
-          <div class="panel-heading"> <?php echo $objets['Nom']; ?> </div>
-          <div class="panel-body"> <img src="<?php echo $objets['Photos']; ?>" class="img-responsive" style="width:100%" alt="Image"> </div>
-          <div class="panel-footer"> <?php echo $objets['Description']; ?> </div>
-        </div>
-      </div>
+          <?php
+          while ($objets = mysqli_fetch_assoc($result)) {
+              echo "<div class='col-sm-4'>";
+              echo "<div class='panel panel-default'>";
+              echo"<div class='panel-heading'>" .$objets['Nom'] . "</div>";
+              echo "<div class='panel-body'> <img src=' ". $objets['Photos'] ."' class='img-responsive' style='width:100%' alt='Image'> </div>";
+              echo "<div class='panel-footer'>" . $objets['Description'] . "</div>";
+              echo "</div>";
+              echo "</div>";
+            }
+          ?>
   </div>
 
   <footer class="page-footer">
