@@ -1,3 +1,41 @@
+<?php
+
+$database = "midgard";
+$db_handle = mysqli_connect('localhost', 'root', '');
+$db_found = mysqli_select_db($db_handle, $database);
+$accueil ='';
+$nomVendeur ='';
+$IDVendeur ='';
+$erreurObjet ='';
+
+if ($db_found) {
+  $sql ="SELECT * FROM vendeur WHERE Etat = 1";
+  $result = mysqli_query($db_handle,$sql);
+  if (mysqli_num_rows($result) == 0) {//on ne trouve pas de vendeur connecté
+    echo "Erreur : pas d'utilisateur connecté";
+  }else{//on trouve un vendeur connecté
+    $data = mysqli_fetch_assoc($result);
+    $nomVendeur = $data['Nom']; 
+    $IDVendeur = $data['ID'];
+    $accueil ="Bonjour M. " .$nomVendeur;
+    $sql ="SELECT * FROM item WHERE IDVendeur = '$IDVendeur'";
+    $result = mysqli_query($db_handle,$sql);
+    if (mysqli_num_rows($result) == 0) {//on ne trouve pas d'objets à vendre
+      $erreurObjet = "Vous n'avez pas d'objets à vendre, ajoutez-en en cliquant sur le bouton Vendre";
+    }else{//on trouve des objets à vendre
+      $sql =  "SELECT ID, Nom, Photos, Description, Video, Prix, Categorie FROM item WHERE IDVendeur = '$IDVendeur'";
+      $result = mysqli_query($db_handle,$sql);
+      $objets = mysqli_fetch_assoc($result);
+    }
+  }
+}else{
+  echo "Database not found";
+}
+mysqli_close($db_handle);
+?>
+
+
+
 <!DOCTYPE html>
 <head>
   <title>Midgard</title>
@@ -52,42 +90,16 @@
 
   <div class="container"> 
 
-      <div class="col-sm-12">
-        <div class="panel panel-primary">
-          <div class="panel-heading">OFFRE DU JOUR</div>
-          <div class="panel-body"><img src="https://placehold.it/150x80?text=IMAGE" class="img-responsive" style="width:100%" alt="Image"></div>
-          <div class="panel-footer">Seulement 50 Øre </div>
-        </div>
-      </div>
-
       <div class="col-sm-4">
         <div class="panel panel-default">
-          <div class="panel-heading">Item populaire</div>
-          <div class="panel-body"><img src="https://placehold.it/150x80?text=IMAGE" class="img-responsive" style="width:100%" alt="Image"></div>
-          <div class="panel-footer">Buy 50 mobiles and get a gift card</div>
+          <div class="panel-heading"> <?php echo $objets['Nom']; ?> </div>
+          <div class="panel-body"> <img src="<?php echo $objets['Photos']; ?>" class="img-responsive" style="width:100%" alt="Image"> </div>
+          <div class="panel-footer"> <?php echo $objets['Description']; ?> </div>
         </div>
       </div>
-
-      <div class="col-sm-4">
-        <div class="panel panel-default">
-          <div class="panel-heading">Item populaire</div>
-          <div class="panel-body"><img src="https://placehold.it/150x80?text=IMAGE" class="img-responsive" style="width:100%" alt="Image"></div>
-          <div class="panel-footer">Buy 50 mobiles and get a gift card</div>
-        </div>
-      </div>
-
-      <div class="col-sm-4">
-        <div class="panel panel-default">
-          <div class="panel-heading">Item populaire</div>
-          <div class="panel-body"><img src="https://placehold.it/150x80?text=IMAGE" class="img-responsive" style="width:100%" alt="Image"></div>
-          <div class="panel-footer">Buy 50 mobiles and get a gift card</div>
-        </div>
-      </div>
-
   </div>
 
   <footer class="page-footer">
-
     <div class="container-fluid">
       <img src="logo.png" width="100px" height="100px">
       <p><strong>M I D G A R D</strong></p>  
