@@ -55,16 +55,15 @@ mysqli_close($db_handle);
 
   	<nav class="navbar navbar-inverse">
     <div class="container-fluid">
-      <a class="navbar-brand" href="index.html"><img src="logo.png" style="margin-top: -11px" width="40px" height="40px"></a>
+      <a class="navbar-brand" href="indexConnecteVendeur.html"><img src="logo.png" style="margin-top: -11px" width="40px" height="40px"></a>
 
       <div class="collapse navbar-collapse" id="myNavbar">
         <ul class="nav navbar-nav">
           <li class="active"><a href="indexConnecteVendeur.html">Home</a></li>
-          <li><a href="#">Acheter</a></li>
-          <li><a href="#">Vendre</a></li>
+          <li><a href="vente.php">Vendre</a></li>
 
           <li class="dropdown" >
-            <a class="dropdown-toggle" data-toggle="dropdown" href="#0">Catégories
+            <a class="dropdown-toggle" data-toggle="dropdown" href="#">Catégories
               <span class="caret"></span>
             </a>
             <ul class="dropdown-menu">
@@ -77,8 +76,7 @@ mysqli_close($db_handle);
 
 
         <ul class="nav navbar-nav navbar-right">
-          <li><a href="moncompteVendeur.html"><span class="glyphicon glyphicon-user"></span> Mon compte</a></li>
-          <li><a href="#"><span class="glyphicon glyphicon-shopping-cart"></span> Votre panier</a></li>
+          <li><a href="moncompteVendeur.php"><span class="glyphicon glyphicon-user"></span> Mon compte</a></li>
           <li><a href="deco.php"><span class="glyphicon glyphicon-off"></span> Déconnexion</a></li>
         </ul>
       </div>

@@ -29,8 +29,7 @@ if ($db_found) {
 		$Identifiant = $data['MAX(ID)'] + 1;
 
 		$sql = "INSERT INTO item(ID, Nom, Photos, Description, Video, Prix, Categorie, IDVendeur) VALUES('$Identifiant', '$nomObjet', '$photo', '$desc', '$video', '$prix', '$categorie', '$Identifiant')";
-		$result = mysqli_query($db_handle, $sql); 
-		$erreur = "ajout effectué";
+		$result = mysqli_query($db_handle, $sql);
 	}
 
 }else{
@@ -68,8 +67,7 @@ mysqli_close($db_handle);
 
       <div class="collapse navbar-collapse" id="myNavbar">
         <ul class="nav navbar-nav">
-          <li class="active"><a href="#">Home</a></li>
-          <li><a href="#">Acheter</a></li>
+          <li class="active"><a href="indexConnecteVendeur.html">Home</a></li>
           <li><a href="vente.php">Vendre</a></li>
 
           <li class="dropdown" >
@@ -93,25 +91,22 @@ mysqli_close($db_handle);
     </div>
   </nav>
   
-  <div id="erreur">
-  	<?php if( !empty( $erreur ) ) echo '<p style="text-align: center;" >', $erreur, '</p>' ?>
-  </div>
   <!-- FORMULAIRE D'AJOUT D'ITEM -->
   <form action="vente.php" method="post">
 	<div class="vente">
-		<label for="categorie"><b>En quelle catégorie souhaitez-vous ajouter un objet ? </b></label>
-			<label for="tresor">Objet de valeur</label> <input type="radio" name="cate" value="tresor"> &nbsp
-			<label for="relique">Objet ancien</label> <input type="radio" name="cate" value="relique"> &nbsp
-			<label for="vip">Objet VIP </label> <input type="radio" name="cate" value="vip"> <br> <br>
+		<label for="categorie"><b>En quelle catégorie souhaitez-vous ajouter un objet ? </b></label>&nbsp &nbsp
+			<label for="tresor"> Objet de valeur </label> <input type="radio" name="cate" value="tresor"> &nbsp
+			<label for="relique"> Objet ancien </label> <input type="radio" name="cate" value="relique"> &nbsp
+			<label for="vip"> Objet VIP </label> <input type="radio" name="cate" value="vip"> <br> <br>
 
 		<label for="nomObjet"><b>Nom de l'objet : </b></label>
-		<input type="text" placeholder="Entrez le nom de l'objet" name="nomObjet" required><br>
+		<input type="text" placeholder="Entrez le nom de l'objet" name="nomObjet" maxlength="50" required><br>
 
 		<label for="description"><b>Donnez nous une petite description de cet objet : </b></label>
-		<input type="text" placeholder="Tapez votre description" name="description" required><br>
+		<input type="text" placeholder="Tapez votre description" name="description" maxlength="130" required><br>
 
 		<label for="prix"><b> A combien voulez-vous vendre cet objet ? </b></label>
-		<input type="text" placeholder="Entrez votre prix" name="prix" required><br>
+		<input type="text" placeholder="Entrez votre prix" name="prix" maxlength="20" required><br>
 
 		<label for="avatar">Ajoutez une photo pour mieux décrire votre objet :</label>
 			<input type="file" name="photo" required><br>
