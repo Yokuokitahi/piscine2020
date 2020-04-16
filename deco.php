@@ -36,5 +36,6 @@ if($db_found){
 }else{
 	echo "Database not found";
 }
+mysqli_close($db_handle);
 
 ?>
