@@ -18,6 +18,19 @@ border-radius: 0;
 .panel-footer{
 	color: red;
 	background-color: black;
+  text-align: center;
+}
+
+.panel-heading {
+  width: 100%;
+  text-align: center;
+}
+
+.panel-body {
+  height: 200px;
+  width: 170px;
+  margin-right: auto;
+  margin-left: auto;
 }
 
 /* Add a gray background color and some padding to the footer */

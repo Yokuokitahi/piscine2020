@@ -29,8 +29,11 @@ if ($db_found) {
 		$data = mysqli_fetch_assoc($result);
 		$Identifiant = $data['MAX(ID)'] + 1;
 
+		if ($nomObjet != ""){
 		$sql = "INSERT INTO item(ID, Nom, Photos, Description, Video, Prix, Categorie, IDVendeur) VALUES('$Identifiant', '$nomObjet', '$photo', '$desc', '$video', '$prix', '$categorie', '$IDVendeur')";
 		$result = mysqli_query($db_handle, $sql); 
+		header('Location: indexConnecteVendeur.php');
+		}
 	}
 }else{
 	echo "Database not found";
