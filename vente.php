@@ -1,6 +1,5 @@
 <?php
 
-
 $nomObjet = isset($_POST["nomObjet"])? $_POST["nomObjet"] : "";
 $categorie = isset($_POST["cate"])? $_POST["cate"] : "";
 $desc = isset($_POST["description"])? $_POST["description"] : "";
@@ -9,6 +8,7 @@ $prix = isset($_POST["prix"])? $_POST["prix"] : "";
 $photo = isset($_POST["photo"])? $_POST["photo"] : "";
 $video = isset($_POST["video"])? $_POST["video"] : "";
 $Identifiant ='';
+$IDVendeur ='';
 $erreur ='';
 
 $database = "midgard";
@@ -22,17 +22,19 @@ if ($db_found) {
 		echo "Erreur : pas d'utilisateur connecté";
 	}else{//on trouve un vendeur connecté
 		$data = mysqli_fetch_assoc($result);
-		$Identifiant = $data['ID']; 
+		$IDVendeur = $data['ID']; 
+
 		$sql = "SELECT MAX(ID) FROM item";
 		$result = mysqli_query($db_handle, $sql); 
 		$data = mysqli_fetch_assoc($result);
 		$Identifiant = $data['MAX(ID)'] + 1;
 
-		$sql = "INSERT INTO item(ID, Nom, Photos, Description, Video, Prix, Categorie, IDVendeur) VALUES('$Identifiant', '$nomObjet', '$photo', '$desc', '$video', '$prix', '$categorie', '$Identifiant')";
+		if ($nomObjet != ""){
+		$sql = "INSERT INTO item(ID, Nom, Photos, Description, Video, Prix, Categorie, IDVendeur) VALUES('$Identifiant', '$nomObjet', '$photo', '$desc', '$video', '$prix', '$categorie', '$IDVendeur')";
 		$result = mysqli_query($db_handle, $sql); 
-		$erreur = "ajout effectué";
+		header('Location: indexConnecteVendeur.php');
+		}
 	}
-
 }else{
 	echo "Database not found";
 }
@@ -64,16 +66,15 @@ mysqli_close($db_handle);
 
   <nav class="navbar navbar-inverse">
     <div class="container-fluid">
-      <a class="navbar-brand" href="index.html"><img src="logo.png" style="margin-top: -11px" width="40px" height="40px"></a>
+      <a class="navbar-brand" href="indexConnecteVendeur.php"><img src="logo.png" style="margin-top: -11px" width="40px" height="40px"></a>
 
       <div class="collapse navbar-collapse" id="myNavbar">
         <ul class="nav navbar-nav">
-          <li class="active"><a href="#">Home</a></li>
-          <li><a href="#">Acheter</a></li>
+          <li class="active"><a href="indexConnecteVendeur.php">Home</a></li>
           <li><a href="vente.php">Vendre</a></li>
 
           <li class="dropdown" >
-            <a class="dropdown-toggle" data-toggle="dropdown" href="#0">Catégories
+            <a class="dropdown-toggle" data-toggle="dropdown" href="#">Catégories
               <span class="caret"></span>
             </a>
             <ul class="dropdown-menu">
@@ -93,9 +94,6 @@ mysqli_close($db_handle);
     </div>
   </nav>
   
-  <div id="erreur">
-  	<?php if( !empty( $erreur ) ) echo '<p style="text-align: center;" >', $erreur, '</p>' ?>
-  </div>
   <!-- FORMULAIRE D'AJOUT D'ITEM -->
   <form action="vente.php" method="post">
 	<div class="vente">
