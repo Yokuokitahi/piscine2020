@@ -16,14 +16,19 @@ border-radius: 0;
 }
 
 .panel-footer{
-	color: red;
-	background-color: black;
+	color: white;
+	background-color:#303030;
   text-align: center;
 }
 
 .panel-heading {
   width: 100%;
   text-align: center;
+}
+
+.panel-heading a {
+  margin-left: 210px;
+  color:black;
 }
 
 .panel-body {
