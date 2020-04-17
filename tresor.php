@@ -97,7 +97,7 @@ if ($db_found) {
       }elseif ($objets['TypeVente'] == 'enchere') {
         echo "<div class='col-sm-4'>";
         echo "<div class='panel panel-default'>";
-        echo"<div class='panel-heading'>" .$objets['Nom'] . "<a href='AJOUTER_ENCHERE.php?id=" . $objets['ID'] . "'><span class='glyphicon glyphicon-hourglass'></span></a>". "</div>";
+        echo"<div class='panel-heading'>" .$objets['Nom'] . "<a href='acheterEnchere.php" . $objets['ID'] . "'><span class='glyphicon glyphicon-hourglass'></span></a>". "</div>";
         echo "<div class='panel-body'> <img src=' ". $objets['Photos'] ."' class='img-responsive' style='width:100%' alt='Image'> </div>";
         echo "<div class='panel-footer'>" . $objets['Description'] . "&nbspau prix de : " . $objets['Prix'] . " Ø" . "</div>";
         echo "</div>";

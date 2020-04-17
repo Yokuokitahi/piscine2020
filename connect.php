@@ -33,7 +33,7 @@ if ($_POST["connexion"]) { //bouton se connecter enclenché
 					}
 					else { // si le mot de passe renseigné est le bon
 						$erreur = "connexion autorisée <br>"; //connexion autorisée pour acheteur
-						header('Location: indexConnecteAcheteur.php');
+						header('Location: indexConnecteAcheteur.php?erreur=0');
 						$sql = "UPDATE acheteur SET Etat = 1 WHERE Pseudo = '$identifiant'";
 						$result = mysqli_query($db_handle, $sql);
 					}

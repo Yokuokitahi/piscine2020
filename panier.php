@@ -97,8 +97,11 @@ mysqli_close($db_handle);
           }
           ?>
   </div>
-
-  <a href="paiementImmediat.php?total= <?php echo $prixTotal; ?>">Effectuer le paiement</a>
+  <?php
+  if ($erreurObjet == '') {
+    echo "<a href='paiementImmediat.php?total= <?php echo $prixTotal; ?>'>Effectuer le paiement</a>";
+  }
+  ?>
 
         <div class="totalPaiement">
             <?php echo $erreurObjet; ?>

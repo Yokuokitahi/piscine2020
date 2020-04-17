@@ -92,7 +92,7 @@ mysqli_close($db_handle);
           while ($objets1 = mysqli_fetch_assoc($result1)) {
               echo "<div class='col-sm-4'>";
               echo "<div class='panel panel-default'>";
-              echo"<div class='panel-heading'>" .$objets1['Nom'] . "<a href='AJOUTER_ENCHERE.php?id=" . $objets1['ID'] . "'><span class='glyphicon glyphicon-hourglass'></span></a>" . "</div>";
+              echo"<div class='panel-heading'>" .$objets1['Nom'] . "<a href='acheterEnchere.php" . $objets1['ID'] . "'><span class='glyphicon glyphicon-hourglass'></span></a>" . "</div>";
               echo "<div class='panel-body'> <img src=' ". $objets1['Photos'] ."' class='img-responsive' style='width:100%' alt='Image'> </div>";
               echo "<div class='panel-footer'>" . $objets1['Description'] . "&nbspau prix de : " . $objets1['Prix'] . " Ø" . "</div>";
               echo "</div>";
