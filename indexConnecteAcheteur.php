@@ -1,3 +1,31 @@
+<?php
+
+$database = "midgard";
+$db_handle = mysqli_connect('localhost', 'root', '');
+$db_found = mysqli_select_db($db_handle, $database);
+$nbItems ='';
+$erreurObjet ='';
+
+if ($db_found) {
+    $sql ="SELECT COUNT(*)-1 AS count FROM item";
+    $result = mysqli_query($db_handle,$sql);
+    $data = mysqli_fetch_assoc($result);
+    $nbItems = $data['count']; //UTILE POUR LE RANDOM
+
+    $sql ="SELECT * FROM item";
+    $result = mysqli_query($db_handle,$sql);
+    if (mysqli_num_rows($result) == 0) {//on ne trouve pas d'objets à vendre
+      $erreurObjet = "Il n'y a pas d'objets à vendre actuellement";
+    }else{//on trouve des objets à vendre
+      $sql =  "SELECT ID, Nom, Photos, Description, Video, Prix, Categorie FROM item WHERE ID > 0";
+      $result = mysqli_query($db_handle,$sql);
+    }
+}else{
+  echo "Database not found";
+}
+mysqli_close($db_handle);
+?>
+
 <!DOCTYPE html>
 <head>
   <title>Midgard</title>
@@ -21,11 +49,11 @@
 
   <nav class="navbar navbar-inverse">
     <div class="container-fluid">
-      <a class="navbar-brand" href="indexConnecteAcheteur.html"><img src="logo.png" style="margin-top: -11px" width="40px" height="40px"></a>
+      <a class="navbar-brand" href="indexConnecteAcheteur.php"><img src="logo.png" style="margin-top: -11px" width="40px" height="40px"></a>
 
       <div class="collapse navbar-collapse" id="myNavbar">
         <ul class="nav navbar-nav">
-          <li class="active"><a href="indexConnecteAcheteur.html">Home</a></li>
+          <li class="active"><a href="indexConnecteAcheteur.php">Home</a></li>
           <li><a href="#">Acheter</a></li>
 
           <li class="dropdown" >
@@ -51,39 +79,17 @@
   </nav>
 
   <div class="container"> 
-
-      <div class="col-sm-12">
-        <div class="panel panel-primary">
-          <div class="panel-heading">OFFRE DU JOUR</div>
-          <div class="panel-body"><img src="https://placehold.it/150x80?text=IMAGE" class="img-responsive" style="width:100%" alt="Image"></div>
-          <div class="panel-footer">Seulement 50 Øre </div>
-        </div>
-      </div>
-
-      <div class="col-sm-4">
-        <div class="panel panel-default">
-          <div class="panel-heading">Item populaire</div>
-          <div class="panel-body"><img src="https://placehold.it/150x80?text=IMAGE" class="img-responsive" style="width:100%" alt="Image"></div>
-          <div class="panel-footer">Buy 50 mobiles and get a gift card</div>
-        </div>
-      </div>
-
-      <div class="col-sm-4">
-        <div class="panel panel-default">
-          <div class="panel-heading">Item populaire</div>
-          <div class="panel-body"><img src="https://placehold.it/150x80?text=IMAGE" class="img-responsive" style="width:100%" alt="Image"></div>
-          <div class="panel-footer">Buy 50 mobiles and get a gift card</div>
-        </div>
-      </div>
-
-      <div class="col-sm-4">
-        <div class="panel panel-default">
-          <div class="panel-heading">Item populaire</div>
-          <div class="panel-body"><img src="https://placehold.it/150x80?text=IMAGE" class="img-responsive" style="width:100%" alt="Image"></div>
-          <div class="panel-footer">Buy 50 mobiles and get a gift card</div>
-        </div>
-      </div>
-
+      <?php
+          while ($objets = mysqli_fetch_assoc($result)) {
+              echo "<div class='col-sm-4'>";
+              echo "<div class='panel panel-default'>";
+              echo"<div class='panel-heading'>" .$objets['Nom'] . "</div>";
+              echo "<div class='panel-body'> <img src=' ". $objets['Photos'] ."' class='img-responsive' style='width:100%' alt='Image'> </div>";
+              echo "<div class='panel-footer'>" . $objets['Description'] . "&nbspau prix de : " . $objets['Prix'] . "€" . "</div>";
+              echo "</div>";
+              echo "</div>";
+            }
+          ?>
   </div>
 
   <footer class="page-footer">

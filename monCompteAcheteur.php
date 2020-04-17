@@ -20,6 +20,7 @@ $dateExpCarte='';
 $crypto ='';
 $cryptoCensor ='';
 $nbCb = '';
+$solde = '';
 
 if($db_found){
 	$sql ="SELECT * FROM acheteur WHERE Etat = 1";
@@ -44,6 +45,7 @@ if($db_found){
 			$dateExpCarte= $data['DateExpCarteB'];
 			$crypto = $data['Crypto'];
       $cryptoCensor = preg_replace("#$crypto#", '****', $crypto);
+      $solde = $data['Solde'];
 		}
 }else{
 	echo "Database not found";
@@ -76,11 +78,11 @@ mysqli_close($db_handle);
 
   	<nav class="navbar navbar-inverse">
     <div class="container-fluid">
-      <a class="navbar-brand" href="indexConnecteAcheteur.html"><img src="logo.png" style="margin-top: -11px" width="40px" height="40px"></a>
+      <a class="navbar-brand" href="indexConnecteAcheteur.php"><img src="logo.png" style="margin-top: -11px" width="40px" height="40px"></a>
 
       <div class="collapse navbar-collapse" id="myNavbar">
         <ul class="nav navbar-nav">
-          <li class="active"><a href="indexConnecteAcheteur.html">Home</a></li>
+          <li class="active"><a href="indexConnecteAcheteur.php">Home</a></li>
           <li><a href="#">Acheter</a></li>
 
           <li class="dropdown" >
@@ -97,6 +99,7 @@ mysqli_close($db_handle);
 
 
         <ul class="nav navbar-nav navbar-right">
+          <li><a href="ajouterSolde.php"><span class="glyphicon glyphicon-euro"></span>Déposer de l'argent</a></li>
           <li><a href="moncompteAcheteur.php"><span class="glyphicon glyphicon-user"></span> Mon compte</a></li>
           <li><a href="#"><span class="glyphicon glyphicon-shopping-cart"></span> Votre panier</a></li>
           <li><a href="deco.php"><span class="glyphicon glyphicon-off"></span> Déconnexion</a></li>
@@ -107,6 +110,7 @@ mysqli_close($db_handle);
 
   <div class="acheteur">
   		<img src="avatar.png" alt="Avatar" class="avatar">
+    <p>Solde actuel : <?php if( !empty( $solde ) ) echo $solde ?></p>
 		<p>Nom : <?php if( !empty( $nom ) ) echo $nom ?></p>
     <p>Prenom : <?php if( !empty( $prenom ) ) echo $prenom ?></p>
     <p>Adresse : <?php if( !empty( $adresse ) ) echo $adresse ?></p>
