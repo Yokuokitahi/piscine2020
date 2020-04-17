@@ -61,9 +61,9 @@ mysqli_close($db_handle);
               <span class="caret"></span>
             </a>
             <ul class="dropdown-menu">
-              <li><a href="#">Trésors</a></li>
-              <li><a href="#">Reliques</a></li>
-              <li><a href="#">VIP</a></li>
+              <li><a href="tresor.php">Trésors</a></li>
+              <li><a href="relique.php">Reliques</a></li>
+              <li><a href="vip.php">VIP</a></li>
             </ul>
           </li>
         </ul>
