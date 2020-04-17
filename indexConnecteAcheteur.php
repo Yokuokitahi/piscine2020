@@ -57,7 +57,7 @@ mysqli_close($db_handle);
           <li><a href="acheter.php">Acheter</a></li>
 
           <li class="dropdown" >
-            <a class="dropdown-toggle" data-toggle="dropdown" href="#">Catégories
+            <a class="dropdown-toggle" data-toggle="dropdown">Catégories
               <span class="caret"></span>
             </a>
             <ul class="dropdown-menu">

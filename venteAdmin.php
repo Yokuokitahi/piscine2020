@@ -82,17 +82,6 @@ mysqli_close($db_handle);
         <ul class="nav navbar-nav">
           <li class="active"><a href="indexadmin.php">Home</a></li>
           <li><a href="venteAdmin.php">Vendre</a></li>
-
-          <li class="dropdown" >
-            <a class="dropdown-toggle" data-toggle="dropdown" href="#">Catégories
-              <span class="caret"></span>
-            </a>
-            <ul class="dropdown-menu">
-              <li><a href="#">Trésors</a></li>
-              <li><a href="#">Reliques</a></li>
-              <li><a href="#">VIP</a></li>
-            </ul>
-          </li>
         </ul>
 
 

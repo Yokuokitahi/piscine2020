@@ -82,17 +82,6 @@ mysqli_close($db_handle);
         <ul class="nav navbar-nav">
           <li class="active"><a href="indexConnecteVendeur.php">Home</a></li>
           <li><a href="vente.php">Vendre</a></li>
-
-          <li class="dropdown" >
-            <a class="dropdown-toggle" data-toggle="dropdown" href="#">Catégories
-              <span class="caret"></span>
-            </a>
-            <ul class="dropdown-menu">
-              <li><a href="#">Trésors</a></li>
-              <li><a href="#">Reliques</a></li>
-              <li><a href="#">VIP</a></li>
-            </ul>
-          </li>
         </ul>
 
 
@@ -113,7 +102,7 @@ mysqli_close($db_handle);
 			<label for="vip">Objet VIP </label> <input type="radio" name="cate" value="vip" required> <br> <br>
 
 		<label for="nomObjet"><b>Nom de l'objet : </b></label>
-		<input type="text" placeholder="Entrez le nom de l'objet" name="nomObjet" required><br>
+		<input type="text" placeholder="Entrez le nom de l'objet" name="nomObjet" maxlength="20" required><br>
 
 		<label for="description"><b>Donnez nous une petite description de cet objet : </b></label>
 		<input type="text" placeholder="Tapez votre description" name="description" required><br>

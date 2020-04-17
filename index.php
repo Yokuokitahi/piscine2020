@@ -49,16 +49,16 @@ mysqli_close($db_handle);
 
   <nav class="navbar navbar-inverse">
     <div class="container-fluid">
-      <a class="navbar-brand" href="index.html"><img src="logo.png" style="margin-top: -11px" width="40px" height="40px"></a>
+      <a class="navbar-brand" href="index.php"><img src="logo.png" style="margin-top: -11px" width="40px" height="40px"></a>
 
       <div class="collapse navbar-collapse" id="myNavbar">
         <ul class="nav navbar-nav">
-          <li class="active"><a href="index.html">Home</a></li>
+          <li class="active"><a href="index.php">Home</a></li>
           <li><a href="connect.php">Acheter</a></li>
           <li><a href="connect.php">Vendre</a></li>
 
           <li class="dropdown" >
-            <a class="dropdown-toggle" data-toggle="dropdown" href="index.php">Catégories
+            <a class="dropdown-toggle" data-toggle="dropdown">Catégories
               <span class="caret"></span>
             </a>
             <ul class="dropdown-menu">
