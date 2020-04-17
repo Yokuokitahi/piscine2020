@@ -29,7 +29,7 @@ if ($db_found) {
     if (mysqli_num_rows($result2) == 0) {//on ne trouve pas de vendeurs
       $erreurObjet = "Vous n'avez pas d'items en vente actuellement";
     }else{//on trouve des items
-      $sql2 =  "SELECT ID, Nom, Photos, Description, Video, Prix, Categorie FROM item WHERE IDVendeur = '$PseudoAdmin'";
+      $sql2 =  "SELECT * FROM item WHERE IDVendeur = '$PseudoAdmin'";
       $result2 = mysqli_query($db_handle,$sql2); 
     }
   }

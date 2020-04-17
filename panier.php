@@ -3,28 +3,33 @@
 $database = "midgard";
 $db_handle = mysqli_connect('localhost', 'root', '');
 $db_found = mysqli_select_db($db_handle, $database);
-$nbItems ='';
+$IDAcheteur ='';
 $erreurObjet ='';
 
 if ($db_found) {
-    $sql ="SELECT COUNT(*)-1 AS count FROM item";
-    $result = mysqli_query($db_handle,$sql);
+  $sql ="SELECT * FROM acheteur WHERE Etat = 1";
+  $result = mysqli_query($db_handle,$sql);
+  if (mysqli_num_rows($result) == 0) {//on ne trouve pas de vendeur connecté
+    echo "Erreur : pas d'utilisateur connecté";
+  }else{//on trouve un vendeur connecté
     $data = mysqli_fetch_assoc($result);
-    $nbItems = $data['count']; //UTILE POUR LE RANDOM
-
-    $sql ="SELECT * FROM item";
+    $IDAcheteur = $data['ID'];
+    $sql ="SELECT * FROM item WHERE IDAcheteur = '$IDAcheteur'";
     $result = mysqli_query($db_handle,$sql);
     if (mysqli_num_rows($result) == 0) {//on ne trouve pas d'objets à vendre
-      $erreurObjet = "Il n'y a pas d'objets à vendre actuellement";
+      $erreurObjet = "Vous n'avez pas d'objets dans votre panier, parcourez le site pour en trouver !";
     }else{//on trouve des objets à vendre
-      $sql =  "SELECT * FROM item WHERE ID > 0";
+      $sql =  "SELECT * FROM item WHERE IDAcheteur = '$IDAcheteur'";
       $result = mysqli_query($db_handle,$sql);
     }
+  }
 }else{
   echo "Database not found";
 }
 mysqli_close($db_handle);
 ?>
+
+
 
 <!DOCTYPE html>
 <head>
@@ -54,24 +59,11 @@ mysqli_close($db_handle);
       <div class="collapse navbar-collapse" id="myNavbar">
         <ul class="nav navbar-nav">
           <li class="active"><a href="indexConnecteAcheteur.php">Home</a></li>
-          <li><a href="acheter.php">Acheter</a></li>
-
-          <li class="dropdown" >
-            <a class="dropdown-toggle" data-toggle="dropdown">Catégories
-              <span class="caret"></span>
-            </a>
-            <ul class="dropdown-menu">
-              <li><a href="tresor.php">Trésors</a></li>
-              <li><a href="relique.php">Reliques</a></li>
-              <li><a href="vip.php">VIP</a></li>
-            </ul>
-          </li>
+          <li><a href="vente.php">Vendre</a></li>
         </ul>
-
 
         <ul class="nav navbar-nav navbar-right">
           <li><a href="monCompteAcheteur.php"><span class="glyphicon glyphicon-user"></span> Mon compte</a></li>
-          <li><a href="panier.php"><span class="glyphicon glyphicon-shopping-cart"></span> Votre panier</a></li>
           <li><a href="deco.php"><span class="glyphicon glyphicon-off"></span> Déconnexion</a></li>
         </ul>
       </div>
@@ -79,23 +71,19 @@ mysqli_close($db_handle);
   </nav>
 
   <div class="container"> 
-      <?php
+          <?php
           while ($objets = mysqli_fetch_assoc($result)) {
-            if ($objets['IDAcheteur']== 0) {
               echo "<div class='col-sm-4'>";
               echo "<div class='panel panel-default'>";
-              echo"<div class='panel-heading'>" .$objets['Nom'] . "</div>";
+              echo"<div class='panel-heading'>" .$objets['Nom'] . "<a href='removeItemPanier.php?id=" . $objets['ID'] . "'><span class='glyphicon glyphicon-remove'></span></a>" . "</div>";
               echo "<div class='panel-body'> <img src=' ". $objets['Photos'] ."' class='img-responsive' style='width:100%' alt='Image'> </div>";
               echo "<div class='panel-footer'>" . $objets['Description'] . "&nbspau prix de : " . $objets['Prix'] . "€" . "</div>";
               echo "</div>";
               echo "</div>";
-            }
           }
           ?>
   </div>
-
   <footer class="page-footer">
-
     <div class="container-fluid">
       <img src="logo.png" width="100px" height="100px">
       <p><strong>M I D G A R D</strong></p>  

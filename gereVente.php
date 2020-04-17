@@ -19,11 +19,11 @@ if ($db_found) {
     if (mysqli_num_rows($result) == 0) {//on ne trouve pas d'objets à vendre
       $erreurObjet = "Il n'y a pas d'objets à vendre actuellement";
     }else{//on trouve des objets à vendre
-      $sql1 =  "SELECT ID, Nom, Photos, Description, Video, Prix, Categorie FROM item WHERE ID > 0 AND TypeVente = 'enchere' ";
+      $sql1 =  "SELECT * FROM item WHERE ID > 0 AND TypeVente = 'enchere' ";
       $result1 = mysqli_query($db_handle,$sql1);
-      $sql2 =  "SELECT ID, Nom, Photos, Description, Video, Prix, Categorie FROM item WHERE ID > 0 AND TypeVente = 'nego' ";
+      $sql2 =  "SELECT * FROM item WHERE ID > 0 AND TypeVente = 'nego' ";
       $result2 = mysqli_query($db_handle,$sql2);
-      $sql3 =  "SELECT ID, Nom, Photos, Description, Video, Prix, Categorie FROM item WHERE ID > 0 AND TypeVente = 'comptant' ";
+      $sql3 =  "SELECT * FROM item WHERE ID > 0 AND TypeVente = 'comptant' ";
       $result3 = mysqli_query($db_handle,$sql3);
     }
 }else{

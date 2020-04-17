@@ -39,7 +39,7 @@ if ($db_found) {
       }elseif ($typeVente == "enchere" && $dureeEnchere==0) {
         echo "veuillez renseigner la durée d'enchères";
       }else{
-        $sql = "INSERT INTO item(ID, Nom, Photos, Description, Video, Prix, Categorie, IDVendeur) VALUES('$Identifiant', '$nomObjet', '$photo', '$desc', '$video', '$prix', '$categorie', '$PseudoAdmin')";
+        $sql = "INSERT INTO item(ID, Nom, Photos, Description, Video, Prix, Categorie, IDVendeur, TypeVente) VALUES('$Identifiant', '$nomObjet', '$photo', '$desc', '$video', '$prix', '$categorie', '$PseudoAdmin', '$typeVente')";
         $result = mysqli_query($db_handle, $sql); 
         header('Location: indexadmin.php');
       }

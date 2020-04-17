@@ -74,7 +74,7 @@ if ($db_found) {
 
         <ul class="nav navbar-nav navbar-right">
           <li><a href="moncompteAcheteur.php"><span class="glyphicon glyphicon-user"></span> Mon compte</a></li>
-          <li><a href="#"><span class="glyphicon glyphicon-shopping-cart"></span> Votre panier</a></li>
+          <li><a href="panier.php"><span class="glyphicon glyphicon-shopping-cart"></span> Votre panier</a></li>
           <li><a href="deco.php"><span class="glyphicon glyphicon-off"></span> Déconnexion</a></li>
         </ul>
       </div>
