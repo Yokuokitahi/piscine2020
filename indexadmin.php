@@ -68,6 +68,7 @@ mysqli_close($db_handle);
       <div class="collapse navbar-collapse" id="myNavbar">
         <ul class="nav navbar-nav">
           <li class="active"><a href="#">Home</a></li>
+          <li><a href="gereVente.php">Gérer les ventes</a></li>
           <li><a href="venteAdmin.php">Vendre</a></li>
 
           <li class="dropdown" >
