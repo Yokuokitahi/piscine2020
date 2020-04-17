@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Hôte : 127.0.0.1:3306
--- Généré le :  jeu. 16 avr. 2020 à 15:20
+-- Généré le :  jeu. 16 avr. 2020 à 16:43
 -- Version du serveur :  10.4.10-MariaDB
 -- Version de PHP :  7.3.12
 
@@ -93,9 +93,9 @@ DROP TABLE IF EXISTS `item`;
 CREATE TABLE IF NOT EXISTS `item` (
   `ID` int(255) NOT NULL,
   `Nom` varchar(255) NOT NULL,
-  `Photos` blob NOT NULL,
+  `Photos` varchar(255) NOT NULL,
   `Description` text NOT NULL,
-  `Video` blob NOT NULL DEFAULT '0',
+  `Video` varchar(255) NOT NULL DEFAULT '''0''',
   `Prix` text NOT NULL,
   `Categorie` text NOT NULL,
   `IDVendeur` int(255) NOT NULL,
@@ -107,12 +107,13 @@ CREATE TABLE IF NOT EXISTS `item` (
 --
 
 INSERT INTO `item` (`ID`, `Nom`, `Photos`, `Description`, `Video`, `Prix`, `Categorie`, `IDVendeur`) VALUES
-(0, 'itemInit', 0x496e697469616c69736174696f6e, 'Initialisation', 0x496e697469616c69736174696f6e, '0', '0', 0),
-(1, 'Bracelet Fenrir', 0x62726163656c65742d66656e7269722e6a7067, 'Bracelet de l\'Ã©poque celte', '', '3500000', 'relique', 1),
-(2, 'Montre en or', 0x6d6f6e7472656f722e6a7067, 'Grosse montre', '', '1000', 'vip', 1),
-(3, 'EpÃ©e', 0x657065652e6a7067, 'Ã©pÃ©e ancienne', '', '30', 'relique', 1),
-(4, 'Tasse', 0x74617373652e6a7067, 'une tasse normale', '', '2', 'tresor', 1),
-(5, 'briquet', 0x627269717565742e6a7067, 'un briquet qui fait du feu', '', '1', 'tresor', 1);
+(0, 'itemInit', 'Initialisation', 'Initialisation', 'Initialisation', '0', '0', 0),
+(1, 'bracelet fenrir', 'bracelet-fenrir.jpg', 'un bracelet de l\'Ã©poque celte', '', '3000', 'relique', 1),
+(2, 'Montre en or', 'montreor.jpg', 'Grosse montre', '', '1000', 'vip', 1),
+(3, 'EpÃ©e', 'epee.jpg', 'Ã©pÃ©e ancienne', '', '30', 'relique', 1),
+(4, 'Tasse', 'tasse.jpg', 'une tasse normale', '', '2', 'tresor', 1),
+(5, 'briquet', 'briquet.jpg', 'briquet qui fait du feu', '', '1', 'tresor', 1),
+(6, 'La Joconde', 'joconde.jpg', 'LÃ©onard de Vinci', '', '1 000 000 000', 'relique', 1);
 
 -- --------------------------------------------------------
 
@@ -139,7 +140,7 @@ CREATE TABLE IF NOT EXISTS `vendeur` (
 
 INSERT INTO `vendeur` (`ID`, `Pseudo`, `Password`, `Nom`, `Email`, `Photos`, `Background`, `Etat`) VALUES
 (0, 'client0', 'root', 'firstclient', 'firstclient@gmail.com', '', '', 0),
-(1, 'jps', 'root', 'segado', 'segado@ece.fr', 0x73656761646f2e6a7067, 0x6563652e706e67, 0);
+(1, 'jps', 'root', 'segado', 'segado@ece.fr', 0x73656761646f2e6a7067, 0x6563652e706e67, 1);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
