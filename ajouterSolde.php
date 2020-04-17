@@ -23,7 +23,7 @@ if($db_found){
 			$nouveauSolde = $solde + $ancienSolde;
 			$sql = "UPDATE acheteur SET Solde = '$nouveauSolde' WHERE Etat = 1";
 			$result = mysqli_query($db_handle,$sql);
-			header('Location: monCOmpteAcheteur.php');
+			header('Location: monCompteAcheteur.php');
 		}	
 	}
 }else{

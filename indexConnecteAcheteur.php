@@ -54,7 +54,7 @@ mysqli_close($db_handle);
       <div class="collapse navbar-collapse" id="myNavbar">
         <ul class="nav navbar-nav">
           <li class="active"><a href="indexConnecteAcheteur.php">Home</a></li>
-          <li><a href="#">Acheter</a></li>
+          <li><a href="acheter.php">Acheter</a></li>
 
           <li class="dropdown" >
             <a class="dropdown-toggle" data-toggle="dropdown" href="#">Catégories
