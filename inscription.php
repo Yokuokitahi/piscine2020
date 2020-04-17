@@ -90,9 +90,8 @@ if ($_POST["enregistrer"]) {
 				$sql = "INSERT INTO vendeur(ID, Pseudo, Password, Nom, Email, Etat, Photos, Background)            VALUES('$Identifiant', '$pseudoVendeur', '$passwordVendeur', '$nomVendeur', '$mailVendeur', '1', '$avatar', '$fond')";
 				$result = mysqli_query($db_handle,$sql); 
 				$reussi = "inscription faite";
-				header('Location:indexConnecteVendeur.html');
+				header('Location:indexConnecteVendeur.php');
 			}
-			
 		}
 		elseif ($categorie == "acheteur") {
 			$sql = "SELECT MAX(ID) FROM acheteur";

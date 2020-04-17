@@ -57,7 +57,7 @@ if ($_POST["connexion"]) { //bouton se connecter enclenché
 				$erreur = "Mot de passe erroné";//on affiche un message d'erreur de mot de passe
 			}else {// si le mot de passe renseigné est le bon
 				$erreur = "connexion autorisée <br>";//connexion autorisée pour admin
-				header('Location: indexadmin.html');
+				header('Location: indexadmin.php');
 				$sql = "UPDATE admin SET Etat = 1 WHERE Pseudo = '$identifiant'";
 				$result = mysqli_query($db_handle, $sql);
 			}
