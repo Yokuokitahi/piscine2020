@@ -56,6 +56,7 @@ mysqli_close($db_handle);
       <div class="collapse navbar-collapse" id="myNavbar">
         <ul class="nav navbar-nav">
           <li class="active"><a href="indexadmin.php">Home</a></li>
+          <li><a href="gereVente.php">Gérer les ventes</a></li>
           <li><a href="venteAdmin.php">Vendre</a></li>
         </ul>
 
@@ -69,8 +70,8 @@ mysqli_close($db_handle);
 
 
 	<div class="admin">
-		<img src="avatar.png" alt="Avatar" class="avatar">
-		<p><?php if( !empty( $pseudoAdmin ) ) echo '<p style="text-align: center;" >', $pseudoAdmin, '</p>' ?></p>
+		<p ><img src="avatar.png" alt="Avatar" class="avatar"></p>
+		<p><?php if( !empty( $pseudoAdmin ) ) echo $pseudoAdmin ?></p>
 	</div>
 
 

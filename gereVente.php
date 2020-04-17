@@ -61,18 +61,8 @@ mysqli_close($db_handle);
       <div class="collapse navbar-collapse" id="myNavbar">
         <ul class="nav navbar-nav">
           <li class="active"><a href="indexadmin.php">Home</a></li>
-          <li><a href="#">Acheter</a></li>
-
-          <li class="dropdown" >
-            <a class="dropdown-toggle" data-toggle="dropdown" href="#">Catégories
-              <span class="caret"></span>
-            </a>
-            <ul class="dropdown-menu">
-              <li><a href="tresor.php">Trésors</a></li>
-              <li><a href="relique.php">Reliques</a></li>
-              <li><a href="vip.php">VIP</a></li>
-            </ul>
-          </li>
+          <li><a href="gereVente.php">Gérer les ventes</a></li>
+          <li><a href="venteAdmin.php">Vendre</a></li>
         </ul>
 
 

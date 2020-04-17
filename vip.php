@@ -19,7 +19,7 @@ if ($db_found) {
     if (mysqli_num_rows($result) == 0) {//on ne trouve pas d'objets à vendre
       $erreurObjet = "Il n'y a pas d'objets à vendre actuellement";
     }else{//on trouve des objets à vendre
-      $sql =  "SELECT ID, Nom, Photos, Description, Video, Prix, Categorie FROM item WHERE ID > 0 AND Categorie = 'vip' ";
+      $sql =  "SELECT * FROM item WHERE ID > 0 AND Categorie = 'vip' ";
       $result = mysqli_query($db_handle,$sql);
     }
 }else{
@@ -88,7 +88,13 @@ mysqli_close($db_handle);
           while ($objets = mysqli_fetch_assoc($result)) {
               echo "<div class='col-sm-4'>";
               echo "<div class='panel panel-default'>";
-              echo"<div class='panel-heading'>" .$objets['Nom'] . "<a href='ajouterPanier.php?id=" . $objets['ID'] . "'><span class='glyphicon glyphicon-plus-sign'></span></a>". "</div>";
+              if ($objets['TypeVente'] == 'comptant') {
+                echo"<div class='panel-heading'>" .$objets['Nom'] . "<a href='ajouterPanier.php?id=" . $objets['ID'] . "'><span class='glyphicon glyphicon-plus-sign'></span></a>". "</div>";
+              }elseif ($objets['TypeVente'] == 'enchere') {
+                echo"<div class='panel-heading'>" .$objets['Nom'] . "<a href='AJOUTER_ENCHERE.php?id=" . $objets['ID'] . "'><span class='glyphicon glyphicon-hourglass'></span></a>". "</div>";
+              }elseif ($objets['TypeVente'] == 'nego') {
+                echo"<div class='panel-heading'>" .$objets['Nom'] . "<a href='AJOUTER_NEGO.php?id=" . $objets['ID'] . "'><span class='glyphicon glyphicon-send'></span></a>". "</div>";
+              }
               echo "<div class='panel-body'> <img src=' ". $objets['Photos'] ."' class='img-responsive' style='width:100%' alt='Image'> </div>";
               echo "<div class='panel-footer'>" . $objets['Description'] . "&nbspau prix de : " . $objets['Prix'] . "€" . "</div>";
               echo "</div>";
