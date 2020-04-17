@@ -87,7 +87,7 @@ mysqli_close($db_handle);
 
 <div class="container">
 	<div class="enchere">
-		<p>Items aux enchères</p> 
+		<p>Items aux enchères <span class='glyphicon glyphicon-hourglass'></span></p> 
       <?php
           while ($objets1 = mysqli_fetch_assoc($result1)) {
               echo "<div class='col-sm-4'>";
@@ -105,7 +105,7 @@ mysqli_close($db_handle);
 
   <div class="container">
   	<div class="nego">
-  		<p>Items à négocier auprès du vendeur</p> 
+  		<p>Items à négocier auprès du vendeur <span class='glyphicon glyphicon-send'></span></p> 
       <?php
           while ($objets2 = mysqli_fetch_assoc($result2)) {
               echo "<div class='col-sm-4'>";
@@ -123,7 +123,7 @@ mysqli_close($db_handle);
 
   <div class="container">
   	<div class="comptant"> 
-  		<p>Items en achat immédiat</p>
+  		<p>Items en achat immédiat <span class='glyphicon glyphicon-plus-sign'></span></p>
       <?php
           while ($objets3 = mysqli_fetch_assoc($result3)) {
             if ($objets3['IDAcheteur'] == 0) {

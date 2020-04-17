@@ -5,6 +5,7 @@ $db_handle = mysqli_connect('localhost', 'root', '');
 $db_found = mysqli_select_db($db_handle, $database);
 $IDAcheteur ='';
 $erreurObjet ='';
+$prixTotal = 0;
 
 if ($db_found) {
   $sql ="SELECT * FROM acheteur WHERE Etat = 1";
@@ -19,6 +20,10 @@ if ($db_found) {
     if (mysqli_num_rows($result) == 0) {//on ne trouve pas d'objets à vendre
       $erreurObjet = "Vous n'avez pas d'objets dans votre panier, parcourez le site pour en trouver !";
     }else{//on trouve des objets à vendre
+      $sql = "SELECT SUM(prix) AS prix_total FROM item WHERE IDAcheteur = '$IDAcheteur'";
+      $result = mysqli_query($db_handle,$sql);
+      $total = mysqli_fetch_assoc($result);
+      $prixTotal = $total['prix_total'];
       $sql =  "SELECT * FROM item WHERE IDAcheteur = '$IDAcheteur'";
       $result = mysqli_query($db_handle,$sql);
     }
@@ -59,7 +64,17 @@ mysqli_close($db_handle);
       <div class="collapse navbar-collapse" id="myNavbar">
         <ul class="nav navbar-nav">
           <li class="active"><a href="indexConnecteAcheteur.php">Home</a></li>
-          <li><a href="vente.php">Vendre</a></li>
+          <li><a href="acheter.php">Acheter</a></li>
+          <li class="dropdown" >
+            <a class="dropdown-toggle" data-toggle="dropdown">Catégories
+              <span class="caret"></span>
+            </a>
+            <ul class="dropdown-menu">
+              <li><a href="tresor.php">Trésors</a></li>
+              <li><a href="relique.php">Reliques</a></li>
+              <li><a href="vip.php">VIP</a></li>
+            </ul>
+          </li>
         </ul>
 
         <ul class="nav navbar-nav navbar-right">
@@ -77,12 +92,18 @@ mysqli_close($db_handle);
               echo "<div class='panel panel-default'>";
               echo"<div class='panel-heading'>" .$objets['Nom'] . "<a href='removeItemPanier.php?id=" . $objets['ID'] . "'><span class='glyphicon glyphicon-remove'></span></a>" . "</div>";
               echo "<div class='panel-body'> <img src=' ". $objets['Photos'] ."' class='img-responsive' style='width:100%' alt='Image'> </div>";
-              echo "<div class='panel-footer'>" . $objets['Description'] . "&nbspau prix de : " . $objets['Prix'] . "€" . "</div>";
+              echo "<div class='panel-footer'>" . $objets['Description'] . "&nbspau prix de : " . $objets['Prix'] . " Ø" . "</div>";
               echo "</div>";
               echo "</div>";
           }
           ?>
   </div>
+  
+        <div class="totalPaiement">
+            <?php echo $erreurObjet; ?>
+            <p>Le montant de votre panier est de : <?php echo $prixTotal; ?> Øre</p>
+        </div>
+  
   <footer class="page-footer">
     <div class="container-fluid">
       <img src="logo.png" width="100px" height="100px">
