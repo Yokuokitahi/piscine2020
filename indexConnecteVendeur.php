@@ -3,8 +3,6 @@
 $database = "midgard";
 $db_handle = mysqli_connect('localhost', 'root', '');
 $db_found = mysqli_select_db($db_handle, $database);
-$accueil ='';
-$nomVendeur ='';
 $IDVendeur ='';
 $erreurObjet ='';
 
@@ -16,9 +14,7 @@ if ($db_found) {
     echo "Erreur : pas d'utilisateur connecté";
   }else{//on trouve un vendeur connecté
     $data = mysqli_fetch_assoc($result);
-    $nomVendeur = $data['Nom']; 
     $IDVendeur = $data['ID'];
-    $accueil ="Bonjour M. " .$nomVendeur;
     $sql ="SELECT * FROM item WHERE IDVendeur = '$IDVendeur'";
     $result = mysqli_query($db_handle,$sql);
     if (mysqli_num_rows($result) == 0) {//on ne trouve pas d'objets à vendre
@@ -75,7 +71,10 @@ mysqli_close($db_handle);
     </div>
   </nav>
 
-  <div class="container"> 
+  <div class="container">
+    <div class="vendeurco"> 
+          <p><?php
+          echo $erreurObjet;?></p>
           <?php
           while ($objets = mysqli_fetch_assoc($result)) {
             if ($objets['IDAcheteur'] == 0) {
@@ -89,7 +88,9 @@ mysqli_close($db_handle);
             }
           }
           ?>
+    </div>
   </div>
+
   <footer class="page-footer">
     <div class="container-fluid">
       <img src="logo.png" width="100px" height="100px">

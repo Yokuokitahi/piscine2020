@@ -119,6 +119,7 @@ mysqli_close($db_handle);
 			<?php if( !empty( $erreur ) ) echo '<p style="text-align: center;" >', $erreur, '</p>' ?>
 		</div>
 		<p><input type="submit" name="connexion" value="Se connecter"></p>
+		Pas encore inscrit ? Inscrivez vous <a href="inscription.php" value="ici">ici</a>
 	</div>
 </div>
 </form>

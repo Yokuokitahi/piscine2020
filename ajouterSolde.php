@@ -23,7 +23,7 @@ if($db_found){
 			$nouveauSolde = $solde + $ancienSolde;
 			$sql = "UPDATE acheteur SET Solde = '$nouveauSolde' WHERE Etat = 1";
 			$result = mysqli_query($db_handle,$sql);
-			header('Location: monCompteAcheteur.php');
+			header('Location: monCompteAcheteur?erreur=0.php');
 		}	
 	}
 }else{
@@ -79,7 +79,7 @@ mysqli_close($db_handle);
 
 
 				<ul class="nav navbar-nav navbar-right">
-					<li><a href="moncompteAcheteur.php"><span class="glyphicon glyphicon-user"></span> Mon compte</a></li>
+					<li><a href="moncompteAcheteur.php?erreur=0"><span class="glyphicon glyphicon-user"></span> Mon compte</a></li>
 					<li><a href="panier.php"><span class="glyphicon glyphicon-shopping-cart"></span> Votre panier</a></li>
 					<li><a href="deco.php"><span class="glyphicon glyphicon-off"></span> Déconnexion</a></li>
 				</ul>
@@ -91,9 +91,9 @@ mysqli_close($db_handle);
 		<div class="argent">
 			<label for="solde">Ajouter des Øre à votre solde : </label><br>
 			<input type="number" placeholder="Entrez un montant (en Øre)" name="solde">
+			<br>
+			<p><input type="submit" name="ajouter" value="Déposer de l'argent"></p>
 		</div>
-
-		<br><p style="text-align: center;"><input type="submit" name="ajouter" value="Déposer de l'argent"></p>
 	</form>
 
 

@@ -29,6 +29,7 @@ border-radius: 0;
 .panel-heading a {
   margin-left: 190px;
   color:black;
+  font-size: 12px;
 }
 
 .panel-body {
@@ -134,7 +135,12 @@ img.avatar {
 
 .acheteur{
   text-align: center;
-  font-size: 20px;
+}
+
+.acheteur p{
+  text-align: center;
+  color:#2F4F4F;
+  font-size: 16px;
 }
 
 .inscriptionA{
@@ -153,6 +159,14 @@ img.avatar {
 }
 .connection label{
   color: #333333;
+}
+
+.connection a{
+  color:#696969;
+}
+
+.connection {
+  text-align: center;
 }
 
 .vendeur {
@@ -185,6 +199,11 @@ form .argent [type=number]{
   color: grey;
 }
 
+form .argent p{
+  text-align: center;
+  font-size: 22px;
+}
+
 .enchere p{
   font-size: 20px;
   color:#696969;
@@ -198,4 +217,27 @@ form .argent [type=number]{
 .comptant p{
   font-size: 20px;
   color:#696969;
+}
+
+.totalPaiement p{
+  text-align: right;
+  margin-right: 100px;
+  margin-top: 100px;
+  font-size: 22px;
+  color:#696969;
+
+}
+
+.totalPaiement {
+  text-align: center;
+  font-size: 25px;
+  color:#BB0B0B;
+}
+
+.vendeurco p{
+  font-size: 25px;
+  text-align: center;
+  color: #BB0B0B;
+  margin-top: 100px;
+  margin-bottom:200px;
 }

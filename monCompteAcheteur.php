@@ -20,7 +20,11 @@ $dateExpCarte='';
 $crypto ='';
 $cryptoCensor ='';
 $nbCb = '';
-$solde = '';
+$solde = 0;
+
+$erreur = $_GET['erreur'];
+$texte = 'nique ta mere';
+
 
 if($db_found){
 	$sql ="SELECT * FROM acheteur WHERE Etat = 1";
@@ -67,6 +71,7 @@ mysqli_close($db_handle);
   
   	<!-- Fichier css *-->
   	<link rel="stylesheet" type="text/css" href="style.css">
+    <?php echo '<script type="text/javascript">alert("' . $erreur . '", "Information !");</script>'; ?>
 </head>
 
 <body>
@@ -100,17 +105,17 @@ mysqli_close($db_handle);
 
         <ul class="nav navbar-nav navbar-right">
           <li><a href="ajouterSolde.php"><span class="glyphicon glyphicon-euro"></span> Déposer de l'argent</a></li>
-          <li><a href="moncompteAcheteur.php"><span class="glyphicon glyphicon-user"></span> Mon compte</a></li>
+          <li><a href="moncompteAcheteur.php?erreur=0"><span class="glyphicon glyphicon-user"></span> Mon compte</a></li>
           <li><a href="panier.php"><span class="glyphicon glyphicon-shopping-cart"></span> Votre panier</a></li>
           <li><a href="deco.php"><span class="glyphicon glyphicon-off"></span> Déconnexion</a></li>
         </ul>
       </div>
     </div>
   </nav>
-
+  <?php if( !empty( $erreur ) ) echo $erreur ?>
   <div class="acheteur">
   		<img src="avatar.png" alt="Avatar" class="avatar">
-    <p>Solde actuel : <?php if( !empty( $solde ) ) echo $solde ?></p>
+    <p>Solde actuel : <?php if( !empty( $solde ) ) echo $solde; else echo "0";' Øre' ?></p>
 		<p>Nom : <?php if( !empty( $nom ) ) echo $nom ?></p>
     <p>Prenom : <?php if( !empty( $prenom ) ) echo $prenom ?></p>
     <p>Adresse : <?php if( !empty( $adresse ) ) echo $adresse ?></p>
