@@ -32,7 +32,7 @@ mysqli_close($db_handle);
 <!DOCTYPE html>
 <html>
 <head>
-	<title>Acheter un article</title>
+	<title>Acheter un article : Trésor</title>
 	<meta charset="utf-8">
  	<!--  intégration de Bootstrap *-->
   	<meta name="viewport" content="width=device-width, initial-scale=1">

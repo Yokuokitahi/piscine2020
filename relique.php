@@ -32,7 +32,7 @@ mysqli_close($db_handle);
 <!DOCTYPE html>
 <html>
 <head>
-	<title>Acheter un article</title>
+	<title>Acheter un article : Reliques </title>
 	<meta charset="utf-8">
  	<!--  intégration de Bootstrap *-->
   	<meta name="viewport" content="width=device-width, initial-scale=1">
@@ -83,7 +83,7 @@ mysqli_close($db_handle);
 
 <div class="container">
 	<div class="enchere">
-		<p>Trésors</p> 
+		<p>Reliques</p> 
       <?php
           while ($objets = mysqli_fetch_assoc($result)) {
               echo "<div class='col-sm-4'>";
