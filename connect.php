@@ -108,7 +108,8 @@ mysqli_close($db_handle);
 		<img src="avatar.png" alt="Avatar" class="avatar">
 	</div>
 
-	<div class="container">
+<div class="container">
+	<div class="connection">
 		<label for="identifiant"><b>Adresse e-mail ou pseudo : </b></label>
 		<input type="text" placeholder="Entrez votre e-mail ou pseudo" name="identifiant" required>
 
@@ -117,8 +118,9 @@ mysqli_close($db_handle);
 		<div class="erreur">
 			<?php if( !empty( $erreur ) ) echo '<p style="text-align: center;" >', $erreur, '</p>' ?>
 		</div>
-		<p style="text-align: center;"><input type="submit" name="connexion" value="Se connecter"></p>
+		<p><input type="submit" name="connexion" value="Se connecter"></p>
 	</div>
+</div>
 </form>
 
 <footer class="page-footer">

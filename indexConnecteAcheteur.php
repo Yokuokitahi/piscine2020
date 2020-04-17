@@ -81,12 +81,12 @@ mysqli_close($db_handle);
   <div class="container"> 
       <?php
           while ($objets = mysqli_fetch_assoc($result)) {
-            if ($objets['IDAcheteur' == 0]) {
+            if ($objets['IDAcheteur'] == 0) {
               echo "<div class='col-sm-4'>";
               echo "<div class='panel panel-default'>";
               echo"<div class='panel-heading'>" .$objets['Nom'] . "</div>";
               echo "<div class='panel-body'> <img src=' ". $objets['Photos'] ."' class='img-responsive' style='width:100%' alt='Image'> </div>";
-              echo "<div class='panel-footer'>" . $objets['Description'] . "&nbspau prix de : " . $objets['Prix'] . "€" . "</div>";
+              echo "<div class='panel-footer'>" . $objets['Description'] . "&nbspau prix de : " . $objets['Prix'] . " Ø" . "</div>";
               echo "</div>";
               echo "</div>";
             }

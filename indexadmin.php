@@ -29,7 +29,7 @@ if ($db_found) {
     if (mysqli_num_rows($result2) == 0) {//on ne trouve pas de vendeurs
       $erreurObjet = "Vous n'avez pas d'items en vente actuellement";
     }else{//on trouve des items
-      $sql2 =  "SELECT ID, Nom, Photos, Description, Video, Prix, Categorie FROM item WHERE IDVendeur = '$PseudoAdmin'";
+      $sql2 =  "SELECT * FROM item WHERE IDVendeur = '$PseudoAdmin'";
       $result2 = mysqli_query($db_handle,$sql2); 
     }
   }
@@ -107,7 +107,7 @@ mysqli_close($db_handle);
               echo "<div class='panel panel-default'>";
               echo"<div class='panel-heading'>" .$objets2['Nom'] . "<a href='removeItem.php?id=" . $PseudoAdmin . "'><span class='glyphicon glyphicon-remove'></span></a>" . "</div>";
               echo "<div class='panel-body'> <img src=' ". $objets2['Photos'] ."' class='img-responsive' style='width:100%' alt='Image'> </div>";
-              echo "<div class='panel-footer'>" . $objets2['Description'] . "&nbspau prix de : " . $objets2['Prix'] . "€" . "</div>";
+              echo "<div class='panel-footer'>" . $objets2['Description'] . "&nbspau prix de : " . $objets2['Prix'] . " Ø" . "</div>";
               echo "</div>";
               echo "</div>";
             }

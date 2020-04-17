@@ -87,14 +87,14 @@ mysqli_close($db_handle);
 
 <div class="container">
 	<div class="enchere">
-		<p>Enchere</p> 
+		<p>Items aux enchères</p> 
       <?php
           while ($objets1 = mysqli_fetch_assoc($result1)) {
               echo "<div class='col-sm-4'>";
               echo "<div class='panel panel-default'>";
               echo"<div class='panel-heading'>" .$objets1['Nom'] . "<a href='AJOUTER_ENCHERE.php?id=" . $objets1['ID'] . "'><span class='glyphicon glyphicon-hourglass'></span></a>" . "</div>";
               echo "<div class='panel-body'> <img src=' ". $objets1['Photos'] ."' class='img-responsive' style='width:100%' alt='Image'> </div>";
-              echo "<div class='panel-footer'>" . $objets1['Description'] . "&nbspau prix de : " . $objets1['Prix'] . "€" . "</div>";
+              echo "<div class='panel-footer'>" . $objets1['Description'] . "&nbspau prix de : " . $objets1['Prix'] . " Ø" . "</div>";
               echo "</div>";
               echo "</div>";
             }
@@ -105,14 +105,14 @@ mysqli_close($db_handle);
 
   <div class="container">
   	<div class="nego">
-  		<p>Nego</p> 
+  		<p>Items à négocier auprès du vendeur</p> 
       <?php
           while ($objets2 = mysqli_fetch_assoc($result2)) {
               echo "<div class='col-sm-4'>";
               echo "<div class='panel panel-default'>";
               echo"<div class='panel-heading'>" .$objets2['Nom'] . "<a href='AJOUTER_NEGO.php?id=" . $objets2['ID'] . "'><span class='glyphicon glyphicon-send'></span></a>". "</div>";
               echo "<div class='panel-body'> <img src=' ". $objets2['Photos'] ."' class='img-responsive' style='width:100%' alt='Image'> </div>";
-              echo "<div class='panel-footer'>" . $objets2['Description'] . "&nbspau prix de : " . $objets2['Prix'] . "€" . "</div>";
+              echo "<div class='panel-footer'>" . $objets2['Description'] . "&nbspau prix de : " . $objets2['Prix'] . " Ø" . "</div>";
               echo "</div>";
               echo "</div>";
             }
@@ -123,7 +123,7 @@ mysqli_close($db_handle);
 
   <div class="container">
   	<div class="comptant"> 
-  		<p>Achat immédiat</p>
+  		<p>Items en achat immédiat</p>
       <?php
           while ($objets3 = mysqli_fetch_assoc($result3)) {
             if ($objets3['IDAcheteur'] == 0) {
@@ -131,7 +131,7 @@ mysqli_close($db_handle);
               echo "<div class='panel panel-default'>";
               echo"<div class='panel-heading'>" .$objets3['Nom'] . "<a href='ajouterPanier.php?id=" . $objets3['ID'] . "&page=acheter.php'><span class='glyphicon glyphicon-plus-sign'></span></a>" . "</div>";
               echo "<div class='panel-body'> <img src=' ". $objets3['Photos'] ."' class='img-responsive' style='width:100%' alt='Image'> </div>";
-              echo "<div class='panel-footer'>" . $objets3['Description'] . "&nbspau prix de : " . $objets3 ['Prix'] . "€" . "</div>";
+              echo "<div class='panel-footer'>" . $objets3['Description'] . "&nbspau prix de : " . $objets3 ['Prix'] . " Ø" . "</div>";
               echo "</div>";
               echo "</div>";
             }

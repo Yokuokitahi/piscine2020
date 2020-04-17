@@ -192,7 +192,7 @@ mysqli_close($db_handle);
     </div>
 </nav>
 
-	<form action="inscription.php" method="post">
+	<form class="inscrit" action="inscription.php" method="post">
 		<div id="erreur">
 			<?php if( !empty( $erreurChamp ) ) echo '<p style="text-align: center;" >', $erreurChamp, '</p>' ?>
 			<?php if( !empty( $erreurPseudo ) ) echo '<p style="text-align: center;" >', $erreurPseudo, '</p>' ?>
@@ -201,15 +201,15 @@ mysqli_close($db_handle);
 			<?php if( !empty( $reussi ) ) echo '<p style="text-align: center;" >', $reussi, '</p>' ?>
 		</div>
 		<div class="choix" id="cat">
-			<p style="text-align: center;"><input type="radio" name="categorie" value="acheteur" onclick="document.getElementById('acheteur').style.display='inline'; document.getElementById('vendeur').style.display='none'">
-				<label for="acheteur">Acheteur</label>
+			<p><input type="radio" name="categorie" value="acheteur" onclick="document.getElementById('acheteur').style.display='inline'; document.getElementById('vendeur').style.display='none'">
+				<label for="acheteur">Acheteur</label>&nbsp &nbsp
 				<input type="radio" name="categorie" value="vendeur"  onclick="document.getElementById('acheteur').style.display='none'; document.getElementById('vendeur').style.display='inline'">
 				<label for="vendeur">Vendeur</label>
 			</p> <br>
 
 		</div>
 
-		<div id = "vendeur" style="display: none;" >
+		<div class="inscriptionV" id = "vendeur" style="display: none;" >
 			<label for="nom">Nom</label>
 			<input type="text" placeholder="Entrez votre nom" name="nomVendeur">
 
@@ -231,7 +231,7 @@ mysqli_close($db_handle);
 
 		</div>
 
-		<div class="acheteur" id = "acheteur" style="display: none;">
+		<div class="inscriptionA" id = "acheteur" style="display: none;">
 
 			<label for="prenom">Prénom</label>
 			<input type="text" placeholder="Entrez votre prenom" name="prenom">
@@ -243,7 +243,7 @@ mysqli_close($db_handle);
 			<input type="text" placeholder="Entrez un pseudo" name="pseudo">
 			
 			<label for="mail">E-Mail</label>
-			<input type="text" placeholder="Saissisez un mail valide" name="mail">
+			<input type="email" placeholder="Saissisez un mail valide" name="mail">
 			
 			<label for="adress1">Adresse 1</label>
 			<input type="text" placeholder="Entrez votre adresse" name="adress1">
@@ -286,7 +286,7 @@ mysqli_close($db_handle);
 			<input type="checkbox" name="contrat">Accepter les conditions d'utilisation.
 		</div>
 
-		<p style="text-align: center;"><input type="submit" name="enregistrer" value="S'enregistrer"></p>
+		<p><input type="submit" name="enregistrer" value="S'enregistrer"></p>
 
 	</form>
 

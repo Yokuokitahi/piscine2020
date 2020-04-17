@@ -91,7 +91,7 @@ if ($db_found) {
         echo "<div class='panel panel-default'>";
         echo"<div class='panel-heading'>" .$objets['Nom'] . "<a href='ajouterPanier.php?id=" . $objets['ID'] . "&page=vip.php'><span class='glyphicon glyphicon-plus-sign'></span></a>" . "</div>";
         echo "<div class='panel-body'> <img src=' ". $objets['Photos'] ."' class='img-responsive' style='width:100%' alt='Image'> </div>";
-        echo "<div class='panel-footer'>" . $objets['Description'] . "&nbspau prix de : " . $objets['Prix'] . "€" . "</div>";
+        echo "<div class='panel-footer'>" . $objets['Description'] . "&nbspau prix de : " . $objets['Prix'] . " Ø" . "</div>";
         echo "</div>";
         echo "</div>";
       }elseif ($objets['TypeVente'] == 'enchere') {
@@ -99,7 +99,7 @@ if ($db_found) {
         echo "<div class='panel panel-default'>";
         echo"<div class='panel-heading'>" .$objets['Nom'] . "<a href='AJOUTER_ENCHERE.php?id=" . $objets['ID'] . "'><span class='glyphicon glyphicon-hourglass'></span></a>". "</div>";
         echo "<div class='panel-body'> <img src=' ". $objets['Photos'] ."' class='img-responsive' style='width:100%' alt='Image'> </div>";
-        echo "<div class='panel-footer'>" . $objets['Description'] . "&nbspau prix de : " . $objets['Prix'] . "€" . "</div>";
+        echo "<div class='panel-footer'>" . $objets['Description'] . "&nbspau prix de : " . $objets['Prix'] . " Ø" . "</div>";
         echo "</div>";
         echo "</div>";
       }elseif ($objets['TypeVente'] == 'nego') {
@@ -107,7 +107,7 @@ if ($db_found) {
         echo "<div class='panel panel-default'>";
         echo"<div class='panel-heading'>" .$objets['Nom'] . "<a href='AJOUTER_NEGO.php?id=" . $objets['ID'] . "'><span class='glyphicon glyphicon-send'></span></a>". "</div>";
         echo "<div class='panel-body'> <img src=' ". $objets['Photos'] ."' class='img-responsive' style='width:100%' alt='Image'> </div>";
-        echo "<div class='panel-footer'>" . $objets['Description'] . "&nbspau prix de : " . $objets['Prix'] . "€" . "</div>";
+        echo "<div class='panel-footer'>" . $objets['Description'] . "&nbspau prix de : " . $objets['Prix'] . " Ø" . "</div>";
         echo "</div>";
         echo "</div>";
       }

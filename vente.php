@@ -108,12 +108,12 @@ mysqli_close($db_handle);
 		<input type="text" placeholder="Tapez votre description" name="description" required><br>
 
 		<label for="prix"><b> A combien voulez-vous vendre cet objet ? </b></label>
-		<input type="text" placeholder="Entrez votre prix" name="prix" required><br><br>
+		<input type="text" placeholder="Entrez votre prix (en Øre)" name="prix" required><br><br>
 
 		<label for="typeDeVente"><b>Sous quelle forme souhaitez-vous vendre cet objet ? </b></label><br>
 			<label for="comptant">Vente immédiate (paiement comptant) </label> <input type="radio" name="typeVente" value="comptant" required> <br>
 			<label for="nego">Vente par meilleure offre (vous acceptez de négocier le prix de vente) </label> <input type="radio" name="typeVente" value="nego" required> <br>
-			<label for="enchere">Vente par enchère (Vous cédez cet objet au plus offrant) </label> <input type="radio" name="typeVente" value="enchere" required> <br> <br>
+			<label for="enchere">Vente par enchère (vous cédez cet objet au plus offrant) </label> <input type="radio" name="typeVente" value="enchere" required> <br> <br>
 
 		<label for="dureeEnchere"><b> Si vous choississez la vente aux enchères, veuillez renseigner la date de fin de cette vente :</b></label>
 		<input type="datetime-local" placeholder="Entrez la date de fin de vos enchères" name="dureeEnchere"><br><br>
