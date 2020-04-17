@@ -28,7 +28,7 @@ if ($db_found) {
         $sql = "DELETE FROM item WHERE IDAcheteur = '$ID'";
         $result = mysqli_query($db_handle,$sql);
         $erreur = "Paiement accepté";
-        header('Location: indexConnecteAcheteur');
+        header('Location: indexConnecteAcheteur.php?erreur=' . $erreur);
 
     }
   }
