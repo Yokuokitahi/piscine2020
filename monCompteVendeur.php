@@ -74,7 +74,7 @@ mysqli_close($db_handle);
 
 	<div class="vendeur" style="background: url(<?php echo($fond) ?>); background-size: cover;">
 		<p><img src="<?php echo($avatar) ?>" alt="Avatar" class="avatar"></p>
-		<p>Nom Vendeur : Mr.<?php if( !empty( $nomVendeur ) ) echo  $nomVendeur ?></p>
+		<p>Nom Vendeur : .<?php if( !empty( $nomVendeur ) ) echo  $nomVendeur ?></p>
 	</div>
 
 <footer class="page-footer">
