@@ -180,6 +180,18 @@ mysqli_close($db_handle);
 		</div>
 	</div>
 
+<nav class="navbar navbar-inverse">
+	<div class="container-fluid">
+      <a class="navbar-brand" href="index.php"><img src="logo.png" style="margin-top: -11px" width="40px" height="40px"></a>
+
+  		<div class="collapse navbar-collapse" id="myNavbar">
+        	<ul class="nav navbar-nav">
+          		<li class="active"><a href="index.php">Retour Page Accueil</a></li>
+		</div>
+
+    </div>
+</nav>
+
 	<form action="inscription.php" method="post">
 		<div id="erreur">
 			<?php if( !empty( $erreurChamp ) ) echo '<p style="text-align: center;" >', $erreurChamp, '</p>' ?>
