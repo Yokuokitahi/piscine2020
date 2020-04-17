@@ -70,7 +70,7 @@ mysqli_close($db_handle);
 
 
 	<div class="admin">
-		<p><img src="avatar.png" alt="Avatar" class="avatar"></p>
+		<p ><img src="avatar.png" alt="Avatar" class="avatar"></p>
 		<p><?php if( !empty( $pseudoAdmin ) ) echo $pseudoAdmin ?></p>
 	</div>
 
