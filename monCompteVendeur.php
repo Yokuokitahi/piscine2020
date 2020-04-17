@@ -61,20 +61,8 @@ mysqli_close($db_handle);
         <ul class="nav navbar-nav">
           <li class="active"><a href="indexConnecteVendeur.php">Home</a></li>
           <li><a href="vente.php">Vendre</a></li>
-
-          <li class="dropdown" >
-            <a class="dropdown-toggle" data-toggle="dropdown" href="#">Catégories
-              <span class="caret"></span>
-            </a>
-            <ul class="dropdown-menu">
-              <li><a href="#">Trésors</a></li>
-              <li><a href="#">Reliques</a></li>
-              <li><a href="#">VIP</a></li>
-            </ul>
-          </li>
         </ul>
-
-
+        
         <ul class="nav navbar-nav navbar-right">
           <li><a href="moncompteVendeur.php"><span class="glyphicon glyphicon-user"></span> Mon compte</a></li>
           <li><a href="deco.php"><span class="glyphicon glyphicon-off"></span> Déconnexion</a></li>

@@ -63,16 +63,16 @@ mysqli_close($db_handle);
 			<div class="collapse navbar-collapse" id="myNavbar">
 				<ul class="nav navbar-nav">
 					<li class="active"><a href="indexConnecteAcheteur.php">Home</a></li>
-					<li><a href="#">Acheter</a></li>
+					<li><a href="acheter.php">Acheter</a></li>
 
 					<li class="dropdown" >
-						<a class="dropdown-toggle" data-toggle="dropdown" href="#">Catégories
+						<a class="dropdown-toggle" data-toggle="dropdown">Catégories
 							<span class="caret"></span>
 						</a>
 						<ul class="dropdown-menu">
-							<li><a href="#">Trésors</a></li>
-							<li><a href="#">Reliques</a></li>
-							<li><a href="#">VIP</a></li>
+							<li><a href="tresor.php">Trésors</a></li>
+							<li><a href="relique.php">Reliques</a></li>
+							<li><a href="vip.php">VIP</a></li>
 						</ul>
 					</li>
 				</ul>
