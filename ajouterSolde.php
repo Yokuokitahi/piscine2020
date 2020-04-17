@@ -88,13 +88,12 @@ mysqli_close($db_handle);
 	</nav>
 
 	<form action="ajouterSolde.php" method="post">
-		<div class="acheteur">
-
+		<div class="argent">
 			<label for="solde">Ajouter des Øre à votre solde : </label><br>
-			<input type="number" placeholder="Entrez un montant" name="solde" style="text-align: center;">
+			<input type="number" placeholder="Entrez un montant" name="solde">
 		</div>
 
-		<br><br><p style="text-align: center;"><input type="submit" name="ajouter" value="Déposer de l'argent"></p>
+		<br><p style="text-align: center;"><input type="submit" name="ajouter" value="Déposer de l'argent"></p>
 	</form>
 
 

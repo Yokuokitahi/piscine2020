@@ -147,3 +147,12 @@ img.avatar {
   text-align: center;
   font-size: 25px;
 }
+
+form .argent{
+  text-align: center;
+  font-size: 18px;
+}
+form .argent [type=number]{
+  text-align: center;
+  color: grey;
+}
