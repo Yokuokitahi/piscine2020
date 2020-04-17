@@ -110,7 +110,7 @@ mysqli_close($db_handle);
 
   <div class="acheteur">
   		<img src="avatar.png" alt="Avatar" class="avatar">
-    <p>Solde actuel : <?php if( !empty( $solde ) ) echo $solde ?></p>
+    <p>Solde actuel : <?php if( !empty( $solde ) ) echo $solde ,' Øre' ?></p>
 		<p>Nom : <?php if( !empty( $nom ) ) echo $nom ?></p>
     <p>Prenom : <?php if( !empty( $prenom ) ) echo $prenom ?></p>
     <p>Adresse : <?php if( !empty( $adresse ) ) echo $adresse ?></p>
