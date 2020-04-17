@@ -99,7 +99,6 @@ mysqli_close($db_handle);
   </div>
 
   <a href="paiementImmediat.php?total= <?php echo $prixTotal; ?>">Effectuer le paiement</a>
-
         <div class="totalPaiement">
             <?php echo $erreurObjet; ?>
             <p>Le montant de votre panier est de : <?php echo $prixTotal; ?> Øre</p>
