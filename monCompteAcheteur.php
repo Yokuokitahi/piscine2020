@@ -23,7 +23,6 @@ $nbCb = '';
 $solde = 0;
 
 $erreur = $_GET['erreur'];
-$texte = 'nique ta mere';
 
 
 if($db_found){
@@ -71,7 +70,7 @@ mysqli_close($db_handle);
   
   	<!-- Fichier css *-->
   	<link rel="stylesheet" type="text/css" href="style.css">
-    <?php echo '<script type="text/javascript">alert("' . $erreur . '", "Information !");</script>'; ?>
+    <?php if( !empty( $erreur ) ) echo '<script type="text/javascript">alert("' . $erreur . '", "Information !");</script>'; ?>
 </head>
 
 <body>
@@ -112,7 +111,6 @@ mysqli_close($db_handle);
       </div>
     </div>
   </nav>
-  <?php if( !empty( $erreur ) ) echo $erreur ?>
   <div class="acheteur">
   		<img src="avatar.png" alt="Avatar" class="avatar">
     <p>Solde actuel : <?php if( !empty( $solde ) ) echo $solde; else echo "0";' Øre' ?></p>
