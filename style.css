@@ -152,7 +152,23 @@ form .argent{
   text-align: center;
   font-size: 18px;
 }
+
 form .argent [type=number]{
   text-align: center;
   color: grey;
+}
+
+.container .enchere p {
+  font-size: 20px;
+  color: #696969;
+}
+
+.container .nego p {
+  font-size: 20px;
+  color: #696969;
+}
+
+.container .comptant p {
+  font-size: 20px;
+  color: #696969;
 }
