@@ -65,7 +65,7 @@ form {
 
 
 /* Full-width inputs */
-input[type=text], input[type=password], input[type=email] {
+input[type=text], input[type=password] {
   width: 100%;
   padding: 12px 20px;
   margin: 8px 0;
@@ -83,6 +83,7 @@ input[type=submit] {
   cursor: pointer;
   width: 30%;
 }
+
 
 /* Add a hover effect for buttons */
 button:hover {
@@ -124,7 +125,7 @@ img.avatar {
 
 .acheteur{
   text-align: center;
-  font-size: 15px;
+  font-size: 20px;
 }
 
 .vendeur {
@@ -151,23 +152,7 @@ form .argent{
   text-align: center;
   font-size: 18px;
 }
-
-form .argent[type=number]{
+form .argent [type=number]{
   text-align: center;
   color: grey;
-}
-
-.container .enchere p {
-  font-size: 20px;
-  color: #696969;
-}
-
-.container .nego p {
-  font-size: 20px;
-  color: #696969;
-}
-
-.container .comptant p {
-  font-size: 20px;
-  color: #696969;
 }

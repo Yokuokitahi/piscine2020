@@ -9,6 +9,7 @@ $db_handle = mysqli_connect('localhost', 'root', '');
 $db_found = mysqli_select_db($db_handle, $database);
 $IDAcheteur = '';
 $IDObjet = $_GET['id'];
+$page = $_GET['page'];
 
 
 if($db_found){
@@ -19,12 +20,11 @@ if($db_found){
 	}else{//on trouve un acheteur connecté
 			$data = mysqli_fetch_assoc($result);
 			$IDAcheteur = $data['ID'];
-			$sql = "UPDATE item SET IDAcheteur = '$IDAcheteur' WHERE ID = '$IDObjet";
+			$sql = "UPDATE item SET IDAcheteur = '$IDAcheteur' WHERE ID = '$IDObjet'";
 			$result = mysqli_query($db_handle,$sql);
-			header('Location: OU?.php');
+			header('Location: '.$page);
 		}	
-	}
-}else{
+	}else{
 	echo "Database not found";
 }
 mysqli_close($db_handle);

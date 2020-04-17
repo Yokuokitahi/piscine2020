@@ -9,48 +9,48 @@ $nbItems ='';
 $erreurObjet ='';
 
 if ($db_found) {
-    $sql ="SELECT COUNT(*)-1 AS count FROM item";
-    $result = mysqli_query($db_handle,$sql);
-    $data = mysqli_fetch_assoc($result);
+  $sql ="SELECT COUNT(*)-1 AS count FROM item";
+  $result = mysqli_query($db_handle,$sql);
+  $data = mysqli_fetch_assoc($result);
     $nbItems = $data['count']; //UTILE POUR LE RANDOM
 
     $sql ="SELECT * FROM item";
     $result = mysqli_query($db_handle,$sql);
     if (mysqli_num_rows($result) == 0) {//on ne trouve pas d'objets à vendre
-      $erreurObjet = "Il n'y a pas d'objets à vendre actuellement";
+    $erreurObjet = "Il n'y a pas d'objets à vendre actuellement";
     }else{//on trouve des objets à vendre
       $sql =  "SELECT * FROM item WHERE ID > 0 AND Categorie = 'tresor' ";
       $result = mysqli_query($db_handle,$sql);
     }
-}else{
-  echo "Database not found";
-}
-mysqli_close($db_handle);
- ?>
+  }else{
+    echo "Database not found";
+  }
+  mysqli_close($db_handle);
+  ?>
 
 
-<!DOCTYPE html>
-<html>
-<head>
-	<title>Acheter un article : Trésor</title>
-	<meta charset="utf-8">
- 	<!--  intégration de Bootstrap *-->
-  	<meta name="viewport" content="width=device-width, initial-scale=1">
-  	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
-  	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-  	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
-  
-  	<!-- Fichier css *-->
-  	<link rel="stylesheet" type="text/css" href="style.css">
-</head>
-<body>
-	<div class="jumbotron">
-    	<div class="container text-center">
-      		<h1>&nbsp &nbsp &nbsp M I D G A R D</h1>
-    	</div>
-  	</div>
+  <!DOCTYPE html>
+  <html>
+  <head>
+   <title>Acheter un article : Trésor</title>
+   <meta charset="utf-8">
+   <!--  intégration de Bootstrap *-->
+   <meta name="viewport" content="width=device-width, initial-scale=1">
+   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
 
-<nav class="navbar navbar-inverse">
+   <!-- Fichier css *-->
+   <link rel="stylesheet" type="text/css" href="style.css">
+ </head>
+ <body>
+   <div class="jumbotron">
+     <div class="container text-center">
+      <h1>&nbsp &nbsp &nbsp M I D G A R D</h1>
+    </div>
+  </div>
+
+  <nav class="navbar navbar-inverse">
     <div class="container-fluid">
       <a class="navbar-brand" href="indexConnecteAcheteur.php"><img src="logo.png" style="margin-top: -11px" width="40px" height="40px"></a>
 
@@ -79,47 +79,58 @@ mysqli_close($db_handle);
         </ul>
       </div>
     </div>
-</nav>
+  </nav>
 
-<div class="container">
-	<div class="enchere">
-		<p>Trésors</p> 
-      <?php
-          while ($objets = mysqli_fetch_assoc($result)) {
-              echo "<div class='col-sm-4'>";
-              echo "<div class='panel panel-default'>";
-              if ($objets['TypeVente'] == 'comptant') {
-                echo"<div class='panel-heading'>" .$objets['Nom'] . "<a href='ajouterPanier.php?id=" . $objets['ID'] . "'><span class='glyphicon glyphicon-plus-sign'></span></a>". "</div>";
-              }elseif ($objets['TypeVente'] == 'enchere') {
-                echo"<div class='panel-heading'>" .$objets['Nom'] . "<a href='AJOUTER_ENCHERE.php?id=" . $objets['ID'] . "'><span class='glyphicon glyphicon-hourglass'></span></a>". "</div>";
-              }elseif ($objets['TypeVente'] == 'nego') {
-                echo"<div class='panel-heading'>" .$objets['Nom'] . "<a href='AJOUTER_NEGO.php?id=" . $objets['ID'] . "'><span class='glyphicon glyphicon-send'></span></a>". "</div>";
-              }
-              
-              echo "<div class='panel-body'> <img src=' ". $objets['Photos'] ."' class='img-responsive' style='width:100%' alt='Image'> </div>";
-              echo "<div class='panel-footer'>" . $objets['Description'] . "&nbspau prix de : " . $objets['Prix'] . " Ø" . "</div>";
-              echo "</div>";
-              echo "</div>";
-            }
-          ?>
-  	</div>
+  <div class="container">
+   <div class="enchere">
+    <p>Trésors</p> 
+    <?php
+    while ($objets = mysqli_fetch_assoc($result)) {
+      if ($objets['TypeVente'] == 'comptant' && $objets['IDAcheteur'] == 0) {
+        echo "<div class='col-sm-4'>";
+        echo "<div class='panel panel-default'>";
+        echo"<div class='panel-heading'>" .$objets['Nom'] . "<a href='ajouterPanier.php?id=" . $objets['ID'] . "&page=tresor.php'><span class='glyphicon glyphicon-plus-sign'></span></a>" . "</div>";
+        echo "<div class='panel-body'> <img src=' ". $objets['Photos'] ."' class='img-responsive' style='width:100%' alt='Image'> </div>";
+        echo "<div class='panel-footer'>" . $objets['Description'] . "&nbspau prix de : " . $objets['Prix'] . "€" . "</div>";
+        echo "</div>";
+        echo "</div>";
+      }elseif ($objets['TypeVente'] == 'enchere') {
+        echo "<div class='col-sm-4'>";
+        echo "<div class='panel panel-default'>";
+        echo"<div class='panel-heading'>" .$objets['Nom'] . "<a href='AJOUTER_ENCHERE.php?id=" . $objets['ID'] . "'><span class='glyphicon glyphicon-hourglass'></span></a>". "</div>";
+        echo "<div class='panel-body'> <img src=' ". $objets['Photos'] ."' class='img-responsive' style='width:100%' alt='Image'> </div>";
+        echo "<div class='panel-footer'>" . $objets['Description'] . "&nbspau prix de : " . $objets['Prix'] . "€" . "</div>";
+        echo "</div>";
+        echo "</div>";
+      }elseif ($objets['TypeVente'] == 'nego') {
+        echo "<div class='col-sm-4'>";
+        echo "<div class='panel panel-default'>";
+        echo"<div class='panel-heading'>" .$objets['Nom'] . "<a href='AJOUTER_NEGO.php?id=" . $objets['ID'] . "'><span class='glyphicon glyphicon-send'></span></a>". "</div>";
+        echo "<div class='panel-body'> <img src=' ". $objets['Photos'] ."' class='img-responsive' style='width:100%' alt='Image'> </div>";
+        echo "<div class='panel-footer'>" . $objets['Description'] . "&nbspau prix de : " . $objets['Prix'] . "€" . "</div>";
+        echo "</div>";
+        echo "</div>";
+      }
+    }
+    ?>
   </div>
+</div>
 
 <footer class="page-footer">
 
-    <div class="container-fluid">
-      <img src="logo.png" width="100px" height="100px">
-      <p><strong>M I D G A R D</strong></p>  
-        <div class="cvg">
-          <p>
-            <a href="#" class ="cvg">Conditions générales de vente</a>
-            &nbsp &nbsp &nbsp
-            <a href="#" class ="cvg">Vos informations personnelles</a>
-            &nbsp &nbsp &nbsp
-            © 2020, Midgard Inc. 
-          </p>
-        </div>
+  <div class="container-fluid">
+    <img src="logo.png" width="100px" height="100px">
+    <p><strong>M I D G A R D</strong></p>  
+    <div class="cvg">
+      <p>
+        <a href="#" class ="cvg">Conditions générales de vente</a>
+        &nbsp &nbsp &nbsp
+        <a href="#" class ="cvg">Vos informations personnelles</a>
+        &nbsp &nbsp &nbsp
+        © 2020, Midgard Inc. 
+      </p>
     </div>
+  </div>
 
 </footer>
 

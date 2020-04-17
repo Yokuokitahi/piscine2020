@@ -19,11 +19,11 @@ if ($db_found) {
     if (mysqli_num_rows($result) == 0) {//on ne trouve pas d'objets à vendre
       $erreurObjet = "Il n'y a pas d'objets à vendre actuellement";
     }else{//on trouve des objets à vendre
-      $sql1 =  "SELECT ID, Nom, Photos, Description, Video, Prix, Categorie FROM item WHERE ID > 0 AND TypeVente = 'enchere' ";
+      $sql1 =  "SELECT * FROM item WHERE ID > 0 AND TypeVente = 'enchere' ";
       $result1 = mysqli_query($db_handle,$sql1);
-      $sql2 =  "SELECT ID, Nom, Photos, Description, Video, Prix, Categorie FROM item WHERE ID > 0 AND TypeVente = 'nego' ";
+      $sql2 =  "SELECT * FROM item WHERE ID > 0 AND TypeVente = 'nego' ";
       $result2 = mysqli_query($db_handle,$sql2);
-      $sql3 =  "SELECT ID, Nom, Photos, Description, Video, Prix, Categorie FROM item WHERE ID > 0 AND TypeVente = 'comptant' ";
+      $sql3 =  "SELECT * FROM item WHERE ID > 0 AND TypeVente = 'comptant' ";
       $result3 = mysqli_query($db_handle,$sql3);
     }
 }else{
@@ -87,14 +87,14 @@ mysqli_close($db_handle);
 
 <div class="container">
 	<div class="enchere">
-		<p>Items aux enchères</p> 
+		<p>Enchere</p> 
       <?php
           while ($objets1 = mysqli_fetch_assoc($result1)) {
               echo "<div class='col-sm-4'>";
               echo "<div class='panel panel-default'>";
               echo"<div class='panel-heading'>" .$objets1['Nom'] . "<a href='AJOUTER_ENCHERE.php?id=" . $objets1['ID'] . "'><span class='glyphicon glyphicon-hourglass'></span></a>" . "</div>";
               echo "<div class='panel-body'> <img src=' ". $objets1['Photos'] ."' class='img-responsive' style='width:100%' alt='Image'> </div>";
-              echo "<div class='panel-footer'>" . $objets1['Description'] . "&nbspau prix de : " . $objets1['Prix'] . " Ø" . "</div>";
+              echo "<div class='panel-footer'>" . $objets1['Description'] . "&nbspau prix de : " . $objets1['Prix'] . "€" . "</div>";
               echo "</div>";
               echo "</div>";
             }
@@ -105,14 +105,14 @@ mysqli_close($db_handle);
 
   <div class="container">
   	<div class="nego">
-  		<p>Items à négocier auprès du vendeur</p> 
+  		<p>Nego</p> 
       <?php
           while ($objets2 = mysqli_fetch_assoc($result2)) {
               echo "<div class='col-sm-4'>";
               echo "<div class='panel panel-default'>";
               echo"<div class='panel-heading'>" .$objets2['Nom'] . "<a href='AJOUTER_NEGO.php?id=" . $objets2['ID'] . "'><span class='glyphicon glyphicon-send'></span></a>". "</div>";
               echo "<div class='panel-body'> <img src=' ". $objets2['Photos'] ."' class='img-responsive' style='width:100%' alt='Image'> </div>";
-              echo "<div class='panel-footer'>" . $objets2['Description'] . "&nbspau prix de : " . $objets2['Prix'] . " Ø" . "</div>";
+              echo "<div class='panel-footer'>" . $objets2['Description'] . "&nbspau prix de : " . $objets2['Prix'] . "€" . "</div>";
               echo "</div>";
               echo "</div>";
             }
@@ -123,16 +123,18 @@ mysqli_close($db_handle);
 
   <div class="container">
   	<div class="comptant"> 
-  		<p>Achat immédiat d'items</p>
+  		<p>Achat immédiat</p>
       <?php
           while ($objets3 = mysqli_fetch_assoc($result3)) {
+            if ($objets3['IDAcheteur'] == 0) {
               echo "<div class='col-sm-4'>";
               echo "<div class='panel panel-default'>";
-              echo"<div class='panel-heading'>" .$objets3['Nom'] . "<a href='ajouterPanier.php?id=" . $objets3['ID'] . "'><span class='glyphicon glyphicon-plus-sign'></span></a>" . "</div>";
+              echo"<div class='panel-heading'>" .$objets3['Nom'] . "<a href='ajouterPanier.php?id=" . $objets3['ID'] . "&page=acheter.php'><span class='glyphicon glyphicon-plus-sign'></span></a>" . "</div>";
               echo "<div class='panel-body'> <img src=' ". $objets3['Photos'] ."' class='img-responsive' style='width:100%' alt='Image'> </div>";
-              echo "<div class='panel-footer'>" . $objets3['Description'] . "&nbspau prix de : " . $objets3 ['Prix'] . " Ø" . "</div>";
+              echo "<div class='panel-footer'>" . $objets3['Description'] . "&nbspau prix de : " . $objets3 ['Prix'] . "€" . "</div>";
               echo "</div>";
               echo "</div>";
+            }
             }
           ?>
   	</div>
