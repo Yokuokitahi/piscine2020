@@ -205,7 +205,7 @@ mysqli_close($db_handle);
 			<input type="text" placeholder="Entrez un pseudo" name="pseudoVendeur">
 
 			<label for="mail">E-Mail</label>
-			<input type="text" placeholder="Saississez un e-mail valide" name="mailVendeur">
+			<input type="email" placeholder="Saississez un e-mail valide" name="mailVendeur">
 
 			<label for="mdp">Mot de Passe</label>
 			<input type="password" name="mdpVendeur">
