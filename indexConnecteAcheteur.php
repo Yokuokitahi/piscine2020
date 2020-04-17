@@ -17,7 +17,7 @@ if ($db_found) {
     if (mysqli_num_rows($result) == 0) {//on ne trouve pas d'objets à vendre
       $erreurObjet = "Il n'y a pas d'objets à vendre actuellement";
     }else{//on trouve des objets à vendre
-      $sql =  "SELECT ID, Nom, Photos, Description, Video, Prix, Categorie FROM item WHERE ID > 0";
+      $sql =  "SELECT * FROM item WHERE ID > 0";
       $result = mysqli_query($db_handle,$sql);
     }
 }else{
@@ -81,6 +81,7 @@ mysqli_close($db_handle);
   <div class="container"> 
       <?php
           while ($objets = mysqli_fetch_assoc($result)) {
+            if ($objets['IDAcheteur' == 0]) {
               echo "<div class='col-sm-4'>";
               echo "<div class='panel panel-default'>";
               echo"<div class='panel-heading'>" .$objets['Nom'] . "</div>";
@@ -89,6 +90,7 @@ mysqli_close($db_handle);
               echo "</div>";
               echo "</div>";
             }
+          }
           ?>
   </div>
 

@@ -79,6 +79,7 @@ mysqli_close($db_handle);
 		<p>Enchere</p> 
       <?php
           while ($objets1 = mysqli_fetch_assoc($result1)) {
+            if ($objets1['IDAcheteur'] == 0) {
               echo "<div class='col-sm-4'>";
               echo "<div class='panel panel-default'>";
               echo"<div class='panel-heading'>" .$objets1['Nom'] . "<a href='removeItemAdmin.php?id=" . $objets1['ID'] . "'><span class='glyphicon glyphicon-minus-sign'></span></a>" . "</div>";
@@ -86,7 +87,8 @@ mysqli_close($db_handle);
               echo "<div class='panel-footer'>" . $objets1['Description'] . "&nbspau prix de : " . $objets1['Prix'] . "€" . "</div>";
               echo "</div>";
               echo "</div>";
-            }
+            }  
+          }
           ?>
   	</div>
   </div>
@@ -97,6 +99,7 @@ mysqli_close($db_handle);
   		<p>Nego</p> 
       <?php
           while ($objets2 = mysqli_fetch_assoc($result2)) {
+            if ($objets2['IDAcheteur'] == 0) {
               echo "<div class='col-sm-4'>";
               echo "<div class='panel panel-default'>";
               echo"<div class='panel-heading'>" .$objets2['Nom'] . "<a href='removeItemAdmin.php?id=" . $objets2['ID'] . "'><span class='glyphicon glyphicon-minus-sign'></span></a>". "</div>";
@@ -105,6 +108,7 @@ mysqli_close($db_handle);
               echo "</div>";
               echo "</div>";
             }
+          }
           ?>
       </div>
   </div>
@@ -115,6 +119,7 @@ mysqli_close($db_handle);
   		<p>Achat immédiat</p>
       <?php
           while ($objets3 = mysqli_fetch_assoc($result3)) {
+            if ($objets3['IDAcheteur'] == 0) {
               echo "<div class='col-sm-4'>";
               echo "<div class='panel panel-default'>";
               echo"<div class='panel-heading'>" .$objets3['Nom'] . "<a href='removeItemAdmin.php?id=" . $objets3['ID'] . "'><span class='glyphicon glyphicon-minus-sign'></span></a>" . "</div>";
@@ -122,7 +127,8 @@ mysqli_close($db_handle);
               echo "<div class='panel-footer'>" . $objets3['Description'] . "&nbspau prix de : " . $objets3 ['Prix'] . "€" . "</div>";
               echo "</div>";
               echo "</div>";
-            }
+            }  
+          }
           ?>
   	</div>
   </div>

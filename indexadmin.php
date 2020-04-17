@@ -102,6 +102,7 @@ mysqli_close($db_handle);
   <div class="container"> 
           <?php
           while ($objets2 = mysqli_fetch_assoc($result2)) {
+            if ($objets2['IDAcheteur'] == 0) {
               echo "<div class='col-sm-4'>";
               echo "<div class='panel panel-default'>";
               echo"<div class='panel-heading'>" .$objets2['Nom'] . "<a href='removeItem.php?id=" . $PseudoAdmin . "'><span class='glyphicon glyphicon-remove'></span></a>" . "</div>";
@@ -110,6 +111,7 @@ mysqli_close($db_handle);
               echo "</div>";
               echo "</div>";
             }
+          }
           ?>
   </div>
 

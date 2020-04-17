@@ -24,7 +24,7 @@ if ($db_found) {
     if (mysqli_num_rows($result) == 0) {//on ne trouve pas d'objets à vendre
       $erreurObjet = "Vous n'avez pas d'objets à vendre, ajoutez-en en cliquant sur le bouton Vendre";
     }else{//on trouve des objets à vendre
-      $sql =  "SELECT ID, Nom, Photos, Description, Video, Prix, Categorie FROM item WHERE IDVendeur = '$IDVendeur'";
+      $sql =  "SELECT * FROM item WHERE IDVendeur = '$IDVendeur'";
       $result = mysqli_query($db_handle,$sql);
     }
   }
@@ -78,6 +78,7 @@ mysqli_close($db_handle);
   <div class="container"> 
           <?php
           while ($objets = mysqli_fetch_assoc($result)) {
+            if ($objets['IDAcheteur'] == 0) {
               echo "<div class='col-sm-4'>";
               echo "<div class='panel panel-default'>";
               echo"<div class='panel-heading'>" .$objets['Nom'] . "<a href='removeItem.php?id=" . $objets['ID'] . "'><span class='glyphicon glyphicon-remove'></span></a>" . "</div>";
@@ -86,6 +87,7 @@ mysqli_close($db_handle);
               echo "</div>";
               echo "</div>";
             }
+          }
           ?>
   </div>
   <footer class="page-footer">
