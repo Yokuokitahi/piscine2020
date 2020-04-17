@@ -52,11 +52,11 @@ if ($db_found) {
 
   <nav class="navbar navbar-inverse">
     <div class="container-fluid">
-      <a class="navbar-brand" href="indexConnecteAcheteur.php"><img src="logo.png" style="margin-top: -11px" width="40px" height="40px"></a>
+      <a class="navbar-brand" href="indexConnecteAcheteur.php?erreur=0"><img src="logo.png" style="margin-top: -11px" width="40px" height="40px"></a>
 
       <div class="collapse navbar-collapse" id="myNavbar">
         <ul class="nav navbar-nav">
-          <li class="active"><a href="indexConnecteAcheteur.php">Home</a></li>
+          <li class="active"><a href="indexConnecteAcheteur.php?erreur=0">Home</a></li>
           <li><a href="acheter.php">Acheter</a></li>
 
           <li class="dropdown" >

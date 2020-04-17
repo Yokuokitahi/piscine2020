@@ -5,6 +5,7 @@ $db_handle = mysqli_connect('localhost', 'root', '');
 $db_found = mysqli_select_db($db_handle, $database);
 $nbItems ='';
 $erreurObjet ='';
+$erreur = $_GET['erreur'];
 
 if ($db_found) {
     $sql ="SELECT COUNT(*)-1 AS count FROM item";
@@ -38,6 +39,7 @@ mysqli_close($db_handle);
   
   <!-- Fichier css *-->
   <link rel="stylesheet" type="text/css" href="style.css">
+      <?php if( !empty( $erreur ) ) echo '<script type="text/javascript">alert("' . $erreur . '", "Information !");</script>'; ?>
 </head>
 
 <body>
@@ -49,11 +51,11 @@ mysqli_close($db_handle);
 
   <nav class="navbar navbar-inverse">
     <div class="container-fluid">
-      <a class="navbar-brand" href="indexConnecteAcheteur.php"><img src="logo.png" style="margin-top: -11px" width="40px" height="40px"></a>
+      <a class="navbar-brand" href="indexConnecteAcheteur.php?erreur=0"><img src="logo.png" style="margin-top: -11px" width="40px" height="40px"></a>
 
       <div class="collapse navbar-collapse" id="myNavbar">
         <ul class="nav navbar-nav">
-          <li class="active"><a href="indexConnecteAcheteur.php">Home</a></li>
+          <li class="active"><a href="indexConnecteAcheteur.php?erreur=0">Home</a></li>
           <li><a href="acheter.php">Acheter</a></li>
 
           <li class="dropdown" >

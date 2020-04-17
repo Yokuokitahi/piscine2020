@@ -141,7 +141,7 @@ if ($_POST["enregistrer"]) {
 				$sql = "INSERT INTO acheteur(ID, Pseudo, Nom, Prenom, Password, Email, Adresse1, Adresse2, Ville, CodePostal, Pays, Telephone, Paiement, CarteBancaire, NomCarteB, DateExpCarteB, Crypto, Etat)VALUES('$Identifiant','$pseudo', '$nom', '$prenom', '$password', '$mail','$adresse1','$adresse2','$ville','$codepostal','$pays','$telephone','$paiement', '$cb', '$nomCb', '$dateCb', '$code','1')"; 
 				$result = mysqli_query($db_handle,$sql);
 				$reussi = "inscription faite";
-				header('Location:indexConnecteAcheteur.html');
+				header('Location:indexConnecteAcheteur.php?erreur=0');
 			}
 		}
 		else{

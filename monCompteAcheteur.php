@@ -23,8 +23,6 @@ $nbCb = '';
 $solde = 0;
 
 $erreur = $_GET['erreur'];
-$texte = 'nique ta mere';
-
 
 if($db_found){
 	$sql ="SELECT * FROM acheteur WHERE Etat = 1";
@@ -71,7 +69,7 @@ mysqli_close($db_handle);
   
   	<!-- Fichier css *-->
   	<link rel="stylesheet" type="text/css" href="style.css">
-    <?php echo '<script type="text/javascript">alert("' . $erreur . '", "Information !");</script>'; ?>
+    <?php if( !empty( $erreur ) ) echo '<script type="text/javascript">alert("' . $erreur . '", "Information !");</script>'; ?>
 </head>
 
 <body>
@@ -83,11 +81,11 @@ mysqli_close($db_handle);
 
   	<nav class="navbar navbar-inverse">
     <div class="container-fluid">
-      <a class="navbar-brand" href="indexConnecteAcheteur.php"><img src="logo.png" style="margin-top: -11px" width="40px" height="40px"></a>
+      <a class="navbar-brand" href="indexConnecteAcheteur.php?erreur=0"><img src="logo.png" style="margin-top: -11px" width="40px" height="40px"></a>
 
       <div class="collapse navbar-collapse" id="myNavbar">
         <ul class="nav navbar-nav">
-          <li class="active"><a href="indexConnecteAcheteur.php">Home</a></li>
+          <li class="active"><a href="indexConnecteAcheteur.php?erreur=0">Home</a></li>
           <li><a href="acheter.php">Acheter</a></li>
 
           <li class="dropdown" >
@@ -112,11 +110,10 @@ mysqli_close($db_handle);
       </div>
     </div>
   </nav>
-  <?php if( !empty( $erreur ) ) echo $erreur ?>
   <div class="acheteur">
   		<img src="avatar.png" alt="Avatar" class="avatar">
     <p>Solde actuel : <?php if( !empty( $solde ) ) echo $solde; else echo "0";' Øre' ?></p>
-	<p>Nom : <?php if( !empty( $nom ) ) echo $nom ?></p>
+		<p>Nom : <?php if( !empty( $nom ) ) echo $nom ?></p>
     <p>Prenom : <?php if( !empty( $prenom ) ) echo $prenom ?></p>
     <p>Adresse : <?php if( !empty( $adresse ) ) echo $adresse ?></p>
     <p>E-mail : <?php if( !empty( $email ) ) echo $email ?></p>
