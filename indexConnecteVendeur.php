@@ -22,6 +22,8 @@ if ($db_found) {
     }else{//on trouve des objets à vendre
       $sql =  "SELECT * FROM item WHERE IDVendeur = '$IDVendeur'";
       $result = mysqli_query($db_handle,$sql);
+      $sql =  "SELECT * FROM item WHERE IDVendeur = '$IDVendeur' AND IDAcheteur != 0 AND Offre !=0";
+      $result2 = mysqli_query($db_handle,$sql);
       $dateAjd = new DateTime("now");
     }
   }
@@ -73,7 +75,7 @@ mysqli_close($db_handle);
   </nav>
 
   <div class="container">
-    <div class="vendeurco"> 
+    <p>Vos ventes en cours :</p>
           <p><?php echo $erreurObjet;?></p>
           <?php
           while ($objets = mysqli_fetch_assoc($result)) {
@@ -97,9 +99,23 @@ mysqli_close($db_handle);
             }
           }
           ?>
-    </div>
   </div>
 
+  <div class="container">
+          <p>Vos négociations en cours :</p>
+          <?php
+          while ($objets = mysqli_fetch_assoc($result2)) {
+              echo "<div class='col-sm-4'>";
+              echo "<div class='panel panel-default'>";
+              echo'<div class="panel-heading">' .$objets["Nom"] . '<a title="Accepter l\'offre " style="margin-left: 100px, margin-right: -190px" href="accepterOffre.php?id=' . $objets['ID'] . '"><span class="glyphicon glyphicon-ok-sign"></span></a> <a title="Proposer une contre-offre " style="margin-left: 10px" href="refuserOffre.php?id=' . $objets['ID'] . '"><span class="glyphicon glyphicon-remove-sign"></span></a>' . '</div>';
+              echo "<div class='panel-body'> <img src=' ". $objets['Photos'] ."' class='img-responsive' style='width:100%' alt='Image'> </div>";
+              echo "<div class='panel-footer'> Un acheteur vous propose une offre de : " . $objets['Offre'] . " Ø" . "</div>";
+              echo "</div>";
+              echo "</div>";
+          }
+          ?>
+  </div>
+  <a href="d" title=""></a>
   <footer class="page-footer">
     <div class="container-fluid">
       <img src="logo.png" width="100px" height="100px">
