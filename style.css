@@ -27,10 +27,13 @@ border-radius: 0;
 }
 
 .panel-heading a {
-  margin-left: 190px;
   color:black;
   font-size: 12px;
+  position: absolute;
+  top: 15px;
+  left: 330px;
 }
+
 
 .panel-body {
   height: 200px;
@@ -240,4 +243,18 @@ form .argent p{
   color: #BB0B0B;
   margin-top: 100px;
   margin-bottom:200px;
+}
+
+form .input [type=submit]{
+  background-color: red;
+  color: white;
+  padding: 14px 20px;
+  margin: 8px 0;
+  border: none;
+  cursor: pointer;
+  width: 20%;
+}
+
+.lepanier a:hover{
+  color: red;
 }

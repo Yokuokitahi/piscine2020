@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Hôte : 127.0.0.1:3306
--- Généré le :  ven. 17 avr. 2020 à 14:38
+-- Généré le :  sam. 18 avr. 2020 à 09:58
 -- Version du serveur :  10.4.10-MariaDB
 -- Version de PHP :  7.3.12
 
@@ -59,7 +59,7 @@ CREATE TABLE IF NOT EXISTS `acheteur` (
 
 INSERT INTO `acheteur` (`ID`, `Pseudo`, `Nom`, `Prenom`, `Password`, `Email`, `Adresse1`, `Adresse2`, `Ville`, `CodePostal`, `Pays`, `Telephone`, `Paiement`, `Panier`, `Etat`, `CarteBancaire`, `NomCarteB`, `DateExpCarteB`, `Crypto`, `Solde`) VALUES
 (0, 'acheteur0', 'first', 'acheteur', 'root', 'firstacheteur@gmail.com', 'adresse bidon', '', 'VilleTest', '5911', 'PaysImaginaire', '0258963254', 'Visa', '', 0, '0', '', '0000-00-00', 0, 0),
-(1, 'hina', 'Hina', 'Manolo', 'root', 'hina@ece.fr', 'ECE PARIS', '', 'PARIS', '75015', 'France', '0156875236', 'Ore', NULL, 1, '5194646261964961', 'hina', '2020-04-24', 2556, 1500050);
+(1, 'hina', 'Hina', 'Manolo', 'root', 'hina@ece.fr', 'ECE PARIS', '', 'PARIS', '75015', 'France', '0156875236', 'Ore', NULL, 0, '5194646261964961', 'hina', '2020-04-24', 2556, 50047);
 
 -- --------------------------------------------------------
 
@@ -82,7 +82,7 @@ CREATE TABLE IF NOT EXISTS `admin` (
 
 INSERT INTO `admin` (`ID`, `Pseudo`, `Password`, `Etat`) VALUES
 (0, 'Drakking', 'root', 0),
-(1, 'Skaway', 'root', 0);
+(1, 'Skaway', 'root', 1);
 
 -- --------------------------------------------------------
 
@@ -101,8 +101,12 @@ CREATE TABLE IF NOT EXISTS `item` (
   `Categorie` text NOT NULL,
   `IDVendeur` varchar(255) NOT NULL,
   `TypeVente` varchar(255) NOT NULL,
-  `DureeEnchere` datetime NOT NULL DEFAULT '1900-01-01 00:00:00',
-  `IDAcheteur` int(255) NOT NULL,
+  `DureeEnchere` datetime NOT NULL DEFAULT '2050-01-01 00:00:00',
+  `IDAcheteur` int(255) NOT NULL DEFAULT 0,
+  `prixEnchere` int(255) NOT NULL DEFAULT 0,
+  `Offre` int(255) NOT NULL DEFAULT 0,
+  `NbOffre` int(255) NOT NULL DEFAULT 0,
+  `ContreOffre` int(255) NOT NULL DEFAULT 0,
   PRIMARY KEY (`ID`)
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
@@ -110,15 +114,14 @@ CREATE TABLE IF NOT EXISTS `item` (
 -- Déchargement des données de la table `item`
 --
 
-INSERT INTO `item` (`ID`, `Nom`, `Photos`, `Description`, `Video`, `Prix`, `Categorie`, `IDVendeur`, `TypeVente`, `DureeEnchere`, `IDAcheteur`) VALUES
-(0, 'init', 'init', 'init', 'init', 'init', 'init', 'init', '', '0000-00-00 00:00:00', 0),
-(2, 'Montre en or', 'montreor.jpg', 'Grosse montre', '', '1000', 'vip', '1', 'nego', '0000-00-00 00:00:00', 0),
-(3, 'EpÃ©e', 'epee.jpg', 'Ã©pÃ©e ancienne', '', '30', 'relique', '1', 'comptant', '0000-00-00 00:00:00', 0),
-(4, 'Tasse', 'tasse.jpg', 'une tasse normale', '', '2', 'tresor', '1', 'nego', '0000-00-00 00:00:00', 0),
-(5, 'briquet', 'briquet.jpg', 'briquet qui fait du feu', '', '1', 'tresor', '1', 'comptant', '0000-00-00 00:00:00', 0),
-(7, 'Nintendo switch', 'switch.jpg', 'console de jeux', '', '300', 'tresor', 'Skaway', 'nego', '0000-00-00 00:00:00', 0),
-(8, 'Airpods', 'airpods.jpg', 'Ã©couteurs sans fil', '', '300', 'tresor', '1', 'enchere', '2020-04-18 23:30:00', 0),
-(9, 'Airpods pro', 'airpods pro.jpg', 'Ã©couteurs sans fil pro', '', '500', 'tresor', 'Skaway', 'enchere', '2020-04-25 05:02:00', 0);
+INSERT INTO `item` (`ID`, `Nom`, `Photos`, `Description`, `Video`, `Prix`, `Categorie`, `IDVendeur`, `TypeVente`, `DureeEnchere`, `IDAcheteur`, `prixEnchere`, `Offre`, `NbOffre`, `ContreOffre`) VALUES
+(0, 'init', 'init', 'init', 'init', 'init', 'init', 'init', '', '0000-00-00 00:00:00', 0, 0, 0, 0, 0),
+(2, 'Montre en or', 'montreor.jpg', 'Grosse montre', '', '1000', 'vip', '1', 'nego', '2050-04-15 00:00:00', 0, 0, 0, 0, 0),
+(4, 'Tasse', 'tasse.jpg', 'une tasse normale', '', '2', 'tresor', '1', 'nego', '2050-04-15 00:00:00', 0, 0, 0, 0, 0),
+(7, 'Nintendo switch', 'switch.jpg', 'console de jeux', '', '300', 'tresor', 'Skaway', 'nego', '2050-04-10 00:00:00', 0, 0, 0, 0, 0),
+(8, 'Airpods', 'airpods.jpg', 'Ã©couteurs sans fil', '', '300', 'relique', '1', 'enchere', '2020-04-21 00:00:00', 0, 0, 0, 0, 0),
+(9, 'Airpods pro', 'airpods pro.jpg', 'Ã©couteurs sans fil pro', '', '500', 'relique', 'Skaway', 'enchere', '2020-04-14 00:00:00', 0, 0, 0, 0, 0),
+(12, 'EpÃ©e', 'epee.jpg', 'Ã©pÃ©e ancienne', '', '3500000', 'tresor', '1', 'comptant', '2050-01-26 00:00:00', 0, 0, 0, 0, 0);
 
 -- --------------------------------------------------------
 
@@ -145,7 +148,8 @@ CREATE TABLE IF NOT EXISTS `vendeur` (
 
 INSERT INTO `vendeur` (`ID`, `Pseudo`, `Password`, `Nom`, `Email`, `Photos`, `Background`, `Etat`) VALUES
 (0, 'client0', 'root', 'firstclient', 'firstclient@gmail.com', '', '', 0),
-(1, 'jps', 'root', 'Segado', 'segado@ece.fr', 0x73656761646f2e6a7067, '', 0);
+(1, 'jps', 'root', 'Segado', 'segado@ece.fr', 0x73656761646f2e6a7067, '', 0),
+(2, 'malo', 'root', 'yacinmalo', 'malo@ece.fr', 0x6d616c6f2e504e47, 0x6563652e706e67, 0);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
