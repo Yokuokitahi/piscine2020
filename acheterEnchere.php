@@ -111,15 +111,15 @@ mysqli_close($db_handle);
 
   <div class="surenchere">
     <?php
-    echo $erreurPrix;
     echo "Fin de l'enchère : ". $objets['DureeEnchere']. "<br>";
-    echo "Prix de base : ". $objets['Prix']; 
+    echo "Prix de base : ". $objets['Prix'],"<br>"; 
+    echo $erreurPrix;
     ?>
     <br><br>
-    <form method="post" action="acheterEnchere.php?id=<?php echo $enchere; ?>">
+    <form class="surench" method="post" action="acheterEnchere.php?id=<?php echo $enchere; ?>">
      <p>Souhaitez-vous encherir ?</p>
      <input type="number" name="surencherir" placeholder="Entrez un nombre">
-     <input type="submit" name="bouton" value="Surencherir">
+     <input type="submit" name="bouton" value="Surencherir" style="background-color: red; width: 10%; padding: 4px;">
    </form>
  </div>
 </div>
