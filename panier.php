@@ -18,7 +18,7 @@ if ($db_found) {
     $sql ="SELECT * FROM item WHERE IDAcheteur = '$IDAcheteur'";
     $result = mysqli_query($db_handle,$sql);
     if (mysqli_num_rows($result) == 0) {//on ne trouve pas d'objets à vendre
-    $erreurObjet = "Vous n'avez pas d'objets dans votre panier, parcourez le site pour en trouver !";
+      $erreurObjet = "Vous n'avez pas d'objets dans votre panier, parcourez le site pour en trouver !";
     }else{//on trouve des objets à vendre
       $sql = "SELECT SUM(prix) AS prix_total FROM item WHERE IDAcheteur = '$IDAcheteur'";
       $result = mysqli_query($db_handle,$sql);
@@ -26,8 +26,6 @@ if ($db_found) {
       $prixTotal = $total['prix_total'];
       $sql =  "SELECT * FROM item WHERE IDAcheteur = '$IDAcheteur'";
       $result = mysqli_query($db_handle,$sql);
-      $sql =  "SELECT * FROM item WHERE IDAcheteur = '$IDAcheteur' AND Nego = '1'";
-      $result2 = mysqli_query($db_handle,$sql);
     }
   }
 }else{
@@ -87,65 +85,44 @@ mysqli_close($db_handle);
   </nav>
 
   <div class="container"> 
-    <div class="lepanier">
-      <?php
-      while ($objets = mysqli_fetch_assoc($result)) {
-        if ($objets['Nego'] == 0) {
-          echo "<p>Votre panier </p>";
-          echo "<div class='col-sm-4'>";
-          echo "<div class='panel panel-default'>";
-          echo"<div class='panel-heading'>" .$objets['Nom'] . "<a href='removeItemPanier.php?id=" . $objets['ID'] . "'><span class='glyphicon glyphicon-remove' title='Supprimer article'></span></a>" . "</div>";
-          echo "<div class='panel-body'> <img src=' ". $objets['Photos'] ."' class='img-responsive' style='width:100%' alt='Image'> </div>";
-          echo "<div class='panel-footer'>" . $objets['Description'] . "&nbspau prix de : " . $objets['Prix'] . " Ø" . "</div>";
-          echo "</div>";
-          echo "</div>";
-        }
-      }
-      ?>
-    </div>
+      <div class="lepanier">
+          <?php
+          while ($objets = mysqli_fetch_assoc($result)) {
+              echo "<div class='col-sm-4'>";
+              echo "<div class='panel panel-default'>";
+              echo"<div class='panel-heading'>" .$objets['Nom'] . "<a href='removeItemPanier.php?id=" . $objets['ID'] . "'><span class='glyphicon glyphicon-remove' title='Supprimer article'></span></a>" . "</div>";
+              echo "<div class='panel-body'> <img src=' ". $objets['Photos'] ."' class='img-responsive' style='width:100%' alt='Image'> </div>";
+              echo "<div class='panel-footer'>" . $objets['Description'] . "&nbspau prix de : " . $objets['Prix'] . " Ø" . "</div>";
+              echo "</div>";
+              echo "</div>";
+          }
+          ?>
+      </div>
   </div>
-
-  <div class="container"> 
-    <div class="lepanier">
-      <?php
-      while ($objets = mysqli_fetch_assoc($result2)) {
-          echo "<p>Vos négociations abouties </p>";
-          echo "<div class='col-sm-4'>";
-          echo "<div class='panel panel-default'>";
-          echo"<div class='panel-heading'>" .$objets['Nom'] . "</div>";
-          echo "<div class='panel-body'> <img src=' ". $objets['Photos'] ."' class='img-responsive' style='width:100%' alt='Image'> </div>";
-          echo "<div class='panel-footer'>" . $objets['Description'] . "&nbspau prix de : " . $objets['Prix'] . " Ø" . "</div>";
-          echo "</div>";
-          echo "</div>";
-        }
-      ?>
-    </div>
-  </div>
-
-  <div class="totalPaiement">
-    <?php echo $erreurObjet; ?>
-    <?php 
-    if ($erreurObjet == '') {
-      echo "<p>Le montant de votre panier est de :". $prixTotal . "Øre</p>";
-      echo "<a href='paiementImmediat.php?total=". $prixTotal . "'><input type='submit' name='payer' value='Effectuer le paiement'></a>";
-    }
+        <div class="totalPaiement">
+            <?php echo $erreurObjet; ?>
+          <?php 
+            if ($erreurObjet == '') {
+              echo "<p>Le montant de votre panier est de :". $prixTotal . "Øre</p>";
+              echo "<a href='paiementImmediat.php?total=". $prixTotal . "'><input type='submit' name='payer' value='Effectuer le paiement'></a>";
+            }
             ///METTRE UN ESPACE ENTRE LE MESSAGE ET LE FOOTER
-    ?>            
-  </div>
+          ?>            
+        </div>
   
   <footer class="page-footer">
     <div class="container-fluid">
       <img src="logo.png" width="100px" height="100px">
       <p><strong>M I D G A R D</strong></p>  
-      <div class="cvg">
-        <p>
-          <a href="#" class ="cvg">Conditions générales de vente</a>
-          &nbsp &nbsp &nbsp
-          <a href="#" class ="cvg">Vos informations personnelles</a>
-          &nbsp &nbsp &nbsp
-          © 2020, Midgard Inc. 
-        </p>
-      </div>
+        <div class="cvg">
+          <p>
+            <a href="#" class ="cvg">Conditions générales de vente</a>
+            &nbsp &nbsp &nbsp
+            <a href="#" class ="cvg">Vos informations personnelles</a>
+            &nbsp &nbsp &nbsp
+            © 2020, Midgard Inc. 
+          </p>
+        </div>
     </div>
 
   </footer>

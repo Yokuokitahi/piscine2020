@@ -90,7 +90,7 @@ mysqli_close($db_handle);
 	<form action="ajouterSolde.php" method="post">
 		<div class="argent">
 			<label for="solde">Ajouter des Øre à votre solde : </label><br>
-			<input type="number" placeholder="Entrez un montant (en Øre)" name="solde">
+			<input type="number" placeholder="Entrez un montant (en Øre)" name="solde" style="width: 30%;">
 			<br>
 			<p><input type="submit" name="ajouter" value="Déposer de l'argent"></p>
 		</div>

@@ -118,8 +118,8 @@ mysqli_close($db_handle);
     <br><br>
     <form class="surench" method="post" action="acheterEnchere.php?id=<?php echo $enchere; ?>">
      <p>Souhaitez-vous encherir ?</p>
-     <input type="number" name="surencherir" placeholder="Entrez un nombre">
-     <input type="submit" name="bouton" value="Surencherir" style="background-color: red; width: 10%; padding: 4px;">
+     <input type="number" name="surencherir" placeholder="Entrez un nombre" style="color: #696969">
+     <input type="submit" name="bouton" value="Surencherir" style="background-color:#303030; width: 10%; padding: 4px;">
    </form>
  </div>
 </div>
