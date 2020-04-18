@@ -9,7 +9,6 @@ $erreur = '';
 $database = "midgard";
 $db_handle = mysqli_connect('localhost', 'root', '');
 $db_found = mysqli_select_db($db_handle, $database);
-var_dump($_POST['connexion']);
 if ($_POST["connexion"]) { //bouton se connecter enclenché
 
 	if ($db_found) { //si la base de données est bien connectée

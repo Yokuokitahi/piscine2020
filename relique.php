@@ -97,7 +97,7 @@ if ($db_found) {
         echo "<div class='panel-footer'>" . $objets['Description'] . "&nbspau prix de : " . $objets['Prix'] . " Ø" . "</div>";
         echo "</div>";
         echo "</div>";
-      }elseif ($objets['TypeVente'] == 'enchere' && $dateFinEnchere > $dateAjd && && $objets['IDAcheteur'] == 0) {
+      }else if ($objets['TypeVente'] == 'enchere' && $dateFinEnchere > $dateAjd && $objets['IDAcheteur'] == 0) {
         echo "<div class='col-sm-4'>";
         echo "<div class='panel panel-default'>";
         echo"<div class='panel-heading'>" .$objets['Nom'] . "<a href='acheterEnchere.php?id=" . $objets['ID'] . "'><span class='glyphicon glyphicon-hourglass'></span></a>". "</div>";

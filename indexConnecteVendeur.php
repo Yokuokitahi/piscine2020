@@ -75,6 +75,7 @@ mysqli_close($db_handle);
   </nav>
 
   <div class="container">
+    <div class="venteencours">
     <p>Vos ventes en cours :</p>
           <p><?php echo $erreurObjet;?></p>
           <?php
@@ -83,7 +84,7 @@ mysqli_close($db_handle);
             if ($objets['IDAcheteur'] == 0 && $dateFinEnchere > $dateAjd) {
               echo "<div class='col-sm-4'>";
               echo "<div class='panel panel-default'>";
-              echo"<div class='panel-heading'>" .$objets['Nom'] . "<a href='removeItem.php?id=" . $objets['ID'] . "'><span class='glyphicon glyphicon-remove'></span></a>" . "</div>";
+              echo"<div class='panel-heading'>" .$objets['Nom'] . "<a href='removeItem.php?id=" . $objets['ID'] . "'><span title='Supprimer item' class='glyphicon glyphicon-remove'></span></a>" . "</div>";
               echo "<div class='panel-body'> <img src=' ". $objets['Photos'] ."' class='img-responsive' style='width:100%' alt='Image'> </div>";
               echo "<div class='panel-footer'>" . $objets['Description'] . "&nbspau prix de : " . $objets['Prix'] . " Ø" . "</div>";
               echo "</div>";
@@ -91,7 +92,7 @@ mysqli_close($db_handle);
             }elseif ($objets['IDAcheteur'] == 0 && $dateFinEnchere < $dateAjd) {
               echo "<div class='col-sm-4'>";
               echo "<div class='panel panel-default'>";
-              echo"<div class='panel-heading'>" .$objets['Nom'] . "<a href='removeItem.php?id=" . $objets['ID'] . "'><span class='glyphicon glyphicon-remove'></span></a>" . "</div>";
+              echo"<div class='panel-heading'>" .$objets['Nom'] . "<a href='removeItem.php?id=" . $objets['ID'] . "'><span title='Supprimer item' class='glyphicon glyphicon-remove'></span></a>" . "</div>";
               echo "<div class='panel-body'> <img src=' ". $objets['Photos'] ."' class='img-responsive' style='width:100%' alt='Image'> </div>";
               echo "<div class='panel-footer'>" . $objets['Description'] . "&nbsp &nbsp <font color=red>Enchère terminée ! </font>" . "</div>";
               echo "</div>";
@@ -99,6 +100,7 @@ mysqli_close($db_handle);
             }
           }
           ?>
+        </div>
   </div>
 
   <div class="container">
@@ -107,7 +109,7 @@ mysqli_close($db_handle);
           while ($objets = mysqli_fetch_assoc($result2)) {
               echo "<div class='col-sm-4'>";
               echo "<div class='panel panel-default'>";
-              echo'<div class="panel-heading">' .$objets["Nom"] . '<a title="Accepter l\'offre " style="margin-left: 100px, margin-right: -190px" href="accepterOffre.php?id=' . $objets['ID'] . '"><span class="glyphicon glyphicon-ok-sign"></span></a> <a title="Proposer une contre-offre " style="margin-left: 10px" href="refuserOffre.php?id=' . $objets['ID'] . '"><span class="glyphicon glyphicon-remove-sign"></span></a>' . '</div>';
+              echo'<div class="panel-heading">' .$objets["Nom"] . '<a title="Accepter l\'offre " href="accepterOffre.php?id=' . $objets['ID'] . '"><span class="glyphicon glyphicon-ok-sign"></span></a> <a title="Proposer une contre-offre " style="margin-left: 15px" href="refuserOffre.php?id=' . $objets['ID'] . '"> <span class="glyphicon glyphicon-remove-sign"></span></a>' . '</div>';
               echo "<div class='panel-body'> <img src=' ". $objets['Photos'] ."' class='img-responsive' style='width:100%' alt='Image'> </div>";
               echo "<div class='panel-footer'> Un acheteur vous propose une offre de : " . $objets['Offre'] . " Ø" . "</div>";
               echo "</div>";
