@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Hôte : 127.0.0.1:3306
--- Généré le :  sam. 18 avr. 2020 à 09:58
+-- Généré le :  sam. 18 avr. 2020 à 15:28
 -- Version du serveur :  10.4.10-MariaDB
 -- Version de PHP :  7.3.12
 
@@ -59,7 +59,7 @@ CREATE TABLE IF NOT EXISTS `acheteur` (
 
 INSERT INTO `acheteur` (`ID`, `Pseudo`, `Nom`, `Prenom`, `Password`, `Email`, `Adresse1`, `Adresse2`, `Ville`, `CodePostal`, `Pays`, `Telephone`, `Paiement`, `Panier`, `Etat`, `CarteBancaire`, `NomCarteB`, `DateExpCarteB`, `Crypto`, `Solde`) VALUES
 (0, 'acheteur0', 'first', 'acheteur', 'root', 'firstacheteur@gmail.com', 'adresse bidon', '', 'VilleTest', '5911', 'PaysImaginaire', '0258963254', 'Visa', '', 0, '0', '', '0000-00-00', 0, 0),
-(1, 'hina', 'Hina', 'Manolo', 'root', 'hina@ece.fr', 'ECE PARIS', '', 'PARIS', '75015', 'France', '0156875236', 'Ore', NULL, 0, '5194646261964961', 'hina', '2020-04-24', 2556, 50047);
+(1, 'hina', 'Hina', 'Manolo', 'root', 'hina@ece.fr', 'ECE PARIS', '', 'PARIS', '75015', 'France', '0156875236', 'Ore', NULL, 1, '5194646261964961', 'hina', '2020-04-24', 2556, 50047);
 
 -- --------------------------------------------------------
 
@@ -82,7 +82,7 @@ CREATE TABLE IF NOT EXISTS `admin` (
 
 INSERT INTO `admin` (`ID`, `Pseudo`, `Password`, `Etat`) VALUES
 (0, 'Drakking', 'root', 0),
-(1, 'Skaway', 'root', 1);
+(1, 'Skaway', 'root', 0);
 
 -- --------------------------------------------------------
 
@@ -107,6 +107,7 @@ CREATE TABLE IF NOT EXISTS `item` (
   `Offre` int(255) NOT NULL DEFAULT 0,
   `NbOffre` int(255) NOT NULL DEFAULT 0,
   `ContreOffre` int(255) NOT NULL DEFAULT 0,
+  `Nego` int(255) NOT NULL DEFAULT 0,
   PRIMARY KEY (`ID`)
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
@@ -114,14 +115,14 @@ CREATE TABLE IF NOT EXISTS `item` (
 -- Déchargement des données de la table `item`
 --
 
-INSERT INTO `item` (`ID`, `Nom`, `Photos`, `Description`, `Video`, `Prix`, `Categorie`, `IDVendeur`, `TypeVente`, `DureeEnchere`, `IDAcheteur`, `prixEnchere`, `Offre`, `NbOffre`, `ContreOffre`) VALUES
-(0, 'init', 'init', 'init', 'init', 'init', 'init', 'init', '', '0000-00-00 00:00:00', 0, 0, 0, 0, 0),
-(2, 'Montre en or', 'montreor.jpg', 'Grosse montre', '', '1000', 'vip', '1', 'nego', '2050-04-15 00:00:00', 0, 0, 0, 0, 0),
-(4, 'Tasse', 'tasse.jpg', 'une tasse normale', '', '2', 'tresor', '1', 'nego', '2050-04-15 00:00:00', 0, 0, 0, 0, 0),
-(7, 'Nintendo switch', 'switch.jpg', 'console de jeux', '', '300', 'tresor', 'Skaway', 'nego', '2050-04-10 00:00:00', 0, 0, 0, 0, 0),
-(8, 'Airpods', 'airpods.jpg', 'Ã©couteurs sans fil', '', '300', 'relique', '1', 'enchere', '2020-04-21 00:00:00', 0, 0, 0, 0, 0),
-(9, 'Airpods pro', 'airpods pro.jpg', 'Ã©couteurs sans fil pro', '', '500', 'relique', 'Skaway', 'enchere', '2020-04-14 00:00:00', 0, 0, 0, 0, 0),
-(12, 'EpÃ©e', 'epee.jpg', 'Ã©pÃ©e ancienne', '', '3500000', 'tresor', '1', 'comptant', '2050-01-26 00:00:00', 0, 0, 0, 0, 0);
+INSERT INTO `item` (`ID`, `Nom`, `Photos`, `Description`, `Video`, `Prix`, `Categorie`, `IDVendeur`, `TypeVente`, `DureeEnchere`, `IDAcheteur`, `prixEnchere`, `Offre`, `NbOffre`, `ContreOffre`, `Nego`) VALUES
+(0, 'init', 'init', 'init', 'init', 'init', 'init', 'init', '', '0000-00-00 00:00:00', 0, 0, 0, 0, 0, 0),
+(2, 'Montre en or', 'montreor.jpg', 'Grosse montre', '', '400', 'vip', '1', 'nego', '2050-04-15 00:00:00', 1, 0, 0, 0, 0, 1),
+(4, 'Tasse', 'tasse.jpg', 'une tasse normale', '', '2', 'tresor', '1', 'nego', '2050-04-15 00:00:00', 0, 0, 0, 0, 0, 0),
+(7, 'Nintendo switch', 'switch.jpg', 'console de jeux', '', '300', 'tresor', 'Skaway', 'nego', '2050-04-10 00:00:00', 0, 0, 0, 0, 0, 0),
+(8, 'Airpods', 'airpods.jpg', 'Ã©couteurs sans fil', '', '800', 'relique', '1', 'enchere', '2020-04-21 00:00:00', 0, 0, 0, 0, 0, 0),
+(9, 'Airpods pro', 'airpods pro.jpg', 'Ã©couteurs sans fil pro', '', '500', 'relique', 'Skaway', 'enchere', '2020-04-21 00:00:00', 0, 0, 0, 0, 0, 0),
+(12, 'EpÃ©e', 'epee.jpg', 'Ã©pÃ©e ancienne', '', '3500000', 'tresor', '1', 'comptant', '2050-01-26 00:00:00', 0, 0, 0, 0, 0, 0);
 
 -- --------------------------------------------------------
 
