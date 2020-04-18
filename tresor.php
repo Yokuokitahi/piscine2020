@@ -21,6 +21,7 @@ if ($db_found) {
     }else{//on trouve des objets à vendre
       $sql =  "SELECT * FROM item WHERE ID > 0 AND Categorie = 'tresor' ";
       $result = mysqli_query($db_handle,$sql);
+      $dateAjd = new DateTime("now");
     }
   }else{
     echo "Database not found";
@@ -86,6 +87,7 @@ if ($db_found) {
     <p>Trésors</p> 
     <?php
     while ($objets = mysqli_fetch_assoc($result)) {
+      $dateFinEnchere = date_create($objets['DureeEnchere']);
       if ($objets['TypeVente'] == 'comptant' && $objets['IDAcheteur'] == 0) {
         echo "<div class='col-sm-4'>";
         echo "<div class='panel panel-default'>";
@@ -94,7 +96,7 @@ if ($db_found) {
         echo "<div class='panel-footer'>" . $objets['Description'] . "&nbspau prix de : " . $objets['Prix'] . " Ø" . "</div>";
         echo "</div>";
         echo "</div>";
-      }elseif ($objets['TypeVente'] == 'enchere') {
+      }elseif ($objets['TypeVente'] == 'enchere' && $dateFinEnchere > $dateAjd) {
         echo "<div class='col-sm-4'>";
         echo "<div class='panel panel-default'>";
         echo"<div class='panel-heading'>" .$objets['Nom'] . "<a href='acheterEnchere.php" . $objets['ID'] . "'><span class='glyphicon glyphicon-hourglass'></span></a>". "</div>";

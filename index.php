@@ -19,6 +19,7 @@ if ($db_found) {
     }else{//on trouve des objets à vendre
       $sql =  "SELECT * FROM item WHERE ID > 0";
       $result = mysqli_query($db_handle,$sql);
+      $dateAjd = new DateTime("now");
     }
 }else{
   echo "Database not found";
@@ -81,20 +82,20 @@ mysqli_close($db_handle);
 
   <div class="container"> 
       <?php
-          while ($objets = mysqli_fetch_assoc($result)) {
-            if ($objets['IDAcheteur'] == 0) {
-              echo "<div class='col-sm-4'>";
-              echo "<div class='panel panel-default'>";
-              echo"<div class='panel-heading'>" .$objets['Nom'] . "</div>";
-              echo "<div class='panel-body'> <img src=' ". $objets['Photos'] ."' class='img-responsive' style='width:100%' alt='Image'> </div>";
-              echo "<div class='panel-footer'>" . $objets['Description'] . "&nbspau prix de : " . $objets['Prix'] . " Ø" . "</div>";
-              echo "</div>";
-              echo "</div>";
-            } 
-          }
-          ?>
+      while ($objets = mysqli_fetch_assoc($result)) {
+        $dateFinEnchere = date_create($objets['DureeEnchere']);
+        if ($objets['IDAcheteur']== 0 && $dateFinEnchere > $dateAjd) {
+          echo "<div class='col-sm-4'>";
+          echo "<div class='panel panel-default'>";
+          echo"<div class='panel-heading'>" .$objets['Nom'] . "</div>";
+          echo "<div class='panel-body'> <img src=' ". $objets['Photos'] ."' class='img-responsive' style='width:100%' alt='Image'> </div>";
+          echo "<div class='panel-footer'>" . $objets['Description'] . "&nbspau prix de : " . $objets['Prix'] . " Ø" . "</div>";
+          echo "</div>";
+          echo "</div>";
+        }
+      }
+      ?>
   </div>
-
   <footer class="page-footer">
 
     <div class="container-fluid">

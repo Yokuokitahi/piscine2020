@@ -22,6 +22,7 @@ if ($db_found) {
     }else{//on trouve des objets à vendre
       $sql =  "SELECT * FROM item WHERE IDVendeur = '$IDVendeur'";
       $result = mysqli_query($db_handle,$sql);
+      $dateAjd = new DateTime("now");
     }
   }
 }else{
@@ -73,16 +74,24 @@ mysqli_close($db_handle);
 
   <div class="container">
     <div class="vendeurco"> 
-          <p><?php
-          echo $erreurObjet;?></p>
+          <p><?php echo $erreurObjet;?></p>
           <?php
           while ($objets = mysqli_fetch_assoc($result)) {
-            if ($objets['IDAcheteur'] == 0) {
+             $dateFinEnchere = date_create($objets['DureeEnchere']);
+            if ($objets['IDAcheteur'] == 0 && $dateFinEnchere > $dateAjd) {
               echo "<div class='col-sm-4'>";
               echo "<div class='panel panel-default'>";
               echo"<div class='panel-heading'>" .$objets['Nom'] . "<a href='removeItem.php?id=" . $objets['ID'] . "'><span class='glyphicon glyphicon-remove'></span></a>" . "</div>";
               echo "<div class='panel-body'> <img src=' ". $objets['Photos'] ."' class='img-responsive' style='width:100%' alt='Image'> </div>";
               echo "<div class='panel-footer'>" . $objets['Description'] . "&nbspau prix de : " . $objets['Prix'] . " Ø" . "</div>";
+              echo "</div>";
+              echo "</div>";
+            }elseif ($objets['IDAcheteur'] == 0 && $dateFinEnchere < $dateAjd) {
+              echo "<div class='col-sm-4'>";
+              echo "<div class='panel panel-default'>";
+              echo"<div class='panel-heading'>" .$objets['Nom'] . "<a href='removeItem.php?id=" . $objets['ID'] . "'><span class='glyphicon glyphicon-remove'></span></a>" . "</div>";
+              echo "<div class='panel-body'> <img src=' ". $objets['Photos'] ."' class='img-responsive' style='width:100%' alt='Image'> </div>";
+              echo "<div class='panel-footer'>" . $objets['Description'] . "&nbsp &nbsp <font color=red>Enchère terminée ! </font>" . "</div>";
               echo "</div>";
               echo "</div>";
             }

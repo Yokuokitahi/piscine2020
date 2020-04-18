@@ -31,6 +31,7 @@ if ($db_found) {
     }else{//on trouve des items
       $sql2 =  "SELECT * FROM item WHERE IDVendeur = '$PseudoAdmin'";
       $result2 = mysqli_query($db_handle,$sql2); 
+      $dateAjd = new DateTime("now");
     }
   }
 }else{
@@ -102,12 +103,21 @@ mysqli_close($db_handle);
   <div class="container"> 
           <?php
           while ($objets2 = mysqli_fetch_assoc($result2)) {
-            if ($objets2['IDAcheteur'] == 0) {
+             $dateFinEnchere = date_create($objets2['DureeEnchere']);
+            if ($objets2['IDAcheteur'] == 0 && $dateFinEnchere > $dateAjd) {
               echo "<div class='col-sm-4'>";
               echo "<div class='panel panel-default'>";
-              echo"<div class='panel-heading'>" .$objets2['Nom'] . "<a href='removeItem.php?id=" . $PseudoAdmin . "'><span class='glyphicon glyphicon-remove'></span></a>" . "</div>";
+              echo"<div class='panel-heading'>" .$objets2['Nom'] . "<a href='removeItem.php?id=" . $objets2['ID'] . "'><span class='glyphicon glyphicon-remove'></span></a>" . "</div>";
               echo "<div class='panel-body'> <img src=' ". $objets2['Photos'] ."' class='img-responsive' style='width:100%' alt='Image'> </div>";
               echo "<div class='panel-footer'>" . $objets2['Description'] . "&nbspau prix de : " . $objets2['Prix'] . " Ø" . "</div>";
+              echo "</div>";
+              echo "</div>";
+            }elseif ($objets2['IDAcheteur'] == 0 && $dateFinEnchere < $dateAjd) {
+              echo "<div class='col-sm-4'>";
+              echo "<div class='panel panel-default'>";
+              echo"<div class='panel-heading'>" .$objets2['Nom'] . "<a href='removeItem.php?id=" . $objets2['ID'] . "'><span class='glyphicon glyphicon-remove'></span></a>" . "</div>";
+              echo "<div class='panel-body'> <img src=' ". $objets2['Photos'] ."' class='img-responsive' style='width:100%' alt='Image'> </div>";
+              echo "<div class='panel-footer'>" . $objets2['Description'] . "&nbsp &nbsp <font color=red>Enchère terminée ! </font>" . "</div>";
               echo "</div>";
               echo "</div>";
             }

@@ -97,15 +97,15 @@ mysqli_close($db_handle);
           }
           ?>
   </div>
-  <?php
-  if ($erreurObjet == '') {
-    echo "<a href='paiementImmediat.php?total= <?php echo $prixTotal; ?>'>Effectuer le paiement</a>";
-  }
-  ?>
         <div class="totalPaiement">
             <?php echo $erreurObjet; ?>
-            <p>Le montant de votre panier est de : <?php echo $prixTotal; ?> Øre</p>
-            <a href="paiementImmediat.php?total= <?php echo $prixTotal; ?>"><input type="submit" name="payer" value="Effectuer le paiement"></a>
+          <?php 
+            if ($erreurObjet == '') {
+              echo "<p>Le montant de votre panier est de :". $prixTotal . "Øre</p>";
+              echo "<a href='paiementImmediat.php?total=". $prixTotal . "'><input type='submit' name='payer' value='Effectuer le paiement'></a>";
+            }
+            ///METTRE UN ESPACE ENTRE LE MESSAGE ET LE FOOTER
+          ?>            
         </div>
   
   <footer class="page-footer">

@@ -25,6 +25,7 @@ if ($db_found) {
       $result2 = mysqli_query($db_handle,$sql2);
       $sql3 =  "SELECT * FROM item WHERE ID > 0 AND TypeVente = 'comptant' ";
       $result3 = mysqli_query($db_handle,$sql3);
+      $dateAjd = new DateTime("now");
     }
 }else{
   echo "Database not found";
@@ -91,6 +92,8 @@ mysqli_close($db_handle);
 		<p>Items aux enchères <span class='glyphicon glyphicon-hourglass'></span></p> 
       <?php
           while ($objets1 = mysqli_fetch_assoc($result1)) {
+            $dateFinEnchere = date_create($objets1['DureeEnchere']);
+            if ($dateFinEnchere > $dateAjd) {
               echo "<div class='col-sm-4'>";
               echo "<div class='panel panel-default'>";
               echo"<div class='panel-heading'>" .$objets1['Nom'] . "<a href='acheterEnchere.php" . $objets1['ID'] . "'><span class='glyphicon glyphicon-hourglass'></span></a>" . "</div>";
@@ -99,6 +102,7 @@ mysqli_close($db_handle);
               echo "</div>";
               echo "</div>";
             }
+          }
           ?>
   	</div>
   </div>
