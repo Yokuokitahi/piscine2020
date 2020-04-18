@@ -94,7 +94,7 @@ mysqli_close($db_handle);
 		</div>
 	</nav>
 
-<div class="container"> 
+	<div class="container"> 
           <?php
           $objets = mysqli_fetch_assoc($result2);
               echo "<div class='col-sm-4'>";
@@ -105,18 +105,17 @@ mysqli_close($db_handle);
               echo "</div>";
               echo "</div>";
           ?>
-  
+  </div>
 
 	<form action="ajouterNego.php?id= <?php echo $ID; ?>&page=<?php echo $page; ?>" ; method="post">
 		<div class="negociation">
 			<label for="nouvelleOffre">Veuillez entrer une offre : </label><br>
-			<input type="number" placeholder="Entrez un montant (en Øre)" name="nouvelleOffre" style="width: 20%;">
+			<input type="number" placeholder="Entrez un montant (en Øre)" name="nouvelleOffre">
 			<br>
-			<p><input type="submit" name="ajouter" value="Soumettre votre offre" style="background-color:#303030; width:20%; padding: 4px;"></p>
+			<p><input type="submit" name="ajouter" value="Soumettre votre offre"></p>
 		</div>
 	</form>
-	
-</div>
+
 
 
 	<footer class="page-footer">

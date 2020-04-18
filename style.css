@@ -258,17 +258,3 @@ form .input [type=submit]{
 .lepanier a:hover{
   color: red;
 }
-
-.venteencours a:hover{
-  color: red;
-}
-
-.surenchere {
-  color: #696969;
-  font-size: 18px;
-}
-
-.negociation {
-  color: #696969;
-  font-size: 16px;
-}
