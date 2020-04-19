@@ -21,17 +21,17 @@ if($db_found){
 			}else{
 				$sql = "UPDATE admin SET Etat = 0 WHERE Etat = 1";
 				$result = mysqli_query($db_handle, $sql);
-				header('Location: index.html');
+				header('Location: index.php');
 			}
 		}else{
 			$sql = "UPDATE acheteur SET Etat = 0 WHERE Etat = 1";
 			$result = mysqli_query($db_handle, $sql);
-			header('Location: index.html');
+			header('Location: index.php');
 		}
 	}else{
 		$sql = "UPDATE vendeur SET Etat = 0 WHERE Etat = 1";
 		$result = mysqli_query($db_handle, $sql);
-		header('Location: index.html');
+		header('Location: index.php');
 	}
 }else{
 	echo "Database not found";

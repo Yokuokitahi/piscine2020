@@ -5,12 +5,10 @@ error_reporting(E_ALL & ~E_NOTICE);
 $identifiant = isset($_POST["identifiant"])? $_POST["identifiant"] : "";
 $password = isset($_POST["mdp"])? $_POST["mdp"] : "";
 $erreur = '';
-$connexion ='';
 
 $database = "midgard";
 $db_handle = mysqli_connect('localhost', 'root', '');
 $db_found = mysqli_select_db($db_handle, $database);
-
 if ($_POST["connexion"]) { //bouton se connecter enclenché
 
 	if ($db_found) { //si la base de données est bien connectée
@@ -18,10 +16,10 @@ if ($_POST["connexion"]) { //bouton se connecter enclenché
 		$sql = "SELECT * FROM admin WHERE Pseudo = '$identifiant'"; //on recherche le pseudo dans la table admin
 		$result = mysqli_query($db_handle, $sql);
 		if (mysqli_num_rows($result) == 0) { // si le pseudo n'est pas dans la table admin
-			$sql = "SELECT * FROM vendeur WHERE Pseudo = '$identifiant'"; //on cherche le pseudo dans la page vendeur
+			$sql = "SELECT * FROM vendeur WHERE Pseudo = '$identifiant' OR Email = '$identifiant'"; //on cherche le pseudo dans la page vendeur
 			$result = mysqli_query($db_handle, $sql);
 			if (mysqli_num_rows($result) == 0) {// si le pseudo n'est pas dans la table vendeur
-				$sql = "SELECT * FROM acheteur WHERE Pseudo = '$identifiant'";//on cherche le pseudo dans la page acheteur
+				$sql = "SELECT * FROM acheteur WHERE Pseudo = '$identifiant' OR Email = '$identifiant'";//on cherche le pseudo dans la page acheteur
 				$result = mysqli_query($db_handle, $sql);
 				if (mysqli_num_rows($result) == 0) {// si le pseudo n'est pas dans la table acheteur, il n'est dans aucune table
 					$erreur = "User not found"; // on ne trouve pas ce pseudo
@@ -33,7 +31,7 @@ if ($_POST["connexion"]) { //bouton se connecter enclenché
 					}
 					else { // si le mot de passe renseigné est le bon
 						$erreur = "connexion autorisée <br>"; //connexion autorisée pour acheteur
-						header('Location: indexConnecteAcheteur.html');
+						header('Location: indexConnecteAcheteur.php?erreur=0');
 						$sql = "UPDATE acheteur SET Etat = 1 WHERE Pseudo = '$identifiant'";
 						$result = mysqli_query($db_handle, $sql);
 					}
@@ -57,7 +55,7 @@ if ($_POST["connexion"]) { //bouton se connecter enclenché
 				$erreur = "Mot de passe erroné";//on affiche un message d'erreur de mot de passe
 			}else {// si le mot de passe renseigné est le bon
 				$erreur = "connexion autorisée <br>";//connexion autorisée pour admin
-				header('Location: indexadmin.html');
+				header('Location: indexadmin.php');
 				$sql = "UPDATE admin SET Etat = 1 WHERE Pseudo = '$identifiant'";
 				$result = mysqli_query($db_handle, $sql);
 			}
@@ -91,12 +89,25 @@ mysqli_close($db_handle);
 	</div>
 </div>
 
+<nav class="navbar navbar-inverse">
+	<div class="container-fluid">
+      <a class="navbar-brand" href="index.php"><img src="images/logo.png" style="margin-top: -11px" width="40px" height="40px"></a>
+
+  		<div class="collapse navbar-collapse" id="myNavbar">
+        	<ul class="nav navbar-nav">
+          		<li class="active"><a href="index.php">Retour à la Page d'accueil</a></li>
+		</div>
+
+    </div>
+</nav>
+
 <form action="connect.php" method="post">
 	<div class="img">
-		<img src="avatar.png" alt="Avatar" class="avatar">
+		<img src="images/avatar.png" alt="Avatar" class="avatar">
 	</div>
 
-	<div class="container">
+<div class="container">
+	<div class="connection">
 		<label for="identifiant"><b>Adresse e-mail ou pseudo : </b></label>
 		<input type="text" placeholder="Entrez votre e-mail ou pseudo" name="identifiant" required>
 
@@ -105,13 +116,15 @@ mysqli_close($db_handle);
 		<div class="erreur">
 			<?php if( !empty( $erreur ) ) echo '<p style="text-align: center;" >', $erreur, '</p>' ?>
 		</div>
-		<p style="text-align: center;"><input type="submit" name="connexion" value="Se connecter"></p>
+		<p><input type="submit" name="connexion" value="Se connecter"></p>
+		Pas encore inscrit ? Inscrivez vous <a href="inscription.php" value="ici">ici</a>
 	</div>
+</div>
 </form>
 
 <footer class="page-footer">
 		<div class="container-fluid">
-			<img src="logo.png" width="100px" height="100px">
+			<img src="images/logo.png" width="100px" height="100px">
 			<p><strong>M I D G A R D</strong></p>  
 			<div class="cvg">
 				<p>

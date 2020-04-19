@@ -55,26 +55,14 @@ mysqli_close($db_handle);
 
   	<nav class="navbar navbar-inverse">
     <div class="container-fluid">
-      <a class="navbar-brand" href="indexConnecteVendeur.php"><img src="logo.png" style="margin-top: -11px" width="40px" height="40px"></a>
+      <a class="navbar-brand" href="indexConnecteVendeur.php"><img src="images/logo.png" style="margin-top: -11px" width="40px" height="40px"></a>
 
       <div class="collapse navbar-collapse" id="myNavbar">
         <ul class="nav navbar-nav">
           <li class="active"><a href="indexConnecteVendeur.php">Home</a></li>
           <li><a href="vente.php">Vendre</a></li>
-
-          <li class="dropdown" >
-            <a class="dropdown-toggle" data-toggle="dropdown" href="#">Catégories
-              <span class="caret"></span>
-            </a>
-            <ul class="dropdown-menu">
-              <li><a href="#">Trésors</a></li>
-              <li><a href="#">Reliques</a></li>
-              <li><a href="#">VIP</a></li>
-            </ul>
-          </li>
         </ul>
-
-
+        
         <ul class="nav navbar-nav navbar-right">
           <li><a href="moncompteVendeur.php"><span class="glyphicon glyphicon-user"></span> Mon compte</a></li>
           <li><a href="deco.php"><span class="glyphicon glyphicon-off"></span> Déconnexion</a></li>
@@ -84,15 +72,15 @@ mysqli_close($db_handle);
   </nav>
 
 
-	<div class="vendeur" style="background: url(<?php echo($fond) ?>); background-size: cover;">
-		<p><img src="<?php echo($avatar) ?>" alt="Avatar" class="avatar"></p>
-		<p>Nom Vendeur : Mr.<?php if( !empty( $nomVendeur ) ) echo  $nomVendeur ?></p>
+	<div class="vendeur" style="background: url(images/<?php echo($fond) ?>); background-size: cover;">
+		<p><img src="images\<?php echo($avatar) ?>" alt="Avatar" class="avatar"></p>
+		<p>Nom Vendeur : <?php if( !empty( $nomVendeur ) ) echo  $nomVendeur ?></p>
 	</div>
 
 <footer class="page-footer">
 
     <div class="container-fluid">
-      <img src="logo.png" width="100px" height="100px">
+      <img src="images/logo.png" width="100px" height="100px">
       <p><strong>M I D G A R D</strong></p>  
         <div class="cvg">
           <p>

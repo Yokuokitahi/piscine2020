@@ -20,6 +20,9 @@ $dateExpCarte='';
 $crypto ='';
 $cryptoCensor ='';
 $nbCb = '';
+$solde = 0;
+
+$erreur = $_GET['erreur'];
 
 if($db_found){
 	$sql ="SELECT * FROM acheteur WHERE Etat = 1";
@@ -44,6 +47,7 @@ if($db_found){
 			$dateExpCarte= $data['DateExpCarteB'];
 			$crypto = $data['Crypto'];
       $cryptoCensor = preg_replace("#$crypto#", '****', $crypto);
+      $solde = $data['Solde'];
 		}
 }else{
 	echo "Database not found";
@@ -65,6 +69,7 @@ mysqli_close($db_handle);
   
   	<!-- Fichier css *-->
   	<link rel="stylesheet" type="text/css" href="style.css">
+    <?php if( !empty( $erreur ) ) echo '<script type="text/javascript">alert("' . $erreur . '", "Erreur !");</script>'; ?>
 </head>
 
 <body>
@@ -76,37 +81,38 @@ mysqli_close($db_handle);
 
   	<nav class="navbar navbar-inverse">
     <div class="container-fluid">
-      <a class="navbar-brand" href="indexConnecteAcheteur.html"><img src="logo.png" style="margin-top: -11px" width="40px" height="40px"></a>
+      <a class="navbar-brand" href="indexConnecteAcheteur.php?erreur=0"><img src="images/logo.png" style="margin-top: -11px" width="40px" height="40px"></a>
 
       <div class="collapse navbar-collapse" id="myNavbar">
         <ul class="nav navbar-nav">
-          <li class="active"><a href="indexConnecteAcheteur.html">Home</a></li>
-          <li><a href="#">Acheter</a></li>
+          <li class="active"><a href="indexConnecteAcheteur.php?erreur=0">Home</a></li>
+          <li><a href="acheter.php">Acheter</a></li>
 
           <li class="dropdown" >
-            <a class="dropdown-toggle" data-toggle="dropdown" href="#">Catégories
+            <a class="dropdown-toggle" data-toggle="dropdown" >Catégories
               <span class="caret"></span>
             </a>
             <ul class="dropdown-menu">
-              <li><a href="#">Trésors</a></li>
-              <li><a href="#">Reliques</a></li>
-              <li><a href="#">VIP</a></li>
+              <li><a href="tresor.php">Objets communs</a></li>
+              <li><a href="relique.php">Reliques</a></li>
+              <li><a href="vip.php">Objets de valeur</a></li>
             </ul>
           </li>
         </ul>
 
 
         <ul class="nav navbar-nav navbar-right">
-          <li><a href="moncompteAcheteur.php"><span class="glyphicon glyphicon-user"></span> Mon compte</a></li>
-          <li><a href="#"><span class="glyphicon glyphicon-shopping-cart"></span> Votre panier</a></li>
+          <li><a href="ajouterSolde.php"><span class="glyphicon glyphicon-euro"></span> Déposer de l'argent</a></li>
+          <li><a href="moncompteAcheteur.php?erreur=0"><span class="glyphicon glyphicon-user"></span> Mon compte</a></li>
+          <li><a href="panier.php"><span class="glyphicon glyphicon-shopping-cart"></span> Votre panier</a></li>
           <li><a href="deco.php"><span class="glyphicon glyphicon-off"></span> Déconnexion</a></li>
         </ul>
       </div>
     </div>
   </nav>
-
   <div class="acheteur">
-  		<img src="avatar.png" alt="Avatar" class="avatar">
+  		<img src="images/avatar.png" alt="Avatar" class="avatar">
+    <p>Solde actuel : <?php if( !empty( $solde ) ) echo $solde; else echo "0";' Øre' ?></p>
 		<p>Nom : <?php if( !empty( $nom ) ) echo $nom ?></p>
     <p>Prenom : <?php if( !empty( $prenom ) ) echo $prenom ?></p>
     <p>Adresse : <?php if( !empty( $adresse ) ) echo $adresse ?></p>
@@ -121,13 +127,13 @@ mysqli_close($db_handle);
 <footer class="page-footer">
 
     <div class="container-fluid">
-      <img src="logo.png" width="100px" height="100px">
+      <img src="images/logo.png" width="100px" height="100px">
       <p><strong>M I D G A R D</strong></p>  
         <div class="cvg">
           <p>
             <a href="#" class ="cvg">Conditions générales de vente</a>
             &nbsp &nbsp &nbsp
-            <a href="#" class ="cvg">Vos informations personnelles</a>
+            <a href="moncompteAcheteur.php?erreur=0" class ="cvg">Vos informations personnelles</a>
             &nbsp &nbsp &nbsp
             © 2020, Midgard Inc. 
           </p>

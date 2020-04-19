@@ -1,6 +1,6 @@
 .jumbotron{
 margin-bottom: 0;
-background: url('midgard.png') no-repeat;
+background: url('images/midgard.png') no-repeat;
 background-size: cover;
 background-position: 80% 25%;
 }
@@ -27,9 +27,13 @@ border-radius: 0;
 }
 
 .panel-heading a {
-  margin-left: 210px;
   color:black;
+  font-size: 12px;
+  position: absolute;
+  top: 15px;
+  left: 330px;
 }
+
 
 .panel-body {
   height: 200px;
@@ -59,13 +63,17 @@ display: block;
 
 /*CSS pour la page connexion*/
 /* Bordered form */
-form {
+form.inscrit{
   border: 3px solid #f1f1f1;
 }
 
+form.inscrit p{
+  text-align: center;
+  font-size: 22px;
+}
 
 /* Full-width inputs */
-input[type=text], input[type=password] {
+input[type=text], input[type=password], input[type=email] {
   width: 100%;
   padding: 12px 20px;
   margin: 8px 0;
@@ -115,6 +123,11 @@ img.avatar {
 
 .choix label {
   font-size: 20px;
+  color: #333333;
+}
+
+.choix p{
+  text-align: center;
 }
 
 .acheteur input[type=text], input[type=password],input[type=tel],input[type=date]{
@@ -125,7 +138,38 @@ img.avatar {
 
 .acheteur{
   text-align: center;
-  font-size: 20px;
+}
+
+.acheteur p{
+  text-align: center;
+  color:#2F4F4F;
+  font-size: 16px;
+}
+
+.inscriptionA{
+  font-size: 16px;
+  color: #696969;
+}
+
+.inscriptionV{
+  font-size: 16px;
+  color:#696969;
+}
+
+.connection p{
+  text-align: center;
+  font-size: 22px;
+}
+.connection label{
+  color: #333333;
+}
+
+.connection a{
+  color:#696969;
+}
+
+.connection {
+  text-align: center;
 }
 
 .vendeur {
@@ -137,4 +181,109 @@ img.avatar {
   text-align: center;
   font-size: 25px;
   color: black;
+}
+
+.vente {
+  color:#696969;
+  font-size: 16px;
+}
+
+.admin p{
+  text-align: center;
+  font-size: 25px;
+}
+
+form .argent{
+  text-align: center;
+  font-size: 18px;
+}
+form .argent [type=number]{
+  text-align: center;
+  color: grey;
+}
+
+form .argent p{
+  text-align: center;
+  font-size: 22px;
+}
+
+.enchere p{
+  font-size: 20px;
+  color:#696969;
+}
+
+.nego p{
+  font-size: 20px;
+  color:#696969;
+}
+
+.comptant p{
+  font-size: 20px;
+  color:#696969;
+}
+
+.totalPaiement p{
+  text-align: right;
+  margin-right: 100px;
+  margin-top: 100px;
+  font-size: 22px;
+  color:#696969;
+
+}
+
+.totalPaiement {
+  text-align: center;
+  font-size: 25px;
+  color:#BB0B0B;
+}
+
+.vendeurco p{
+  font-size: 25px;
+  text-align: center;
+  color: #BB0B0B;
+  margin-top: 100px;
+  margin-bottom:200px;
+}
+
+form .input [type=submit]{
+  background-color: red;
+  color: white;
+  padding: 14px 20px;
+  margin: 8px 0;
+  border: none;
+  cursor: pointer;
+  width: 20%;
+}
+
+.lepanier a:hover{
+  color: red;
+}
+
+.lepanier p{
+  color: #696969;
+  font-size: 20px;
+}
+
+.venteencours a:hover{
+  color: red;
+}
+
+.venteencours p{
+  color: #696969;
+  font-size: 18px;
+}
+
+.surenchere {
+  color: #696969;
+  font-size: 18px;
+}
+
+.negociation {
+  color: #696969;
+  font-size: 16px;
+}
+
+.negoencours p{
+  color: #696969;
+  font-size: 18px;
 }

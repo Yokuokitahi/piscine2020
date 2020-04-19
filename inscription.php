@@ -90,9 +90,8 @@ if ($_POST["enregistrer"]) {
 				$sql = "INSERT INTO vendeur(ID, Pseudo, Password, Nom, Email, Etat, Photos, Background)            VALUES('$Identifiant', '$pseudoVendeur', '$passwordVendeur', '$nomVendeur', '$mailVendeur', '1', '$avatar', '$fond')";
 				$result = mysqli_query($db_handle,$sql); 
 				$reussi = "inscription faite";
-				header('Location:indexConnecteVendeur.html');
+				header('Location:indexConnecteVendeur.php');
 			}
-			
 		}
 		elseif ($categorie == "acheteur") {
 			$sql = "SELECT MAX(ID) FROM acheteur";
@@ -120,11 +119,12 @@ if ($_POST["enregistrer"]) {
 					$failed = 1;
 				}
 			}
-			if ($mailVendeur!= "") {
+			if ($mail != "") {
 				$sql ="SELECT * FROM acheteur WHERE Email = '$mail'";
 				$result = mysqli_query($db_handle,$sql);
 				if (mysqli_num_rows($result) != 0) {
 					$erreurMail = "Mail déjà existant";
+					$failed = 1;
 				}
 				$sql ="SELECT * FROM vendeur WHERE Email = '$mail'";
 				$result = mysqli_query($db_handle,$sql);
@@ -142,7 +142,7 @@ if ($_POST["enregistrer"]) {
 				$sql = "INSERT INTO acheteur(ID, Pseudo, Nom, Prenom, Password, Email, Adresse1, Adresse2, Ville, CodePostal, Pays, Telephone, Paiement, CarteBancaire, NomCarteB, DateExpCarteB, Crypto, Etat)VALUES('$Identifiant','$pseudo', '$nom', '$prenom', '$password', '$mail','$adresse1','$adresse2','$ville','$codepostal','$pays','$telephone','$paiement', '$cb', '$nomCb', '$dateCb', '$code','1')"; 
 				$result = mysqli_query($db_handle,$sql);
 				$reussi = "inscription faite";
-				header('Location:indexConnecteAcheteur.html');
+				header('Location:indexConnecteAcheteur.php?erreur=0');
 			}
 		}
 		else{
@@ -181,24 +181,36 @@ mysqli_close($db_handle);
 		</div>
 	</div>
 
-	<form action="inscription.php" method="post">
+<nav class="navbar navbar-inverse">
+	<div class="container-fluid">
+      <a class="navbar-brand" href="index.php"><img src="images/logo.png" style="margin-top: -11px" width="40px" height="40px"></a>
+
+  		<div class="collapse navbar-collapse" id="myNavbar">
+        	<ul class="nav navbar-nav">
+          		<li class="active"><a href="index.php">Retour Page Accueil</a></li>
+		</div>
+
+    </div>
+</nav>
+
+	<form class="inscrit" action="inscription.php" method="post">
 		<div id="erreur">
-			<?php if( !empty( $erreurChamp ) ) echo '<p style="text-align: center;" >', $erreurChamp, '</p>' ?>
-			<?php if( !empty( $erreurPseudo ) ) echo '<p style="text-align: center;" >', $erreurPseudo, '</p>' ?>
-			<?php if( !empty( $erreurMail ) ) echo '<p style="text-align: center;" >', $erreurMail, '</p>' ?>
-			<?php if( !empty( $erreurContrat ) ) echo '<p style="text-align: center;" >', $erreurContrat, '</p>' ?>
-			<?php if( !empty( $reussi ) ) echo '<p style="text-align: center;" >', $reussi, '</p>' ?>
+			<?php if( !empty( $erreurChamp ) ) echo '<p style="text-align: center; color: red " >', $erreurChamp, '</p>' ?>
+			<?php if( !empty( $erreurPseudo ) ) echo '<p style="text-align: center; color: red" >', $erreurPseudo, '</p>' ?>
+			<?php if( !empty( $erreurMail ) ) echo '<p style="text-align: center; color: red" >', $erreurMail, '</p>' ?>
+			<?php if( !empty( $erreurContrat ) ) echo '<p style="text-align: center; color: red" >', $erreurContrat, '</p>' ?>
+			<?php if( !empty( $reussi ) ) echo '<p style="text-align: center; color: red" >', $reussi, '</p>' ?>
 		</div>
 		<div class="choix" id="cat">
-			<p style="text-align: center;"><input type="radio" name="categorie" value="acheteur" onclick="document.getElementById('acheteur').style.display='inline'; document.getElementById('vendeur').style.display='none'">
-				<label for="acheteur">Acheteur</label>
+			<p><input type="radio" name="categorie" value="acheteur" onclick="document.getElementById('acheteur').style.display='inline'; document.getElementById('vendeur').style.display='none'">
+				<label for="acheteur">Acheteur</label>&nbsp &nbsp
 				<input type="radio" name="categorie" value="vendeur"  onclick="document.getElementById('acheteur').style.display='none'; document.getElementById('vendeur').style.display='inline'">
 				<label for="vendeur">Vendeur</label>
 			</p> <br>
 
 		</div>
 
-		<div id = "vendeur" style="display: none;" >
+		<div class="inscriptionV" id = "vendeur" style="display: none;" >
 			<label for="nom">Nom</label>
 			<input type="text" placeholder="Entrez votre nom" name="nomVendeur">
 
@@ -206,7 +218,7 @@ mysqli_close($db_handle);
 			<input type="text" placeholder="Entrez un pseudo" name="pseudoVendeur">
 
 			<label for="mail">E-Mail</label>
-			<input type="text" placeholder="Saississez un e-mail valide" name="mailVendeur">
+			<input type="email" placeholder="Saississez un e-mail valide" name="mailVendeur">
 
 			<label for="mdp">Mot de Passe</label>
 			<input type="password" name="mdpVendeur">
@@ -220,7 +232,7 @@ mysqli_close($db_handle);
 
 		</div>
 
-		<div class="acheteur" id = "acheteur" style="display: none;">
+		<div class="inscriptionA" id = "acheteur" style="display: none;">
 
 			<label for="prenom">Prénom</label>
 			<input type="text" placeholder="Entrez votre prenom" name="prenom">
@@ -232,7 +244,7 @@ mysqli_close($db_handle);
 			<input type="text" placeholder="Entrez un pseudo" name="pseudo">
 			
 			<label for="mail">E-Mail</label>
-			<input type="text" placeholder="Saissisez un mail valide" name="mail">
+			<input type="email" placeholder="Saissisez un mail valide" name="mail">
 			
 			<label for="adress1">Adresse 1</label>
 			<input type="text" placeholder="Entrez votre adresse" name="adress1">
@@ -275,14 +287,14 @@ mysqli_close($db_handle);
 			<input type="checkbox" name="contrat">Accepter les conditions d'utilisation.
 		</div>
 
-		<p style="text-align: center;"><input type="submit" name="enregistrer" value="S'enregistrer"></p>
+		<p><input type="submit" name="enregistrer" value="S'enregistrer"></p>
 
 	</form>
 
 	<footer class="page-footer">
 
 		<div class="container-fluid">
-			<img src="logo.png" width="100px" height="100px">
+			<img src="images/logo.png" width="100px" height="100px">
 			<p><strong>M I D G A R D</strong></p>  
 			<div class="cvg">
 				<p>
