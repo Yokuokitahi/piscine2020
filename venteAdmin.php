@@ -76,7 +76,7 @@ mysqli_close($db_handle);
 
   <nav class="navbar navbar-inverse">
     <div class="container-fluid">
-      <a class="navbar-brand" href="indexadmin.php"><img src="logo.png" style="margin-top: -11px" width="40px" height="40px"></a>
+      <a class="navbar-brand" href="indexadmin.php"><img src="images/logo.png" style="margin-top: -11px" width="40px" height="40px"></a>
 
       <div class="collapse navbar-collapse" id="myNavbar">
         <ul class="nav navbar-nav">
@@ -84,7 +84,6 @@ mysqli_close($db_handle);
           <li><a href="gereVente.php">Gérer les ventes</a></li>
           <li><a href="venteAdmin.php">Vendre</a></li>
         </ul>
-
 
         <ul class="nav navbar-nav navbar-right">
           <li><a href="monCompteAdmin.php"><span class="glyphicon glyphicon-wrench"></span> Admin</a></li>
@@ -98,9 +97,9 @@ mysqli_close($db_handle);
   <form action="venteAdmin.php" method="post">
 	<div class="vente">
 		<label for="categorie"><b>En quelle catégorie souhaitez-vous ajouter un objet ? </b></label>
-			<label for="tresor">Objet de valeur</label> <input type="radio" name="cate" value="tresor"> &nbsp
+			<label for="tresor">Objet commun</label> <input type="radio" name="cate" value="tresor"> &nbsp
 			<label for="relique">Objet ancien</label> <input type="radio" name="cate" value="relique"> &nbsp
-			<label for="vip">Objet VIP </label> <input type="radio" name="cate" value="vip"> <br> <br>
+			<label for="vip">Objet de valeur </label> <input type="radio" name="cate" value="vip"> <br> <br>
 
 		<label for="nomObjet"><b>Nom de l'objet : </b></label>
 		<input type="text" placeholder="Entrez le nom de l'objet" name="nomObjet" required><br>
@@ -133,13 +132,13 @@ mysqli_close($db_handle);
   <footer class="page-footer">
 
     <div class="container-fluid">
-      <img src="logo.png" width="100px" height="100px">
+      <img src="images/logo.png" width="100px" height="100px">
       <p><strong>M I D G A R D</strong></p>  
         <div class="cvg">
           <p>
             <a href="#" class ="cvg">Conditions générales de vente</a>
             &nbsp &nbsp &nbsp
-            <a href="#" class ="cvg">Vos informations personnelles</a>
+            <a href="monCompteAdmin.php" class ="cvg">Vos informations personnelles</a>
             &nbsp &nbsp &nbsp
             © 2020, Midgard Inc. 
           </p>

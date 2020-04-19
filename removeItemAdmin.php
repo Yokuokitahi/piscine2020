@@ -10,7 +10,7 @@ if ($db_found) { //si la base de données est bien connectée
 		$result = mysqli_query($db_handle, $sql);
 		header('Location: gereVente.php');
 }else{
-	echo "Dtatabase not found";
+	echo "Database not found";
 }
 
 //fermer la connexion

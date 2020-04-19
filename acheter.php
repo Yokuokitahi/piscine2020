@@ -57,7 +57,7 @@ mysqli_close($db_handle);
 
 <nav class="navbar navbar-inverse">
     <div class="container-fluid">
-      <a class="navbar-brand" href="indexConnecteAcheteur.php?erreur=0"><img src="logo.png" style="margin-top: -11px" width="40px" height="40px"></a>
+      <a class="navbar-brand" href="indexConnecteAcheteur.php?erreur=0"><img src="images/logo.png" style="margin-top: -11px" width="40px" height="40px"></a>
 
       <div class="collapse navbar-collapse" id="myNavbar">
         <ul class="nav navbar-nav">
@@ -70,9 +70,9 @@ mysqli_close($db_handle);
               <span class="caret"></span>
             </a>
             <ul class="dropdown-menu">
-              <li><a href="tresor.php">Trésors</a></li>
+              <li><a href="tresor.php">Objets communs</a></li>
               <li><a href="relique.php">Reliques</a></li>
-              <li><a href="vip.php">VIP</a></li>
+              <li><a href="vip.php">Objets de valeur</a></li>
             </ul>
           </li>
         </ul>
@@ -89,15 +89,15 @@ mysqli_close($db_handle);
 
 <div class="container">
 	<div class="enchere">
-		<p>Items aux enchères <span class='glyphicon glyphicon-hourglass'></span></p> 
+		<p>Objets à vendre aux enchères <span class='glyphicon glyphicon-hourglass'></span></p> 
       <?php
           while ($objets1 = mysqli_fetch_assoc($result1)) {
             $dateFinEnchere = date_create($objets1['DureeEnchere']);
-            if ($objets1['IDAcheteur'] == 0 && $dateFinEnchere > $dateAjd) {
+            if ($objets1['IDAcheteur'] == 0 && $objets1['EtatEnchere'] !=1) {
               echo "<div class='col-sm-4'>";
               echo "<div class='panel panel-default'>";
               echo"<div class='panel-heading'>" .$objets1['Nom'] . "<a href='acheterEnchere.php?id=" . $objets1['ID'] . "'><span class='glyphicon glyphicon-hourglass'></span></a>" . "</div>";
-              echo "<div class='panel-body'> <img src=' ". $objets1['Photos'] ."' class='img-responsive' style='width:100%' alt='Image'> </div>";
+              echo "<div class='panel-body'> <img src='images/". $objets1['Photos'] ."' class='img-responsive' style='width:100%' alt='Image'> </div>";
               echo "<div class='panel-footer'>" . $objets1['Description'] . "&nbspau prix de : " . $objets1['Prix'] . " Ø" . "</div>";
               echo "</div>";
               echo "</div>";
@@ -110,14 +110,14 @@ mysqli_close($db_handle);
 
   <div class="container">
   	<div class="nego">
-  		<p>Items à négocier auprès du vendeur <span class='glyphicon glyphicon-send'></span></p> 
+  		<p>Objets à négocier auprès du vendeur <span class='glyphicon glyphicon-send'></span></p> 
       <?php
           while ($objets2 = mysqli_fetch_assoc($result2)) {
             if ($objets2['IDAcheteur'] == 0) {
               echo "<div class='col-sm-4'>";
               echo "<div class='panel panel-default'>";
               echo"<div class='panel-heading'>" .$objets2['Nom'] . "<a href='ajouterNego.php?id=" . $objets2['ID'] . "&page=acheter.php'><span class='glyphicon glyphicon-send'></span></a>". "</div>";
-              echo "<div class='panel-body'> <img src=' ". $objets2['Photos'] ."' class='img-responsive' style='width:100%' alt='Image'> </div>";
+              echo "<div class='panel-body'> <img src='images/". $objets2['Photos'] ."' class='img-responsive' style='width:100%' alt='Image'> </div>";
               echo "<div class='panel-footer'>" . $objets2['Description'] . "&nbspau prix de : " . $objets2['Prix'] . " Ø" . "</div>";
               echo "</div>";
               echo "</div>";
@@ -130,14 +130,14 @@ mysqli_close($db_handle);
 
   <div class="container">
   	<div class="comptant"> 
-  		<p>Items en achat immédiat <span class='glyphicon glyphicon-plus-sign'></span></p>
+  		<p>Objets en achat immédiat <span class='glyphicon glyphicon-plus-sign'></span></p>
       <?php
           while ($objets3 = mysqli_fetch_assoc($result3)) {
             if ($objets3['IDAcheteur'] == 0) {
               echo "<div class='col-sm-4'>";
               echo "<div class='panel panel-default'>";
               echo"<div class='panel-heading'>" .$objets3['Nom'] . "<a href='ajouterPanier.php?id=" . $objets3['ID'] . "&page=acheter.php'><span class='glyphicon glyphicon-plus-sign'></span></a>" . "</div>";
-              echo "<div class='panel-body'> <img src=' ". $objets3['Photos'] ."' class='img-responsive' style='width:100%' alt='Image'> </div>";
+              echo "<div class='panel-body'> <img src='images/". $objets3['Photos'] ."' class='img-responsive' style='width:100%' alt='Image'> </div>";
               echo "<div class='panel-footer'>" . $objets3['Description'] . "&nbspau prix de : " . $objets3 ['Prix'] . " Ø" . "</div>";
               echo "</div>";
               echo "</div>";
@@ -150,13 +150,13 @@ mysqli_close($db_handle);
 <footer class="page-footer">
 
     <div class="container-fluid">
-      <img src="logo.png" width="100px" height="100px">
+      <img src="images/logo.png" width="100px" height="100px">
       <p><strong>M I D G A R D</strong></p>  
         <div class="cvg">
           <p>
             <a href="#" class ="cvg">Conditions générales de vente</a>
             &nbsp &nbsp &nbsp
-            <a href="#" class ="cvg">Vos informations personnelles</a>
+            <a href="moncompteAcheteur.php?erreur=0" class ="cvg">Vos informations personnelles</a>
             &nbsp &nbsp &nbsp
             © 2020, Midgard Inc. 
           </p>

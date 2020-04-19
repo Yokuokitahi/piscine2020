@@ -119,11 +119,12 @@ if ($_POST["enregistrer"]) {
 					$failed = 1;
 				}
 			}
-			if ($mailVendeur!= "") {
+			if ($mail != "") {
 				$sql ="SELECT * FROM acheteur WHERE Email = '$mail'";
 				$result = mysqli_query($db_handle,$sql);
 				if (mysqli_num_rows($result) != 0) {
 					$erreurMail = "Mail déjà existant";
+					$failed = 1;
 				}
 				$sql ="SELECT * FROM vendeur WHERE Email = '$mail'";
 				$result = mysqli_query($db_handle,$sql);
@@ -182,7 +183,7 @@ mysqli_close($db_handle);
 
 <nav class="navbar navbar-inverse">
 	<div class="container-fluid">
-      <a class="navbar-brand" href="index.php"><img src="logo.png" style="margin-top: -11px" width="40px" height="40px"></a>
+      <a class="navbar-brand" href="index.php"><img src="images/logo.png" style="margin-top: -11px" width="40px" height="40px"></a>
 
   		<div class="collapse navbar-collapse" id="myNavbar">
         	<ul class="nav navbar-nav">
@@ -194,11 +195,11 @@ mysqli_close($db_handle);
 
 	<form class="inscrit" action="inscription.php" method="post">
 		<div id="erreur">
-			<?php if( !empty( $erreurChamp ) ) echo '<p style="text-align: center;" >', $erreurChamp, '</p>' ?>
-			<?php if( !empty( $erreurPseudo ) ) echo '<p style="text-align: center;" >', $erreurPseudo, '</p>' ?>
-			<?php if( !empty( $erreurMail ) ) echo '<p style="text-align: center;" >', $erreurMail, '</p>' ?>
-			<?php if( !empty( $erreurContrat ) ) echo '<p style="text-align: center;" >', $erreurContrat, '</p>' ?>
-			<?php if( !empty( $reussi ) ) echo '<p style="text-align: center;" >', $reussi, '</p>' ?>
+			<?php if( !empty( $erreurChamp ) ) echo '<p style="text-align: center; color: red " >', $erreurChamp, '</p>' ?>
+			<?php if( !empty( $erreurPseudo ) ) echo '<p style="text-align: center; color: red" >', $erreurPseudo, '</p>' ?>
+			<?php if( !empty( $erreurMail ) ) echo '<p style="text-align: center; color: red" >', $erreurMail, '</p>' ?>
+			<?php if( !empty( $erreurContrat ) ) echo '<p style="text-align: center; color: red" >', $erreurContrat, '</p>' ?>
+			<?php if( !empty( $reussi ) ) echo '<p style="text-align: center; color: red" >', $reussi, '</p>' ?>
 		</div>
 		<div class="choix" id="cat">
 			<p><input type="radio" name="categorie" value="acheteur" onclick="document.getElementById('acheteur').style.display='inline'; document.getElementById('vendeur').style.display='none'">
@@ -293,7 +294,7 @@ mysqli_close($db_handle);
 	<footer class="page-footer">
 
 		<div class="container-fluid">
-			<img src="logo.png" width="100px" height="100px">
+			<img src="images/logo.png" width="100px" height="100px">
 			<p><strong>M I D G A R D</strong></p>  
 			<div class="cvg">
 				<p>

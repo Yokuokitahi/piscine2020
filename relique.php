@@ -33,7 +33,7 @@ if ($db_found) {
   <!DOCTYPE html>
   <html>
   <head>
-   <title>Acheter un article : Reliques </title>
+   <title>Reliques </title>
    <meta charset="utf-8">
    <!--  intégration de Bootstrap *-->
    <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -53,7 +53,7 @@ if ($db_found) {
 
   <nav class="navbar navbar-inverse">
     <div class="container-fluid">
-      <a class="navbar-brand" href="indexConnecteAcheteur.php?erreur=0"><img src="logo.png" style="margin-top: -11px" width="40px" height="40px"></a>
+      <a class="navbar-brand" href="indexConnecteAcheteur.php?erreur=0"><img src="images/logo.png" style="margin-top: -11px" width="40px" height="40px"></a>
 
       <div class="collapse navbar-collapse" id="myNavbar">
         <ul class="nav navbar-nav">
@@ -65,9 +65,9 @@ if ($db_found) {
               <span class="caret"></span>
             </a>
             <ul class="dropdown-menu">
-              <li><a href="tresor.php">Trésors</a></li>
+              <li><a href="tresor.php">Objets communs</a></li>
               <li><a href="relique.php">Reliques</a></li>
-              <li><a href="vip.php">VIP</a></li>
+              <li><a href="vip.php">Objets de valeur</a></li>
             </ul>
           </li>
         </ul>
@@ -93,15 +93,15 @@ if ($db_found) {
         echo "<div class='col-sm-4'>";
         echo "<div class='panel panel-default'>";
         echo"<div class='panel-heading'>" .$objets['Nom'] . "<a href='ajouterPanier.php?id=" . $objets['ID'] . "&page=relique.php'><span class='glyphicon glyphicon-plus-sign'></span></a>" . "</div>";
-        echo "<div class='panel-body'> <img src=' ". $objets['Photos'] ."' class='img-responsive' style='width:100%' alt='Image'> </div>";
+        echo "<div class='panel-body'> <img src='images/". $objets['Photos'] ."' class='img-responsive' style='width:100%' alt='Image'> </div>";
         echo "<div class='panel-footer'>" . $objets['Description'] . "&nbspau prix de : " . $objets['Prix'] . " Ø" . "</div>";
         echo "</div>";
         echo "</div>";
-      }elseif ($objets['TypeVente'] == 'enchere' && $dateFinEnchere > $dateAjd && $objets['IDAcheteur'] == 0) {
+      }elseif ($objets['TypeVente'] == 'enchere' && $objets['EtatEnchere'] != 1 && $objets['IDAcheteur'] == 0) {
         echo "<div class='col-sm-4'>";
         echo "<div class='panel panel-default'>";
         echo"<div class='panel-heading'>" .$objets['Nom'] . "<a href='acheterEnchere.php?id=" . $objets['ID'] . "'><span class='glyphicon glyphicon-hourglass'></span></a>". "</div>";
-        echo "<div class='panel-body'> <img src=' ". $objets['Photos'] ."' class='img-responsive' style='width:100%' alt='Image'> </div>";
+        echo "<div class='panel-body'> <img src='images/". $objets['Photos'] ."' class='img-responsive' style='width:100%' alt='Image'> </div>";
         echo "<div class='panel-footer'>" . $objets['Description'] . "&nbspau prix de : " . $objets['Prix'] . " Ø" . "</div>";
         echo "</div>";
         echo "</div>";
@@ -109,7 +109,7 @@ if ($db_found) {
         echo "<div class='col-sm-4'>";
         echo "<div class='panel panel-default'>";
         echo"<div class='panel-heading'>" .$objets['Nom'] . "<a href='ajouterNego.php?id=" . $objets['ID'] . "&page=relique.php'><span class='glyphicon glyphicon-send'></span></a>". "</div>";
-        echo "<div class='panel-body'> <img src=' ". $objets['Photos'] ."' class='img-responsive' style='width:100%' alt='Image'> </div>";
+        echo "<div class='panel-body'> <img src='images/". $objets['Photos'] ."' class='img-responsive' style='width:100%' alt='Image'> </div>";
         echo "<div class='panel-footer'>" . $objets['Description'] . "&nbspau prix de : " . $objets['Prix'] . " Ø" . "</div>";
         echo "</div>";
         echo "</div>";
@@ -123,13 +123,13 @@ if ($db_found) {
 <footer class="page-footer">
 
   <div class="container-fluid">
-    <img src="logo.png" width="100px" height="100px">
+    <img src="images/logo.png" width="100px" height="100px">
     <p><strong>M I D G A R D</strong></p>  
     <div class="cvg">
       <p>
         <a href="#" class ="cvg">Conditions générales de vente</a>
         &nbsp &nbsp &nbsp
-        <a href="#" class ="cvg">Vos informations personnelles</a>
+        <a href="moncompteAcheteur.php?erreur=0" class ="cvg">Vos informations personnelles</a>
         &nbsp &nbsp &nbsp
         © 2020, Midgard Inc. 
       </p>

@@ -1,6 +1,6 @@
 .jumbotron{
 margin-bottom: 0;
-background: url('midgard.png') no-repeat;
+background: url('images/midgard.png') no-repeat;
 background-size: cover;
 background-position: 80% 25%;
 }
@@ -259,8 +259,18 @@ form .input [type=submit]{
   color: red;
 }
 
+.lepanier p{
+  color: #696969;
+  font-size: 20px;
+}
+
 .venteencours a:hover{
   color: red;
+}
+
+.venteencours p{
+  color: #696969;
+  font-size: 18px;
 }
 
 .surenchere {
@@ -271,4 +281,9 @@ form .input [type=submit]{
 .negociation {
   color: #696969;
   font-size: 16px;
+}
+
+.negoencours p{
+  color: #696969;
+  font-size: 18px;
 }

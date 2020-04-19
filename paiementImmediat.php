@@ -20,12 +20,12 @@ if ($db_found) {
       $difference = $solde - $prixTotal;
 
       if ($difference < 0) {
-        $erreur= "Vous n'avez pas assez d'argent sur votre compte, veuillez en rajouter";
+        $erreur= "Vous n'avez pas assez d'argent sur votre compte, veuillez en rajouter via le bouton \"Déposer de l'argent\"";
         header('Location: monCompteAcheteur.php?erreur=' . $erreur);
       }else{
         $sql = "UPDATE acheteur SET Solde = '$difference' WHERE Etat = 1";
         $result = mysqli_query($db_handle,$sql);
-        $sql = "DELETE FROM item WHERE IDAcheteur = '$ID'";
+        $sql = "DELETE FROM item WHERE IDAcheteur = '$ID' AND Offre ='0'";
         $result = mysqli_query($db_handle,$sql);
         $erreur = "Paiement accepté";
         header('Location: indexConnecteAcheteur.php?erreur=' . $erreur);

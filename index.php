@@ -50,7 +50,7 @@ mysqli_close($db_handle);
 
   <nav class="navbar navbar-inverse">
     <div class="container-fluid">
-      <a class="navbar-brand" href="index.php"><img src="logo.png" style="margin-top: -11px" width="40px" height="40px"></a>
+      <a class="navbar-brand" href="index.php"><img src="images\logo.png" style="margin-top: -11px" width="40px" height="40px"></a>
 
       <div class="collapse navbar-collapse" id="myNavbar">
         <ul class="nav navbar-nav">
@@ -63,9 +63,9 @@ mysqli_close($db_handle);
               <span class="caret"></span>
             </a>
             <ul class="dropdown-menu">
-              <li><a href="connect.php">Trésors</a></li>
+              <li><a href="connect.php">Objets communs</a></li>
               <li><a href="connect.php">Reliques</a></li>
-              <li><a href="connect.php">VIP</a></li>
+              <li><a href="connect.php">Objets de valeur</a></li>
             </ul>
           </li>
         </ul>
@@ -84,11 +84,11 @@ mysqli_close($db_handle);
       <?php
       while ($objets = mysqli_fetch_assoc($result)) {
         $dateFinEnchere = date_create($objets['DureeEnchere']);
-        if ($objets['IDAcheteur']== 0 && $dateFinEnchere > $dateAjd) {
+        if ($objets['IDAcheteur']== 0 && $objets['EtatEnchere'] != 1) {
           echo "<div class='col-sm-4'>";
           echo "<div class='panel panel-default'>";
           echo"<div class='panel-heading'>" .$objets['Nom'] . "</div>";
-          echo "<div class='panel-body'> <img src=' ". $objets['Photos'] ."' class='img-responsive' style='width:100%' alt='Image'> </div>";
+          echo "<div class='panel-body'> <img src='images/". $objets['Photos'] ."' class='img-responsive' style='width:100%' alt='Image'> </div>";
           echo "<div class='panel-footer'>" . $objets['Description'] . "&nbspau prix de : " . $objets['Prix'] . " Ø" . "</div>";
           echo "</div>";
           echo "</div>";
@@ -99,13 +99,13 @@ mysqli_close($db_handle);
   <footer class="page-footer">
 
     <div class="container-fluid">
-      <img src="logo.png" width="100px" height="100px">
+      <img src="images/logo.png" width="100px" height="100px">
       <p><strong>M I D G A R D</strong></p>  
         <div class="cvg">
           <p>
             <a href="#" class ="cvg">Conditions générales de vente</a>
             &nbsp &nbsp &nbsp
-            <a href="#" class ="cvg">Vos informations personnelles</a>
+            <a href="connect.php" class ="cvg">Vos informations personnelles</a>
             &nbsp &nbsp &nbsp
             © 2020, Midgard Inc. 
           </p>

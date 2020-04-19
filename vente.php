@@ -76,7 +76,7 @@ mysqli_close($db_handle);
 
   <nav class="navbar navbar-inverse">
     <div class="container-fluid">
-      <a class="navbar-brand" href="indexConnecteVendeur.php"><img src="logo.png" style="margin-top: -11px" width="40px" height="40px"></a>
+      <a class="navbar-brand" href="indexConnecteVendeur.php"><img src="images/logo.png" style="margin-top: -11px" width="40px" height="40px"></a>
 
       <div class="collapse navbar-collapse" id="myNavbar">
         <ul class="nav navbar-nav">
@@ -97,9 +97,9 @@ mysqli_close($db_handle);
   <form action="vente.php" method="post">
 	<div class="vente">
 		<label for="categorie"><b>En quelle catégorie souhaitez-vous ajouter un objet ? </b></label>
-			<label for="tresor">Objet de valeur</label> <input type="radio" name="cate" value="tresor" required> &nbsp
+			<label for="tresor">Objet commun</label> <input type="radio" name="cate" value="tresor" required> &nbsp
 			<label for="relique">Objet ancien</label> <input type="radio" name="cate" value="relique" required> &nbsp
-			<label for="vip">Objet VIP </label> <input type="radio" name="cate" value="vip" required> <br> <br>
+			<label for="vip">Objet de valeur </label> <input type="radio" name="cate" value="vip" required> <br> <br>
 
 		<label for="nomObjet"><b>Nom de l'objet : </b></label>
 		<input type="text" placeholder="Entrez le nom de l'objet" name="nomObjet" maxlength="20" required><br>
@@ -132,13 +132,13 @@ mysqli_close($db_handle);
   <footer class="page-footer">
 
     <div class="container-fluid">
-      <img src="logo.png" width="100px" height="100px">
+      <img src="images/logo.png" width="100px" height="100px">
       <p><strong>M I D G A R D</strong></p>  
         <div class="cvg">
           <p>
             <a href="#" class ="cvg">Conditions générales de vente</a>
             &nbsp &nbsp &nbsp
-            <a href="#" class ="cvg">Vos informations personnelles</a>
+            <a href="monCompteVendeur.php" class ="cvg">Vos informations personnelles</a>
             &nbsp &nbsp &nbsp
             © 2020, Midgard Inc. 
           </p>

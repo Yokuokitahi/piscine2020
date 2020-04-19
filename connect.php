@@ -16,10 +16,10 @@ if ($_POST["connexion"]) { //bouton se connecter enclenché
 		$sql = "SELECT * FROM admin WHERE Pseudo = '$identifiant'"; //on recherche le pseudo dans la table admin
 		$result = mysqli_query($db_handle, $sql);
 		if (mysqli_num_rows($result) == 0) { // si le pseudo n'est pas dans la table admin
-			$sql = "SELECT * FROM vendeur WHERE Pseudo = '$identifiant'"; //on cherche le pseudo dans la page vendeur
+			$sql = "SELECT * FROM vendeur WHERE Pseudo = '$identifiant' OR Email = '$identifiant'"; //on cherche le pseudo dans la page vendeur
 			$result = mysqli_query($db_handle, $sql);
 			if (mysqli_num_rows($result) == 0) {// si le pseudo n'est pas dans la table vendeur
-				$sql = "SELECT * FROM acheteur WHERE Pseudo = '$identifiant'";//on cherche le pseudo dans la page acheteur
+				$sql = "SELECT * FROM acheteur WHERE Pseudo = '$identifiant' OR Email = '$identifiant'";//on cherche le pseudo dans la page acheteur
 				$result = mysqli_query($db_handle, $sql);
 				if (mysqli_num_rows($result) == 0) {// si le pseudo n'est pas dans la table acheteur, il n'est dans aucune table
 					$erreur = "User not found"; // on ne trouve pas ce pseudo
@@ -91,11 +91,11 @@ mysqli_close($db_handle);
 
 <nav class="navbar navbar-inverse">
 	<div class="container-fluid">
-      <a class="navbar-brand" href="index.php"><img src="logo.png" style="margin-top: -11px" width="40px" height="40px"></a>
+      <a class="navbar-brand" href="index.php"><img src="images/logo.png" style="margin-top: -11px" width="40px" height="40px"></a>
 
   		<div class="collapse navbar-collapse" id="myNavbar">
         	<ul class="nav navbar-nav">
-          		<li class="active"><a href="index.php">Retour Page Accueil</a></li>
+          		<li class="active"><a href="index.php">Retour à la Page d'accueil</a></li>
 		</div>
 
     </div>
@@ -103,7 +103,7 @@ mysqli_close($db_handle);
 
 <form action="connect.php" method="post">
 	<div class="img">
-		<img src="avatar.png" alt="Avatar" class="avatar">
+		<img src="images/avatar.png" alt="Avatar" class="avatar">
 	</div>
 
 <div class="container">
@@ -124,7 +124,7 @@ mysqli_close($db_handle);
 
 <footer class="page-footer">
 		<div class="container-fluid">
-			<img src="logo.png" width="100px" height="100px">
+			<img src="images/logo.png" width="100px" height="100px">
 			<p><strong>M I D G A R D</strong></p>  
 			<div class="cvg">
 				<p>

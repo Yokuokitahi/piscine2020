@@ -58,11 +58,11 @@ mysqli_close($db_handle);
 
 	<nav class="navbar navbar-inverse">
 		<div class="container-fluid">
-			<a class="navbar-brand" href="indexConnecteAcheteur.php"><img src="logo.png" style="margin-top: -11px" width="40px" height="40px"></a>
+			<a class="navbar-brand" href="indexConnecteAcheteur.php?erreur=0"><img src="images/logo.png" style="margin-top: -11px" width="40px" height="40px"></a>
 
 			<div class="collapse navbar-collapse" id="myNavbar">
 				<ul class="nav navbar-nav">
-					<li class="active"><a href="indexConnecteAcheteur.php">Home</a></li>
+					<li class="active"><a href="indexConnecteAcheteur.php?erreur=0">Home</a></li>
 					<li><a href="acheter.php">Acheter</a></li>
 
 					<li class="dropdown" >
@@ -70,16 +70,16 @@ mysqli_close($db_handle);
 							<span class="caret"></span>
 						</a>
 						<ul class="dropdown-menu">
-							<li><a href="tresor.php">Trésors</a></li>
+							<li><a href="tresor.php">Objets communs</a></li>
 							<li><a href="relique.php">Reliques</a></li>
-							<li><a href="vip.php">VIP</a></li>
+							<li><a href="vip.php">Objets de valeur</a></li>
 						</ul>
 					</li>
 				</ul>
 
 
 				<ul class="nav navbar-nav navbar-right">
-					<li><a href="moncompteAcheteur.php?erreur=0"><span class="glyphicon glyphicon-user"></span> Mon compte</a></li>
+					<li><a href="monCompteAcheteur.php?erreur=0"><span class="glyphicon glyphicon-user"></span> Mon compte</a></li>
 					<li><a href="panier.php"><span class="glyphicon glyphicon-shopping-cart"></span> Votre panier</a></li>
 					<li><a href="deco.php"><span class="glyphicon glyphicon-off"></span> Déconnexion</a></li>
 				</ul>
@@ -90,7 +90,7 @@ mysqli_close($db_handle);
 	<form action="ajouterSolde.php" method="post">
 		<div class="argent">
 			<label for="solde">Ajouter des Øre à votre solde : </label><br>
-			<input type="number" placeholder="Entrez un montant (en Øre)" name="solde">
+			<input type="number" placeholder="Entrez un montant (en Øre)" name="solde" required>
 			<br>
 			<p><input type="submit" name="ajouter" value="Déposer de l'argent"></p>
 		</div>
@@ -101,13 +101,13 @@ mysqli_close($db_handle);
 	<footer class="page-footer">
 
 		<div class="container-fluid">
-			<img src="logo.png" width="100px" height="100px">
+			<img src="images/logo.png" width="100px" height="100px">
 			<p><strong>M I D G A R D</strong></p>  
 			<div class="cvg">
 				<p>
 					<a href="#" class ="cvg">Conditions générales de vente</a>
 					&nbsp &nbsp &nbsp
-					<a href="#" class ="cvg">Vos informations personnelles</a>
+					<a href="monCompteAcheteur.php?erreur=0" class ="cvg">Vos informations personnelles</a>
 					&nbsp &nbsp &nbsp
 					© 2020, Midgard Inc. 
 				</p>
