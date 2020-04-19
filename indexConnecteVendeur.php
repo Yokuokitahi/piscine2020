@@ -134,7 +134,6 @@ mysqli_close($db_handle);
   <div class="venteencours">
       <p style="text-align: center;"><?php echo $erreurObjet;?></p>
   </div>
-
   <footer class="page-footer">
     <div class="container-fluid">
       <img src="images/logo.png" width="100px" height="100px">

@@ -5,6 +5,7 @@ $db_handle = mysqli_connect('localhost', 'root', '');
 $db_found = mysqli_select_db($db_handle, $database);
 $ID = $_GET['id'];
 
+
 if ($db_found) { //si la base de données est bien connectée
 	if ($ID == 'Skaway' || $ID == 'Drakking') {
 		$sql = "DELETE FROM item WHERE IDVendeur = '$ID'";

@@ -3,7 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Hôte : 127.0.0.1:3306
+
 -- Généré le :  Dim 19 avr. 2020 à 11:37
+
 -- Version du serveur :  10.4.10-MariaDB
 -- Version de PHP :  7.3.12
 
@@ -118,9 +120,11 @@ CREATE TABLE IF NOT EXISTS `item` (
 -- Déchargement des données de la table `item`
 --
 
+
 INSERT INTO `item` (`ID`, `Nom`, `Photos`, `Description`, `Video`, `Prix`, `Categorie`, `IDVendeur`, `TypeVente`, `DureeEnchere`, `IDAcheteur`, `prixEnchere`, `Offre`, `NbOffre`, `ContreOffre`, `Nego`, `EtatEnchere`, `IDAcheteurEnchere`) VALUES
 (0, 'init', 'init', 'init', 'init', 'init', 'init', 'init', '', '0000-00-00 00:00:00', 0, 0, 0, 0, 0, 0, 0, 0),
 (1, 'Radio', 'radio jbl.png', 'Radio de marque JBL', '', '50', 'tresor', '3', 'comptant', '2050-01-01 00:00:00', 0, 0, 0, 0, 0, 0, 0, 0);
+
 
 -- --------------------------------------------------------
 
@@ -147,9 +151,11 @@ CREATE TABLE IF NOT EXISTS `vendeur` (
 
 INSERT INTO `vendeur` (`ID`, `Pseudo`, `Password`, `Nom`, `Email`, `Photos`, `Background`, `Etat`) VALUES
 (0, 'client0', 'root', 'firstclient', 'firstclient@gmail.com', '', '', 0),
+
 (1, 'jps', 'root', 'Segado', 'segado@ece.fr', 0x73656761646f2e6a7067, '', 0),
 (2, 'malo', 'root', 'yacinmalo', 'malo@ece.fr', 0x6d616c6f2e504e47, 0x6563652e706e67, 0),
 (3, 'Manu', 'root', 'Thibault', 'guisnel@ece.fr', 0x6d616e752e6a7067, 0x666f6e646d616e752e6a7067, 0);
+
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
